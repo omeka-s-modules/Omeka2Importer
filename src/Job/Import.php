@@ -31,10 +31,7 @@ class Import extends AbstractJob
         $this->client->setKey($this->getArg('key'));
         $this->api = $this->getServiceLocator()->get('Omeka\ApiManager');
         $this->prepareTermIdMap();
-        
-        //$this->importCollections();
         $this->importItems();
-        
     }
 
     protected function importItems()
@@ -44,13 +41,70 @@ class Import extends AbstractJob
         foreach($itemsData as $itemData) {
             $itemJson = array();
             $itemJson = $this->processElementTexts($itemData, $itemJson);
-            $this->api->create('items', $itemJson);
+            $itemJson = $this->buildEntityJson($itemData);
+            $newItem = $this->api->create('items', $itemJson);
         }
     }
-    
-    protected function processElementTexts($itemData, $entityJson)
+
+    protected function buildEntityJson($importData)
     {
-        foreach($itemData['element_texts'] as $elTextData)
+        $entityJson = array();
+        $entityJson = array_merge($entityJson, $this->buildPropertyJson($importData));
+        $entityJson = array_merge($entityJson, $this->buildMediaJson($importData));
+        return $entityJson;
+    }
+
+    protected function buildMediaJson($importData)
+    {
+        //another query to get the filesData from the importData
+        $itemId = $importData['id'];
+        $response = $this->client->files->get(array('item' => $itemId));
+        $filesData = json_decode($response->getBody(), true);
+        $filesJson = array();
+        foreach($filesData as $fileData) {
+            $fileJson = array(
+                'o:type'     => 'url',
+                'o:source'   => $fileData['file_urls']['original'],
+                'ingest_url' => $fileData['file_urls']['original'],
+            );
+            $fileJson = array_merge($fileJson, $this->buildPropertyJson($fileData));
+            $filesJson[] = $fileJson;
+        }
+        return $filesJson;
+    }
+
+    protected function buildPropertyJson($importData) {
+        $propertyJson = array();
+        foreach($importData['element_texts'] as $elTextData) {
+            $elementSetName = $elTextData['element_set']['name'];
+            $elementName = $elTextData['element']['name'];
+            switch ($elementSetName) {
+                case 'Dublin Core':
+                    $term = "dcterms:" . strtolower($elementName);
+                    break;
+                case 'Item Type Metadata':
+                    $term = false; //for now @todo
+                    break;
+                default:
+                    $term = false;
+            }
+            if ($term) {
+                $propertyId = $this->getPropertyId($term);
+                $value = strip_tags($elTextData['text']);
+                if ($propertyId) {
+                    $propertyJson[$term][] = array(
+                            '@value'      => $value,
+                            'property_id' => $propertyId
+                            );
+                }
+            }
+        }
+        return $propertyJson;
+    }
+//to kill
+    protected function processElementTexts($recordData, $entityJson)
+    {
+        foreach($recordData['element_texts'] as $elTextData)
         {
             $elementSetName = $elTextData['element_set']['name'];
             $elementName = $elTextData['element']['name'];
