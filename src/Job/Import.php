@@ -40,17 +40,17 @@ class Import extends AbstractJob
         $itemsData = json_decode($response->getBody(), true);
         foreach($itemsData as $itemData) {
             $itemJson = array();
-            $itemJson = $this->buildEntityJson($itemData);
+            $itemJson = $this->buildResourceJson($itemData);
+            $itemJson = array_merge($itemJson, $this->buildMediaJson($itemData));
             $this->api->create('items', $itemJson);
         }
     }
 
-    protected function buildEntityJson($importData)
+    protected function buildResourceJson($importData)
     {
-        $entityJson = array();
-        $entityJson = array_merge($entityJson, $this->buildPropertyJson($importData));
-        $entityJson = array_merge($entityJson, $this->buildMediaJson($importData));
-        return $entityJson;
+        $resourceJson = array();
+        $resourceJson = array_merge($resourceJson, $this->buildPropertyJson($importData));
+        return $resourceJson;
     }
 
     protected function buildMediaJson($importData)
