@@ -229,7 +229,6 @@ class Omeka2Client
             ->resetParameters()
             ->setUri($this->apiBaseUrl . $path)
             ->setMethod($method);
-        echo $client->getUri();
         if ($this->key) {
             $params = array_merge($params, array('key' => $this->key));
         }

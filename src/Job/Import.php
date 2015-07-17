@@ -40,9 +40,8 @@ class Import extends AbstractJob
         $itemsData = json_decode($response->getBody(), true);
         foreach($itemsData as $itemData) {
             $itemJson = array();
-            $itemJson = $this->processElementTexts($itemData, $itemJson);
             $itemJson = $this->buildEntityJson($itemData);
-            $newItem = $this->api->create('items', $itemJson);
+            $this->api->create('items', $itemJson);
         }
     }
 
@@ -60,7 +59,7 @@ class Import extends AbstractJob
         $itemId = $importData['id'];
         $response = $this->client->files->get(array('item' => $itemId));
         $filesData = json_decode($response->getBody(), true);
-        $filesJson = array();
+        $mediaJson = array('o:media' => array());
         foreach($filesData as $fileData) {
             $fileJson = array(
                 'o:type'     => 'url',
@@ -68,9 +67,9 @@ class Import extends AbstractJob
                 'ingest_url' => $fileData['file_urls']['original'],
             );
             $fileJson = array_merge($fileJson, $this->buildPropertyJson($fileData));
-            $filesJson[] = $fileJson;
+            $mediaJson['o:media'][] = $fileJson;
         }
-        return $filesJson;
+        return $mediaJson;
     }
 
     protected function buildPropertyJson($importData) {
