@@ -8,18 +8,10 @@ class Omeka2ItemRepresentation extends AbstractEntityRepresentation
     public function getJsonLd()
     {
         return array(
-            'last_modified' => $this->getData()->getLastModified(),
-            'uri'           => $this->getData()->getUri(),
-            'o:item'        => $this->getReference(
-                null,
-                $this->getData()->getItem(),
-                $this->getAdapter('items')
-            ),
-            'o:job'         => $this->getReference(
-                null,
-                $this->getData()->getJob(),
-                $this->getAdapter('jobs')
-            ),
+            'last_modified' => $this->lastModified(),
+            'uri'           => $this->uri(),
+            'o:item'        => $this->item()->getReference(),
+            'o:job'         => $this->job()->getReference(),
         );
     }
 
