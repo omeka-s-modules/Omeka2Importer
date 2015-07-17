@@ -46,10 +46,13 @@ class Import extends AbstractJob
         }
     }
 
-    protected function buildResourceJson($importData)
+    protected function buildResourceJson($importData, $hasAsset = false)
     {
         $resourceJson = array();
         $resourceJson = array_merge($resourceJson, $this->buildPropertyJson($importData));
+        if($hasAsset) {
+            $resourceJson = array_merge($resourceJson, $this->buildAssetJson());
+        }
         return $resourceJson;
     }
 
