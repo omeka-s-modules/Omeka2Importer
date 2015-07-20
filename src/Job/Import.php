@@ -103,36 +103,6 @@ class Import extends AbstractJob
         }
         return $propertyJson;
     }
-//to kill
-    protected function processElementTexts($recordData, $entityJson)
-    {
-        foreach($recordData['element_texts'] as $elTextData)
-        {
-            $elementSetName = $elTextData['element_set']['name'];
-            $elementName = $elTextData['element']['name'];
-            switch ($elementSetName) {
-                case 'Dublin Core':
-                    $term = "dcterms:" . strtolower($elementName);
-                    break;
-                case 'Item Type Metadata':
-                    $term = false; //for now @todo
-                    break;
-                default:
-                    $term = false;
-            }
-            if ($term) {
-                $propertyId = $this->getPropertyId($term);
-                $value = strip_tags($elTextData['text']);
-                if ($propertyId) {
-                    $entityJson[$term][] = array(
-                            '@value'      => $value,
-                            'property_id' => $propertyId
-                            );
-                }
-            }
-        }
-        return $entityJson;
-    }
 
     protected function prepareTermIdMap()
     {
