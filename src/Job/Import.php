@@ -25,7 +25,7 @@ class Import extends AbstractJob
     {
         $this->addedCount = 0;
         $this->updatedCount = 0;
-        $this->endpoint = rtrim($this->getArg('endpoint'), '/');
+        $this->endpoint = rtrim($this->getArg('endpoint'), '/'); //make this a filter?
         $this->client = $this->getServiceLocator()->get('Omeka2Importer\Omeka2Client');
         $this->client->setApiBaseUrl($this->endpoint);
         $this->client->setKey($this->getArg('key'));
@@ -36,14 +36,27 @@ class Import extends AbstractJob
 
     protected function importItems()
     {
-        $response = $this->client->items->get();
-        $itemsData = json_decode($response->getBody(), true);
-        foreach($itemsData as $itemData) {
-            $itemJson = array();
-            $itemJson = $this->buildResourceJson($itemData);
-            $itemJson = array_merge($itemJson, $this->buildMediaJson($itemData));
-            $this->api->create('items', $itemJson);
-        }
+        $page = 1;
+        do {
+            $response = $this->client->items->get(null, array('page' => $page));
+            $itemsData = json_decode($response->getBody(), true);
+            foreach($itemsData as $itemData) {
+                $itemJson = array();
+                $itemJson = $this->buildResourceJson($itemData);
+                $itemJson = array_merge($itemJson, $this->buildMediaJson($itemData));
+                $response = $this->api->create('items', $itemJson);
+                $itemId = $response->getContent()->id();
+
+                $importItemEntityJson = array(
+                                'o:job'         => array('o:id' => $this->job->getId()),
+                                'o:item'        => array('o:id' => $itemId),
+                                'endpoint'      => $this->endpoint,
+                                'last_modified' => $itemData['modified']
+                              );
+                $this->api->create('omeka2items', $importItemEntityJson);
+            }
+            $page++;
+        } while ($this->hasNextPage($response));
     }
 
     protected function buildResourceJson($importData, $hasAsset = false)
@@ -127,5 +140,12 @@ class Import extends AbstractJob
     protected function getPropertyId($term)
     {
         return $this->termIdMap[$term];
+    }
+
+    protected function hasNextPage($response)
+    {
+        $headers = $response->getHeaders();
+        $linksHeaders = $response->getHeaders()->get('Link')->toString();
+        return strpos($linksHeaders, 'rel="next"');
     }
 }
