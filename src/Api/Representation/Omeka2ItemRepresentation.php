@@ -9,7 +9,8 @@ class Omeka2ItemRepresentation extends AbstractEntityRepresentation
     {
         return array(
             'last_modified' => $this->lastModified(),
-            'uri'           => $this->uri(),
+            'endpoint'      => $this->endpoint(),
+            'remote_id'     => $this->remoteId(),
             'o:item'        => $this->item()->getReference(),
             'o:job'         => $this->job()->getReference(),
         );
@@ -20,9 +21,14 @@ class Omeka2ItemRepresentation extends AbstractEntityRepresentation
         return $this->getData()->getlastModified();
     }
 
-    public function uri()
+    public function endpoint()
     {
-        return $this->getData()->getUri();
+        return $this->getData()->getEndpoint();
+    }
+    
+    public function remoteId()
+    {
+        return $this->getData()->getRemoteId();
     }
 
     public function item()

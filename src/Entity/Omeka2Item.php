@@ -36,13 +36,13 @@ class Omeka2Item extends AbstractEntity
      * @Column(type="integer")
      * @var int
      */
-    public $remoteItemId;
+    public $remoteId;
 
     /**
      * @Column(type="string")
      * @var string
      */
-    protected $uri;
+    protected $endpoint;
 
     /**
      * @Column(type="datetime")
@@ -74,14 +74,24 @@ class Omeka2Item extends AbstractEntity
         return $this->job;
     }
 
-    public function setUri($uri)
+    public function setEndpoint($uri)
     {
-        $this->uri = $uri;
+        $this->endpoint = $uri;
     }
 
-    public function getUri()
+    public function getEndpoint()
     {
-        return $this->uri;
+        return $this->endpoint;
+    }
+    
+    public function setRemoteId($id)
+    {
+        $this->remoteId = $id;
+    }
+    
+    public function getRemoteId()
+    {
+        return $this->remoteId;
     }
 
     public function setLastModified(DateTime $lastModified) 

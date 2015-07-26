@@ -44,16 +44,28 @@ class Import extends AbstractJob
                 $itemJson = array();
                 $itemJson = $this->buildResourceJson($itemData);
                 $itemJson = array_merge($itemJson, $this->buildMediaJson($itemData));
-                $response = $this->api->create('items', $itemJson);
-                $itemId = $response->getContent()->id();
-
-                $importItemEntityJson = array(
-                                'o:job'         => array('o:id' => $this->job->getId()),
-                                'o:item'        => array('o:id' => $itemId),
-                                'endpoint'      => $this->endpoint,
-                                'last_modified' => $itemData['modified']
-                              );
-                $this->api->create('omeka2items', $importItemEntityJson);
+                $importRecord = $this->importRecord($itemData['id']);
+                if ($importRecord) {
+                    $response = $this->api->update('items', $importRecord->item()->id(), $itemJson);
+                    $importItemEntityJson = array(
+                                    'o:job'         => array('o:id' => $this->job->getId()),
+                                    'last_modified' => new \DateTime($itemData['modified']),
+                                  );
+                    $response = $this->api->update('omeka2items', $importRecord->id(), $importItemEntityJson);
+                } else {
+                    $response = $this->api->create('items', $itemJson);
+                    $content = $response->getContent();
+                    $itemId = $content->id();
+ 
+                    $importItemEntityJson = array(
+                                    'o:job'         => array('o:id' => $this->job->getId()),
+                                    'o:item'        => array('o:id' => $itemId),
+                                    'endpoint'      => $this->endpoint,
+                                    'last_modified' => new \DateTime($itemData['modified']),
+                                    'remote_id'     => $itemData['id']
+                                  );
+                    $response = $this->api->create('omeka2items', $importItemEntityJson);
+                }
             }
             $page++;
         } while ($this->hasNextPage($response));
@@ -142,8 +154,20 @@ class Import extends AbstractJob
         return $this->termIdMap[$term];
     }
 
+    protected function importRecord($remoteId)
+    {
+        //see if the item has already been imported
+        $response = $this->api->search('omeka2items', array('remote_id' => $remoteId));
+        $content = $response->getContent();
+        if (empty($content)) {
+            return false;
+        }
+        return $importedItem = $content[0];
+    }
+
     protected function hasNextPage($response)
     {
+        return false;
         $headers = $response->getHeaders();
         $linksHeaders = $response->getHeaders()->get('Link')->toString();
         return strpos($linksHeaders, 'rel="next"');

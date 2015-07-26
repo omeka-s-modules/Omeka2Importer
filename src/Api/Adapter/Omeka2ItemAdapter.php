@@ -26,10 +26,10 @@ class Omeka2ItemAdapter extends AbstractEntityAdapter
     
     public function buildQuery(QueryBuilder $qb, array $query)
     {
-        if (isset($query['uri'])) {
+        if (isset($query['endpoint'])) {
             $qb->andWhere($qb->expr()->eq(
-                $this->getEntityClass() . '.uri',
-                $this->createNamedParameter($qb, $query['uri']))
+                $this->getEntityClass() . '.endpoint',
+                $this->createNamedParameter($qb, $query['endpoint']))
             );
         }
 
@@ -43,6 +43,12 @@ class Omeka2ItemAdapter extends AbstractEntityAdapter
             $qb->andWhere($qb->expr()->eq(
                 $this->getEntityClass() . '.item',
                 $this->createNamedParameter($qb, $query['item_id']))
+            );
+        }
+        if (isset($query['remote_id'])) {
+            $qb->andWhere($qb->expr()->eq(
+                $this->getEntityClass() . '.remoteId',
+                $this->createNamedParameter($qb, $query['remote_id']))
             );
         }
     }
@@ -59,8 +65,12 @@ class Omeka2ItemAdapter extends AbstractEntityAdapter
             $item = $this->getAdapter('items')->findEntity($data['o:item']['o:id']);
             $entity->setItem($item);
         }
-        if (isset($data['uri'])) {
-            $entity->setUri($data['uri']);
+        if (isset($data['endpoint'])) {
+            $entity->setEndpoint($data['endpoint']);
+        }
+
+        if (isset($data['remote_id'])) {
+            $entity->setRemoteId($data['remote_id']);
         }
 
         if (isset($data['last_modified'])) {
