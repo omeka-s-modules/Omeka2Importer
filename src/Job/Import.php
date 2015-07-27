@@ -19,8 +19,6 @@ class Import extends AbstractJob
 
     protected $updatedCount;
 
-    protected $itemSetId;
-
     public function perform()
     {
         $this->addedCount = 0;
@@ -31,7 +29,17 @@ class Import extends AbstractJob
         $this->client->setKey($this->getArg('key'));
         $this->api = $this->getServiceLocator()->get('Omeka\ApiManager');
         $this->prepareTermIdMap();
-        $this->importItems();
+        $options = $this->job->getArgs();
+        if (isset($options['itemSet'])) {
+            $options['itemSets'] = array($options['itemSet']);
+        }
+        if ($this->getArg('importCollections', false)) {
+            $this->importCollections($options);
+        } else {
+            $options['importFiles'] = true;
+            $this->importItems($options);
+        }
+        
         $comment = $this->getArg('comment');
         $Omeka2ImportJson = array(
                             'o:job'         => array('o:id' => $this->job->getId()),
@@ -41,17 +49,44 @@ class Import extends AbstractJob
                           );
         $response = $this->api->create('omeka2imports', $Omeka2ImportJson);
     }
-
-    protected function importItems()
+    
+    protected function importCollections($options = array())
     {
         $page = 1;
         do {
-            $response = $this->client->items->get(null, array('page' => $page));
+            $response = $this->client->collections->get(null, array('page' => $page));
+            $collectionsData = json_decode($response->getBody(), true);
+            foreach ($collectionsData as $collectionData) {
+                unset($options['importFiles']);
+                $itemSetJson = $this->buildResourceJson($collectionData, $options);
+                $response = $this->api->create('item_sets', $itemJson);
+                $itemSetId = $response->getContent()->id();
+                $omekaCollectionId = $collectionData['id'];
+                $options['importFiles'] = true;
+                $options['collectionId'] = $omekaCollectionId;
+                $options['itemSets'][] = $itemSetId;
+                $this->importItems($options);
+            }
+            $page++;
+        } while ($this->hasNextPage($response));
+    }
+
+    protected function importItems($options = array())
+    {
+        $page = 1;
+        $params = array();
+        //if importing by collections from Omeka 2, the collection to use as
+        //the param for querying the Omeka 2 API
+        if (isset($options['collectionId'])) {
+            $params['collection_id'] = $options['collectionId'];
+        }
+        do {
+            $params['page'] = $page;
+            $response = $this->client->items->get(null, $params);
             $itemsData = json_decode($response->getBody(), true);
             foreach($itemsData as $itemData) {
                 $itemJson = array();
-                $itemJson = $this->buildResourceJson($itemData);
-                $itemJson = array_merge($itemJson, $this->buildMediaJson($itemData));
+                $itemJson = $this->buildResourceJson($itemData, $options);
                 $importRecord = $this->importRecord($itemData['id']);
                 if ($importRecord) {
                     $response = $this->api->update('items', $importRecord->item()->id(), $itemJson);
@@ -81,15 +116,18 @@ class Import extends AbstractJob
         } while ($this->hasNextPage($response));
     }
 
-    protected function buildResourceJson($importData, $hasAsset = false)
+    protected function buildResourceJson($importData, $options = array())
     {
         $resourceJson = array();
-        if ($this->itemSetId) {
-            $resourceJson['o:item_set'] = array(array('o:id' => $this->itemSetId));
+        if (isset($options['itemSets'])) {
+            $resourceJson['o:item_set'] = array();
+            foreach ($options['itemSets'] as $itemSetId) {
+                $resourceJson['o:item_set'][] = array('o:id' => $itemSetId);
+            }
         }
         $resourceJson = array_merge($resourceJson, $this->buildPropertyJson($importData));
-        if($hasAsset) {
-            $resourceJson = array_merge($resourceJson, $this->buildMediaJson());
+        if (isset($options['importFiles']) && $options['importFiles']) {
+            $resourceJson = array_merge($resourceJson, $this->buildMediaJson($importData));
         }
         return $resourceJson;
     }
@@ -180,7 +218,7 @@ class Import extends AbstractJob
 
     protected function hasNextPage($response)
     {
-        //return false;
+        return false;
         $headers = $response->getHeaders();
         $linksHeaders = $response->getHeaders()->get('Link')->toString();
         return strpos($linksHeaders, 'rel="next"');
