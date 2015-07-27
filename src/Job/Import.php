@@ -84,9 +84,12 @@ class Import extends AbstractJob
     protected function buildResourceJson($importData, $hasAsset = false)
     {
         $resourceJson = array();
+        if ($this->itemSetId) {
+            $resourceJson['o:item_set'] = array(array('o:id' => $this->itemSetId));
+        }
         $resourceJson = array_merge($resourceJson, $this->buildPropertyJson($importData));
         if($hasAsset) {
-            $resourceJson = array_merge($resourceJson, $this->buildAssetJson());
+            $resourceJson = array_merge($resourceJson, $this->buildMediaJson());
         }
         return $resourceJson;
     }
@@ -177,7 +180,7 @@ class Import extends AbstractJob
 
     protected function hasNextPage($response)
     {
-        return false;
+        //return false;
         $headers = $response->getHeaders();
         $linksHeaders = $response->getHeaders()->get('Link')->toString();
         return strpos($linksHeaders, 'rel="next"');
