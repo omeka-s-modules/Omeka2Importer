@@ -32,6 +32,14 @@ class Import extends AbstractJob
         $this->api = $this->getServiceLocator()->get('Omeka\ApiManager');
         $this->prepareTermIdMap();
         $this->importItems();
+        $comment = $this->getArg('comment');
+        $Omeka2ImportJson = array(
+                            'o:job'         => array('o:id' => $this->job->getId()),
+                            'comment'       => $comment,
+                            'added_count'   => $this->addedCount,
+                            'updated_count' => $this->updatedCount
+                          );
+        $response = $this->api->create('omeka2imports', $Omeka2ImportJson);
     }
 
     protected function importItems()
@@ -52,6 +60,7 @@ class Import extends AbstractJob
                                     'last_modified' => new \DateTime($itemData['modified']),
                                   );
                     $response = $this->api->update('omeka2items', $importRecord->id(), $importItemEntityJson);
+                    $this->updatedCount++;
                 } else {
                     $response = $this->api->create('items', $itemJson);
                     $content = $response->getContent();
@@ -65,6 +74,7 @@ class Import extends AbstractJob
                                     'remote_id'     => $itemData['id']
                                   );
                     $response = $this->api->create('omeka2items', $importItemEntityJson);
+                    $this->addedCount++;
                 }
             }
             $page++;
@@ -167,6 +177,7 @@ class Import extends AbstractJob
 
     protected function hasNextPage($response)
     {
+        return false;
         $headers = $response->getHeaders();
         $linksHeaders = $response->getHeaders()->get('Link')->toString();
         return strpos($linksHeaders, 'rel="next"');
