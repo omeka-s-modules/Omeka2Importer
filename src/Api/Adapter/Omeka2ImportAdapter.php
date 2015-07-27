@@ -16,7 +16,7 @@ class Omeka2ImportAdapter extends AbstractEntityAdapter
     
     public function getResourceName()
     {
-        return 'omeka2importer_imports';
+        return 'omeka2imports';
     }
     
     public function getRepresentationClass()

@@ -167,7 +167,6 @@ class Import extends AbstractJob
 
     protected function hasNextPage($response)
     {
-        return false;
         $headers = $response->getHeaders();
         $linksHeaders = $response->getHeaders()->get('Link')->toString();
         return strpos($linksHeaders, 'rel="next"');
