@@ -1,9 +1,9 @@
 <?php
-$this->htmlElement('body')->appendAttribute('class', 'fedora jobs undo');
+$this->htmlElement('body')->appendAttribute('class', 'omeka2importer jobs undo');
 $escape = $this->plugin('escapeHtml');
 ?>
 
-<h1><?php echo $escape($this->translate('Past Fedora Imports')); ?></h1>
+<h1><?php echo $escape($this->translate('Past Omeka 2 Imports')); ?></h1>
 <?php echo $this->pagination(); ?>
 
 <form method='POST'>
@@ -15,7 +15,6 @@ $escape = $this->plugin('escapeHtml');
             <tr>
                 <th><?php echo $escape($this->translate('Undo?'));?></th>
                 <th><?php echo $this->sortLink($this->translate('Job ID'), 'id');?></th>
-                <th><?php echo $escape($this->translate('Container'));?></th>
                 <th><?php echo $escape($this->translate('Comment'));?></th>
                 <th><?php echo $escape($this->translate('Items'));?></th>
                 <th><?php echo $escape($this->translate('Date'));?></th>
@@ -30,22 +29,6 @@ $escape = $this->plugin('escapeHtml');
         <tr class="<?php echo $undone ? 'undone' : ''; ?>" >
             <td><input type='checkbox' name='jobs[]' value='<?php echo $job->id(); ?>' />
             <td><?php echo $job->id(); ?></td>
-            <td>
-                <?php $args = $job->args();
-                $containerUri = $args['container_uri'];
-                echo $containerUri;
-                $response = $this->api()->search('fedora_items', array('uri' => $containerUri));
-                $content = $response->getContent();
-                if (count($content) == 0) {
-                    echo ' -- ' . $this->translate("Container's item does not exist.");
-                } else {
-                    $containerFedoraItem = $content[0];
-                    $containerItem = $containerFedoraItem->item();
-                    echo ' -- ' . $containerItem->displayTitle();
-                }
-
-                ?>
-            </td>
             <td>
                 <?php echo $import->comment(); ?>
             </td>
