@@ -59,7 +59,7 @@ class Import extends AbstractJob
             foreach ($collectionsData as $collectionData) {
                 unset($options['importFiles']);
                 $itemSetJson = $this->buildResourceJson($collectionData, $options);
-                $response = $this->api->create('item_sets', $itemJson);
+                $response = $this->api->create('item_sets', $itemSetJson);
                 $itemSetId = $response->getContent()->id();
                 $omekaCollectionId = $collectionData['id'];
                 $options['importFiles'] = true;
@@ -78,7 +78,7 @@ class Import extends AbstractJob
         //if importing by collections from Omeka 2, the collection to use as
         //the param for querying the Omeka 2 API
         if (isset($options['collectionId'])) {
-            $params['collection_id'] = $options['collectionId'];
+            $params['collection'] = $options['collectionId'];
         }
         do {
             $params['page'] = $page;

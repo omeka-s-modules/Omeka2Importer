@@ -64,6 +64,15 @@ class ImportForm extends AbstractForm
                 }
             );
         $this->add($itemSetSelect);
+        
+        $this->add(array(
+            'name' => 'importCollections',
+            'type' => 'checkbox',
+            'options' => array(
+                'label' => $translator->translate("Import Collections"),
+                'info'  => $translator->translate("Import Omeka 2 collections as Item Sets. Items will be added to the new Item Sets.")
+            ),
+        ));
         $inputFilter = $this->getInputFilter();
         $inputFilter->add(array(
             'name' => 'itemSet',
