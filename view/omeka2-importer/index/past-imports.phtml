@@ -3,7 +3,8 @@ $this->htmlElement('body')->appendAttribute('class', 'omeka2importer jobs undo')
 $escape = $this->plugin('escapeHtml');
 ?>
 
-<h1><?php echo $escape($this->translate('Past Omeka 2 Imports')); ?></h1>
+<?php echo $this->pageTitle($this->translate('Past Imports · Omeka 2 Importer')); ?>
+
 <?php echo $this->pagination(); ?>
 
 <form method='POST'>
