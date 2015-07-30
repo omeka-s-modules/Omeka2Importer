@@ -82,8 +82,8 @@ class Import extends AbstractJob
         }
         do {
             $params['page'] = $page;
-            $response = $this->client->items->get(null, $params);
-            $itemsData = json_decode($response->getBody(), true);
+            $clientResponse = $this->client->items->get(null, $params);
+            $itemsData = json_decode($clientResponse->getBody(), true);
             foreach($itemsData as $itemData) {
                 $itemJson = array();
                 $itemJson = $this->buildResourceJson($itemData, $options);
@@ -113,7 +113,7 @@ class Import extends AbstractJob
                 }
             }
             $page++;
-        } while ($this->hasNextPage($response));
+        } while ($this->hasNextPage($clientResponse));
     }
 
     protected function buildResourceJson($importData, $options = array())
@@ -218,7 +218,6 @@ class Import extends AbstractJob
 
     protected function hasNextPage($response)
     {
-        return false;
         $headers = $response->getHeaders();
         $linksHeaders = $response->getHeaders()->get('Link')->toString();
         return strpos($linksHeaders, 'rel="next"');
