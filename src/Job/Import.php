@@ -19,8 +19,15 @@ class Import extends AbstractJob
 
     protected $updatedCount;
 
+    protected $itemTypeMap;
+
+    protected $itemTypeElementMap;
+
     public function perform()
     {
+        include('item_type_maps.php');
+        $this->itemTypeMap = $itemTypeMap;
+        $this->itemTypeElementMap = $itemTypeElementMap;
         $this->addedCount = 0;
         $this->updatedCount = 0;
         $this->endpoint = rtrim($this->getArg('endpoint'), '/'); //make this a filter?
@@ -81,13 +88,36 @@ class Import extends AbstractJob
             $params['collection'] = $options['collectionId'];
         }
         do {
-            $params['page'] = $page;
-            $clientResponse = $this->client->items->get(null, $params);
-            $itemsData = json_decode($clientResponse->getBody(), true);
-            foreach($itemsData as $itemData) {
-                $itemJson = array();
-                $itemJson = $this->buildResourceJson($itemData, $options);
-                $importRecord = $this->importRecord($itemData['id']);
+                $params['page'] = $page;
+                $clientResponse = $this->client->items->get(null, $params);
+                $itemsData = json_decode($clientResponse->getBody(), true);
+                $toCreate = array();
+                $toUpdate = array();
+                foreach($itemsData as $itemData) {
+
+                    $itemJson = array();
+                    $itemJson = $this->buildResourceJson($itemData, $options);
+                    //confusingly named, importRecord is the record of importing the item
+                    $importRecord = $this->importRecord($itemData['id']);
+                    
+                    //separate the items to create from those to update
+                    if ($importRecord) {
+                        //add the Omeka S item id to the itemJson
+                        //and key by the importRecordid for reuse
+                        //in both updating the item itself, and the importRecord
+                        $itemJson['id'] = $importRecord->item()->id(); 
+                        $toUpdate[$importRecord->id()] = $itemJson;
+                    } else {
+                        //key by the remote id for batchCreate
+                        $toCreate[$itemData['id']] = $itemJson;
+                    }
+                }
+                
+                $this->createItems($toCreate);
+                $this->updateItems($toUpdate);
+
+                    
+                /*
                 if ($importRecord) {
                     $response = $this->api->update('items', $importRecord->item()->id(), $itemJson);
                     $importItemEntityJson = array(
@@ -107,24 +137,95 @@ class Import extends AbstractJob
                                     'endpoint'      => $this->endpoint,
                                     'last_modified' => new \DateTime($itemData['modified']),
                                     'remote_id'     => $itemData['id']
+                            
+                            
                                   );
                     $response = $this->api->create('omeka2items', $importItemEntityJson);
                     $this->addedCount++;
                 }
-            }
+            */
             $page++;
         } while ($this->hasNextPage($clientResponse));
     }
 
+    protected function createItems($toCreate) 
+    {
+        $createResponse = $this->api->batchCreate('items', $toCreate, array(), true);
+        $this->addedCount = $this->addedCount + count($createResponse);
+        
+
+        $createImportRecordsJson = array();
+        $createContent = $createResponse->getContent();
+        foreach($createContent as $resourceReference) {
+            $createImportRecordsJson[] = $this->buildImportRecordJson($resourceReference, 'create'); 
+        }
+        
+        $createImportRecordResponse = $this->api->batchCreate('items', $createImportRecordsJson, array(), true);
+
+                
+    }
+    
+    protected function updateItems($toUpdate) 
+    {
+    
+        //  batchUpdate would be nice, but complexities abound. See https://github.com/omeka/omeka-s/issues/326
+        $updateResponses = array();
+        foreach ($toUpdate as $importRecordId=>$itemJson) {
+            $updateResponses[$importRecordId] = $this->api->update('items', $itemJson['id'], $itemJson)[0];
+        }
+        
+        foreach ($updateResponses as $importRecordId => $resourceReference) {
+            $importRecordUpdateJson = $this->buildImportRecordJson($updateResponses, 'update');
+            $updateImportRecordResponse = $this->api->update('omeka2item', $importRecordId, $importRecordUpdateJson);
+        }
+    }
+    
+    protected function buildImportRecordJson($resourceReference, $mode)
+    {
+        $recordJson = array('o:job'         => array('o:id' => $this->job->getId()),
+                            'last_modified' => new \DateTime($itemData['modified']),
+                           );
+        if ($mode == 'create') {
+            $recordJson['endpoint'] = $this->endpoint;
+            $recordJson['o:item'] = array('o:id' => $item->id());
+            $recordJson['remote_id'] = $resourceReference['remote_id'];
+        }
+        return $recordJson;
+    }
+    
     protected function buildResourceJson($importData, $options = array())
     {
         $resourceJson = array();
+        $resourceJson['remote_id'] = $importData['id'];
         if (isset($options['itemSets'])) {
             $resourceJson['o:item_set'] = array();
             foreach ($options['itemSets'] as $itemSetId) {
                 $resourceJson['o:item_set'][] = array('o:id' => $itemSetId);
             }
         }
+        $resourceClassId = null;
+        if (isset($importData['itemType'])) {
+            if (isset($this->itemTypeMap[$importData['itemType']])) {
+                //caching looked-up id in the same array from item_type_maps under 'id' key
+                if (isset($this->itemTypeMap[$importData['itemType']]['id'])) {
+                    $resourceClassId = $this->itemTypeMap[$importData['itemType']]['id'];
+                } else {
+                    $class = $this->itemTypeMap[$importData['itemType']];
+                    $exploded = explode(':', $class);
+                    $resourceClasses = $this->api->search(
+                            'resource_classes',
+                            array(
+                                  'vocabulary_prefix' => $exploded[0],
+                                  'local_name'        => $exploded[1]
+                            ));
+                    $resourceClassId = $resourceClasses[0]->id();
+                    //cache the id (gotta cache'em all)
+                    $this->itemTypeMap[$importData['itemType']]['id'] = $resourceClassId;
+                }
+            }
+            $resourceJson['o:resource_class'] = array('o:id' => $resourceClassId);
+        }
+        
         $resourceJson = array_merge($resourceJson, $this->buildPropertyJson($importData));
         if (isset($options['importFiles']) && $options['importFiles']) {
             $resourceJson = array_merge($resourceJson, $this->buildMediaJson($importData));
@@ -161,7 +262,11 @@ class Import extends AbstractJob
                     $term = "dcterms:" . strtolower($elementName);
                     break;
                 case 'Item Type Metadata':
-                    $term = false; //for now @todo
+                    if (array_key_exists($elementName, $this->itemTypeElementMap)) {
+                        $term = $this->itemTypeElementMap[$elementName];
+                    } else {
+                        $term = false;
+                    }
                     break;
                 default:
                     $term = false;
