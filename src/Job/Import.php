@@ -74,8 +74,8 @@ class Import extends AbstractJob
                 $this->importItems($options);
             }
             $page++;
-        //} while ($this->hasNextPage($response));
-        } while (false);
+        } while ($this->hasNextPage($response));
+        //} while (false); // debugging
     }
 
     protected function importItems($options = array())
@@ -121,8 +121,8 @@ class Import extends AbstractJob
                 }
 
             $page++;
-        //} while ($this->hasNextPage($clientResponse));
-        } while(false);
+        } while ($this->hasNextPage($clientResponse));
+        //} while (false); //debugging
     }
 
     protected function createItems($toCreate) 
@@ -174,23 +174,26 @@ class Import extends AbstractJob
             }
         }
         $resourceClassId = null;
-        if (isset($importData['itemType'])) {
-            if (array_key_exists($importData['itemType'], $this->itemTypeMap)) {
+        if (isset($importData['item_type'])) {
+            $itemTypeName = $importData['item_type']['name'];
+            if (array_key_exists($itemTypeName, $this->itemTypeMap)) {
+                
                 //caching looked-up id in the same array from item_type_maps under 'id' key
-                if (isset($this->itemTypeMap[$importData['itemType']]['id'])) {
-                    $resourceClassId = $this->itemTypeMap[$importData['itemType']]['id'];
+                if (isset($this->itemTypeMap[$itemTypeName]['id'])) {
+                    $resourceClassId = $this->itemTypeMap[$itemTypeName]['id'];
                 } else {
-                    $class = $this->itemTypeMap[$importData['itemType']];
+                    $class = $this->itemTypeMap[$itemTypeName]['class'];
+                    echo $class;
                     $exploded = explode(':', $class);
-                    $resourceClasses = $this->api->search(
+                    $resourceClassesResponse = $this->api->search(
                             'resource_classes',
                             array(
                                   'vocabulary_prefix' => $exploded[0],
                                   'local_name'        => $exploded[1]
                             ));
-                    $resourceClassId = $resourceClasses[0]->id();
+                    $resourceClassId = $resourceClassesResponse->getContent()[0]->id();
                     //cache the id (gotta cache'em all)
-                    $this->itemTypeMap[$importData['itemType']]['id'] = $resourceClassId;
+                    $this->itemTypeMap[$itemTypeName]['id'] = $resourceClassId;
                 }
             }
             $resourceJson['o:resource_class'] = array('o:id' => $resourceClassId);
