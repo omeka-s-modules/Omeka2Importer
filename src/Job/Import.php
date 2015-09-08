@@ -54,7 +54,10 @@ class Import extends AbstractJob
                             'added_count'   => $this->addedCount,
                             'updated_count' => $this->updatedCount
                           );
+        
+        echo 'before import';
         $response = $this->api->create('omeka2imports', $Omeka2ImportJson);
+        echo 'after import create';
     }
     
     protected function importCollections($options = array())
@@ -64,18 +67,17 @@ class Import extends AbstractJob
             $response = $this->client->collections->get(null, array('page' => $page));
             $collectionsData = json_decode($response->getBody(), true);
             foreach ($collectionsData as $collectionData) {
-                unset($options['importFiles']);
                 $itemSetJson = $this->buildResourceJson($collectionData, $options);
                 $response = $this->api->create('item_sets', $itemSetJson);
                 $itemSetId = $response->getContent()->id();
                 $omekaCollectionId = $collectionData['id'];
-                $options['importFiles'] = true;
                 $options['collectionId'] = $omekaCollectionId;
                 $options['itemSets'][] = $itemSetId;
                 $this->importItems($options);
             }
             $page++;
-        } while ($this->hasNextPage($response));
+        //} while ($this->hasNextPage($response));
+        } while (false);
     }
 
     protected function importItems($options = array())
@@ -113,82 +115,49 @@ class Import extends AbstractJob
                     }
                 }
                 
-                $this->createItems($toCreate);
-                $this->updateItems($toUpdate);
+            $this->createItems($toCreate);
+            $this->updateItems($toUpdate);
 
-                    
-                /*
-                if ($importRecord) {
-                    $response = $this->api->update('items', $importRecord->item()->id(), $itemJson);
-                    $importItemEntityJson = array(
-                                    'o:job'         => array('o:id' => $this->job->getId()),
-                                    'last_modified' => new \DateTime($itemData['modified']),
-                                  );
-                    $response = $this->api->update('omeka2items', $importRecord->id(), $importItemEntityJson);
-                    $this->updatedCount++;
-                } else {
-                    $response = $this->api->create('items', $itemJson);
-                    $content = $response->getContent();
-                    $itemId = $content->id();
- 
-                    $importItemEntityJson = array(
-                                    'o:job'         => array('o:id' => $this->job->getId()),
-                                    'o:item'        => array('o:id' => $itemId),
-                                    'endpoint'      => $this->endpoint,
-                                    'last_modified' => new \DateTime($itemData['modified']),
-                                    'remote_id'     => $itemData['id']
-                            
-                            
-                                  );
-                    $response = $this->api->create('omeka2items', $importItemEntityJson);
-                    $this->addedCount++;
-                }
-            */
             $page++;
-        } while ($this->hasNextPage($clientResponse));
+        //} while ($this->hasNextPage($clientResponse));
+        } while(false);
     }
 
     protected function createItems($toCreate) 
     {
         $createResponse = $this->api->batchCreate('items', $toCreate, array(), true);
         $this->addedCount = $this->addedCount + count($createResponse);
-        
-
         $createImportRecordsJson = array();
         $createContent = $createResponse->getContent();
         foreach($createContent as $remoteId => $resourceReference) {
-            $createImportRecordsJson[] = $this->buildImportRecordJson($remoteId, $resourceReference, 'create'); 
+            $createImportRecordsJson[] = $this->buildImportRecordJson($remoteId, $resourceReference);
         }
-        
         $createImportRecordResponse = $this->api->batchCreate('omeka2items', $createImportRecordsJson, array(), true);
-
-                
     }
-    
+
     protected function updateItems($toUpdate) 
     {
-    
         //  batchUpdate would be nice, but complexities abound. See https://github.com/omeka/omeka-s/issues/326
         $updateResponses = array();
         foreach ($toUpdate as $importRecordId=>$itemJson) {
-            $updateResponses[$importRecordId] = $this->api->update('items', $itemJson['id'], $itemJson)[0];
+            $updateResponses[$importRecordId] = $this->api->update('items', $itemJson['id'], $itemJson);
         }
-        
+        //only updating the job id for all
+        $importRecordUpdateJson = array('o:job' => array('o:id' => $this->job->getId()),
+                           );
         foreach ($updateResponses as $importRecordId => $resourceReference) {
-            $importRecordUpdateJson = $this->buildImportRecordJson($updateResponses, 'update');
-            $updateImportRecordResponse = $this->api->update('omeka2item', $importRecordId, $importRecordUpdateJson);
+            echo $importRecordId . ' ';
+            $updateImportRecordResponse = $this->api->update('omeka2items', $importRecordId, $importRecordUpdateJson);
         }
     }
     
-    protected function buildImportRecordJson($remoteId, $resourceReference, $mode)
+    protected function buildImportRecordJson($remoteId, $resourceReference)
     {
-        $recordJson = array('o:job'         => array('o:id' => $this->job->getId()),
-                           );
-        if ($mode == 'create') {
-            $recordJson['endpoint'] = $this->endpoint;
-            $recordJson['o:item'] = array('o:id' => $resourceReference->id());
-            $recordJson['remote_id'] = $remoteId;
-        }
+        $recordJson = array('o:job'     => array('o:id' => $this->job->getId()),
+                            'endpoint'  => $this->endpoint,
+                            'o:item'    => array('o:id' => $resourceReference->id()),
+                            'remote_id' => $remoteId
+                            );
         return $recordJson;
     }
     
@@ -226,9 +195,7 @@ class Import extends AbstractJob
         }
         
         $resourceJson = array_merge($resourceJson, $this->buildPropertyJson($importData));
-        if (isset($options['importFiles']) && $options['importFiles']) {
-            $resourceJson = array_merge($resourceJson, $this->buildMediaJson($importData));
-        }
+        $resourceJson = array_merge($resourceJson, $this->buildMediaJson($importData));
         return $resourceJson;
     }
 
