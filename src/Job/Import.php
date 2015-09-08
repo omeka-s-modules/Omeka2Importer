@@ -46,7 +46,7 @@ class Import extends AbstractJob
             $options['importFiles'] = true;
             $this->importItems($options);
         }
-        
+
         $comment = $this->getArg('comment');
         $Omeka2ImportJson = array(
                             'o:job'         => array('o:id' => $this->job->getId()),
@@ -54,10 +54,8 @@ class Import extends AbstractJob
                             'added_count'   => $this->addedCount,
                             'updated_count' => $this->updatedCount
                           );
-        
-        echo 'before import';
+
         $response = $this->api->create('omeka2imports', $Omeka2ImportJson);
-        echo 'after import create';
     }
     
     protected function importCollections($options = array())
@@ -114,9 +112,13 @@ class Import extends AbstractJob
                         $toCreate[$itemData['id']] = $itemJson;
                     }
                 }
-                
-            $this->createItems($toCreate);
-            $this->updateItems($toUpdate);
+
+                if (count($toCreate) > 0) {
+                    $this->createItems($toCreate);
+                }
+                if (count($toUpdate) > 0) {
+                    $this->updateItems($toUpdate);
+                }
 
             $page++;
         //} while ($this->hasNextPage($clientResponse));
@@ -140,13 +142,13 @@ class Import extends AbstractJob
         //  batchUpdate would be nice, but complexities abound. See https://github.com/omeka/omeka-s/issues/326
         $updateResponses = array();
         foreach ($toUpdate as $importRecordId=>$itemJson) {
+            $this->updatedCount = $this->updatedCount + 1;
             $updateResponses[$importRecordId] = $this->api->update('items', $itemJson['id'], $itemJson);
         }
         //only updating the job id for all
         $importRecordUpdateJson = array('o:job' => array('o:id' => $this->job->getId()),
                            );
         foreach ($updateResponses as $importRecordId => $resourceReference) {
-            echo $importRecordId . ' ';
             $updateImportRecordResponse = $this->api->update('omeka2items', $importRecordId, $importRecordUpdateJson);
         }
     }
