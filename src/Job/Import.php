@@ -156,11 +156,11 @@ class Import extends AbstractJob
 
         $createImportRecordsJson = array();
         $createContent = $createResponse->getContent();
-        foreach($createContent as $resourceReference) {
-            $createImportRecordsJson[] = $this->buildImportRecordJson($resourceReference, 'create'); 
+        foreach($createContent as $remoteId => $resourceReference) {
+            $createImportRecordsJson[] = $this->buildImportRecordJson($remoteId, $resourceReference, 'create'); 
         }
         
-        $createImportRecordResponse = $this->api->batchCreate('items', $createImportRecordsJson, array(), true);
+        $createImportRecordResponse = $this->api->batchCreate('omeka2items', $createImportRecordsJson, array(), true);
 
                 
     }
@@ -180,15 +180,14 @@ class Import extends AbstractJob
         }
     }
     
-    protected function buildImportRecordJson($resourceReference, $mode)
+    protected function buildImportRecordJson($remoteId, $resourceReference, $mode)
     {
         $recordJson = array('o:job'         => array('o:id' => $this->job->getId()),
-                            'last_modified' => new \DateTime($itemData['modified']),
                            );
         if ($mode == 'create') {
             $recordJson['endpoint'] = $this->endpoint;
-            $recordJson['o:item'] = array('o:id' => $item->id());
-            $recordJson['remote_id'] = $resourceReference['remote_id'];
+            $recordJson['o:item'] = array('o:id' => $resourceReference->id());
+            $recordJson['remote_id'] = $remoteId;
         }
         return $recordJson;
     }
@@ -205,7 +204,7 @@ class Import extends AbstractJob
         }
         $resourceClassId = null;
         if (isset($importData['itemType'])) {
-            if (isset($this->itemTypeMap[$importData['itemType']])) {
+            if (array_key_exists($importData['itemType'], $this->itemTypeMap)) {
                 //caching looked-up id in the same array from item_type_maps under 'id' key
                 if (isset($this->itemTypeMap[$importData['itemType']]['id'])) {
                     $resourceClassId = $this->itemTypeMap[$importData['itemType']]['id'];

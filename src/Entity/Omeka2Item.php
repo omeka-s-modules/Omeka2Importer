@@ -44,11 +44,6 @@ class Omeka2Item extends AbstractEntity
      */
     protected $endpoint;
 
-    /**
-     * @Column(type="datetime")
-     */
-    protected $lastModified;
-
     public function getId()
     {
         return $this->id;

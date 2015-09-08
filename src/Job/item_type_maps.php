@@ -39,19 +39,19 @@ $itemTypeElementMap = array(
 
 $itemTypeMap = array(
     'Text'                        => array('class' => 'dctype:Text'), //during import, cached resource class ids will go in 'id' key of array
-    'Moving Image'                => array('class' => 'dctype:MovingImage',
-    'Oral History'                => array('class' => 'bibo:AudioDocument',
-    'Sound'                       => array('class' => 'dctype:Sound',
-    'Still Image'                 => array('class' => 'dctype:StillImage',
-    'Website'                     => array('class' => 'bibo:Website',
-    'Event'                       => array('class' => 'dctype:Event',
-    'Email'                       => array('class' => 'bibo:Email',
-    'Lesson Plan'                 => array('class' => 'bibo:Workshop',
+    'Moving Image'                => array('class' => 'dctype:MovingImage'),
+    'Oral History'                => array('class' => 'bibo:AudioDocument'),
+    'Sound'                       => array('class' => 'dctype:Sound'),
+    'Still Image'                 => array('class' => 'dctype:StillImage'),
+    'Website'                     => array('class' => 'bibo:Website'),
+    'Event'                       => array('class' => 'dctype:Event'),
+    'Email'                       => array('class' => 'bibo:Email'),
+    'Lesson Plan'                 => array('class' => 'bibo:Workshop'),
     //'Hyperlink'
-    'Person'                      => array('class' => 'foaf:Person',
-    'Interactive Resource'        => array('class' => 'dctype:InteractiveResource',
-    'Dataset'                     => array('class' => 'dctype:Dataset',
-    'Physical Object'             => array('class' => 'dctype:PhysicalObject',
-    'Service'                     => array('class' => 'dctype:Service',
-    'Software'                    => array('class' => 'dctype:Software'
+    'Person'                      => array('class' => 'foaf:Person'),
+    'Interactive Resource'        => array('class' => 'dctype:InteractiveResource'),
+    'Dataset'                     => array('class' => 'dctype:Dataset'),
+    'Physical Object'             => array('class' => 'dctype:PhysicalObject'),
+    'Service'                     => array('class' => 'dctype:Service'),
+    'Software'                    => array('class' => 'dctype:Software')
 );
