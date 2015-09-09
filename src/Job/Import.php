@@ -37,13 +37,9 @@ class Import extends AbstractJob
         $this->api = $this->getServiceLocator()->get('Omeka\ApiManager');
         $this->prepareTermIdMap();
         $options = $this->job->getArgs();
-        if (isset($options['itemSet'])) {
-            $options['itemSets'] = array($options['itemSet']);
-        }
         if ($this->getArg('importCollections', false)) {
             $this->importCollections($options);
         } else {
-            $options['importFiles'] = true;
             $this->importItems($options);
         }
 
@@ -61,6 +57,12 @@ class Import extends AbstractJob
     protected function importCollections($options = array())
     {
         $page = 1;
+        //use this to keep track of all the added item sets from collections,
+        //so that when it's all done I can add the dcterms:hasPart property values
+        //to the 'parent' item set chosen for the import
+        //$collectionItemSetIds = array();
+        $itemSetUpdateData = array('dcterms:hasPart' => array());
+        $dctermsHasPartId = $this->getPropertyId('dcterms:hasPart');
         do {
             $response = $this->client->collections->get(null, array('page' => $page));
             $collectionsData = json_decode($response->getBody(), true);
@@ -68,14 +70,26 @@ class Import extends AbstractJob
                 $itemSetJson = $this->buildResourceJson($collectionData, $options);
                 $response = $this->api->create('item_sets', $itemSetJson);
                 $itemSetId = $response->getContent()->id();
+                if (isset($options['itemSet'])) {
+                    $itemSetUpdateData['dcterms:hasPart'][] = array(
+                            'property_id'       => $dctermsHasPartId,
+                            'value_resource_id' => $itemSetId
+                            );
+                }
                 $omekaCollectionId = $collectionData['id'];
                 $options['collectionId'] = $omekaCollectionId;
-                $options['itemSets'][] = $itemSetId;
+                $options['collectionItemSet'] = $itemSetId;
                 $this->importItems($options);
             }
             $page++;
-        } while ($this->hasNextPage($response));
-        //} while (false); // debugging
+        //} while ($this->hasNextPage($response));
+        } while (false); // debugging
+        
+        //add dcterms:hasPart data to the 'parent' item set for
+        //each of the imported (as item sets) collections
+        if (isset($options['itemSet'])) {
+            $this->api->update('item_sets', $options['itemSet'], $itemSetUpdateData, array(), true);
+        }
     }
 
     protected function importItems($options = array())
@@ -121,8 +135,8 @@ class Import extends AbstractJob
                 }
 
             $page++;
-        } while ($this->hasNextPage($clientResponse));
-        //} while (false); //debugging
+        //} while ($this->hasNextPage($clientResponse));
+        } while (false); //debugging
     }
 
     protected function createItems($toCreate) 
@@ -167,11 +181,12 @@ class Import extends AbstractJob
     {
         $resourceJson = array();
         $resourceJson['remote_id'] = $importData['id'];
-        if (isset($options['itemSets'])) {
+        if (isset($options['collectionItemSet'])) {
             $resourceJson['o:item_set'] = array();
-            foreach ($options['itemSets'] as $itemSetId) {
-                $resourceJson['o:item_set'][] = array('o:id' => $itemSetId);
-            }
+            $resourceJson['o:item_set'][] = array('o:id' => $options['collectionItemSet']);
+        } else if (isset($options['itemSet'])) {
+            $resourceJson['o:item_set'] = array();
+            $resourceJson['o:item_set'][] = array('o:id' => $options['itemSet']);
         }
         $resourceClassId = null;
         if (isset($importData['item_type'])) {
@@ -183,7 +198,6 @@ class Import extends AbstractJob
                     $resourceClassId = $this->itemTypeMap[$itemTypeName]['id'];
                 } else {
                     $class = $this->itemTypeMap[$itemTypeName]['class'];
-                    echo $class;
                     $exploded = explode(':', $class);
                     $resourceClassesResponse = $this->api->search(
                             'resource_classes',
