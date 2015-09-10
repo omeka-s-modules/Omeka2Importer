@@ -25,6 +25,7 @@ class Import extends AbstractJob
 
     public function perform()
     {
+        
         include('item_type_maps.php');
         $this->itemTypeMap = $itemTypeMap;
         $this->itemTypeElementMap = $itemTypeElementMap;
@@ -36,6 +37,17 @@ class Import extends AbstractJob
         $this->client->setKey($this->getArg('key'));
         $this->api = $this->getServiceLocator()->get('Omeka\ApiManager');
         $this->prepareTermIdMap();
+
+        $Omeka2ImportJson = array(
+                            'o:job'         => array('o:id' => $this->job->getId()),
+                            'comment'       => 'Job started',
+                            'added_count'   => 0,
+                            'updated_count' => 0
+                          );
+
+        $response = $this->api->create('omeka2imports', $Omeka2ImportJson);
+        $importRecordId = $response->getContent()->id();
+
         $options = $this->job->getArgs();
         if ($this->getArg('importCollections', false)) {
             $this->importCollections($options);
@@ -51,7 +63,7 @@ class Import extends AbstractJob
                             'updated_count' => $this->updatedCount
                           );
 
-        $response = $this->api->create('omeka2imports', $Omeka2ImportJson);
+        $response = $this->api->update('omeka2imports', $importRecordId, $Omeka2ImportJson);
     }
     
     protected function importCollections($options = array())
