@@ -5,11 +5,12 @@ use DateTime;
 use Omeka\Entity\AbstractEntity;
 use Omeka\Entity\Job;
 use Omeka\Entity\Item;
+use Omeka\Entity\ItemSet;
 
 /**
  * @Entity
  */
-class Omeka2Item extends AbstractEntity
+class OmekaimportRecord extends AbstractEntity
 {
 
     /**
@@ -27,11 +28,24 @@ class Omeka2Item extends AbstractEntity
 
     /**
      * @OneToOne(targetEntity="Omeka\Entity\Item")
-     * @JoinColumn(nullable=false, onDelete="CASCADE")
+     * @JoinColumn(nullable=true, onDelete="CASCADE")
      * @var int
      */
     protected $item;
 
+    /**
+     * @OneToOne(targetEntity="Omeka\Entity\ItemSet")
+     * @JoinColumn(nullable=true)
+     * @var int
+     */
+    protected $itemSet;
+
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    protected $remoteType;
+    
     /**
      * @Column(type="integer")
      * @var int
@@ -59,6 +73,16 @@ class Omeka2Item extends AbstractEntity
         $this->item = $item;
     }
 
+    public function getItemSet()
+    {
+        return $this->itemSet;
+    }
+
+    public function setItemSet(ItemSet $itemSet)
+    {
+        $this->itemSet = $itemSet;
+    }
+    
     public function setJob(Job $job)
     {
         $this->job = $job;
@@ -77,6 +101,16 @@ class Omeka2Item extends AbstractEntity
     public function getEndpoint()
     {
         return $this->endpoint;
+    }
+    
+    public function setRemoteType($type)
+    {
+        $this->remoteType = $type;
+    }
+    
+    public function getRemoteType()
+    {
+        return $this->remoteType;
     }
     
     public function setRemoteId($id)

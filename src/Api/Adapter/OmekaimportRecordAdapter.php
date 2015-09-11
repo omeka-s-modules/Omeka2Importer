@@ -7,21 +7,21 @@ use Omeka\Api\Request;
 use Omeka\Entity\EntityInterface;
 use Omeka\Stdlib\ErrorStore;
 
-class Omeka2ItemAdapter extends AbstractEntityAdapter
+class OmekaimportRecordAdapter extends AbstractEntityAdapter
 {
     public function getEntityClass()
     {
-        return 'Omeka2Importer\Entity\Omeka2Item';
+        return 'Omeka2Importer\Entity\OmekaimportRecord';
     }
     
     public function getResourceName()
     {
-        return 'omeka2_items';
+        return 'omekaimport_records';
     }
     
     public function getRepresentationClass()
     {
-        return 'Omeka2Importer\Api\Representation\Omeka2ItemRepresentation';
+        return 'Omeka2Importer\Api\Representation\OmekaimportRecordRepresentation';
     }
     
     public function buildQuery(QueryBuilder $qb, array $query)
@@ -32,7 +32,13 @@ class Omeka2ItemAdapter extends AbstractEntityAdapter
                 $this->createNamedParameter($qb, $query['endpoint']))
             );
         }
-
+        if (isset($query['remote_type'])) {
+            $qb->andWhere($qb->expr()->eq(
+                $this->getEntityClass() . '.remoteType',
+                $this->createNamedParameter($qb, $query['remote_type']))
+            );
+        }
+        
         if (isset($query['job_id'])) {
             $qb->andWhere($qb->expr()->eq(
                 $this->getEntityClass() . '.job',
@@ -65,12 +71,21 @@ class Omeka2ItemAdapter extends AbstractEntityAdapter
             $item = $this->getAdapter('items')->findEntity($data['o:item']['o:id']);
             $entity->setItem($item);
         }
+        if (isset($data['o:item_set']['o:id'])) {
+            $itemSet = $this->getAdapter('item_sets')->findEntity($data['o:item_set']['o:id']);
+            $entity->setItemSet($itemSet);
+        }
+        
         if (isset($data['endpoint'])) {
             $entity->setEndpoint($data['endpoint']);
         }
 
         if (isset($data['remote_id'])) {
             $entity->setRemoteId($data['remote_id']);
+        }
+        
+        if (isset($data['remote_type'])) {
+            $entity->setRemoteType($data['remote_type']);
         }
 
         if (isset($data['last_modified'])) {

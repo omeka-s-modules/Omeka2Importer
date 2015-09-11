@@ -25,7 +25,6 @@ class Import extends AbstractJob
 
     public function perform()
     {
-        
         include('item_type_maps.php');
         $this->itemTypeMap = $itemTypeMap;
         $this->itemTypeElementMap = $itemTypeElementMap;
@@ -45,7 +44,7 @@ class Import extends AbstractJob
                             'updated_count' => 0
                           );
 
-        $response = $this->api->create('omeka2imports', $Omeka2ImportJson);
+        $response = $this->api->create('omekaimport_imports', $Omeka2ImportJson);
         $importRecordId = $response->getContent()->id();
 
         $options = $this->job->getArgs();
@@ -63,7 +62,7 @@ class Import extends AbstractJob
                             'updated_count' => $this->updatedCount
                           );
 
-        $response = $this->api->update('omeka2imports', $importRecordId, $Omeka2ImportJson);
+        $response = $this->api->update('omekaimport_imports', $importRecordId, $Omeka2ImportJson);
     }
     
     protected function importCollections($options = array())
@@ -79,18 +78,45 @@ class Import extends AbstractJob
             $response = $this->client->collections->get(null, array('page' => $page));
             $collectionsData = json_decode($response->getBody(), true);
             foreach ($collectionsData as $collectionData) {
-                $itemSetJson = $this->buildResourceJson($collectionData, $options);
-                $response = $this->api->create('item_sets', $itemSetJson);
-                $itemSetId = $response->getContent()->id();
-                if (isset($options['itemSet'])) {
-                    $itemSetUpdateData['dcterms:hasPart'][] = array(
-                            'property_id'       => $dctermsHasPartId,
-                            'value_resource_id' => $itemSetId
-                            );
-                }
+
                 $omekaCollectionId = $collectionData['id'];
                 $options['collectionId'] = $omekaCollectionId;
-                $options['collectionItemSet'] = $itemSetId;
+
+
+                $collectionImportRecord = $this->importRecord($omekaCollectionId, 'collection');
+                if ($collectionImportRecord) {
+                    $collectionImportRecordJson = array('o:job' => 
+                                                            array('o:id' => $this->job->getId())
+                                                       );
+                    
+                    $updateImportRecordResponse = $this->api->update(
+                                                    'omekaimport_records',
+                                                    $collectionImportRecord->id(),
+                                                    $collectionImportRecordJson);
+                } else {
+                    
+                    $itemSetJson = $this->buildResourceJson($collectionData, $options);
+                    $response = $this->api->create('item_sets', $itemSetJson);
+                    $itemSetReference = $response->getContent();
+                    $itemSetId = $itemSetReference->id();
+                    $collectionImportRecordJson = $this->buildImportRecordJson(
+                                                     $omekaCollectionId,
+                                                     $itemSetReference,
+                                                     'collection'
+                                               );
+                    $response = $this->api->create('omekaimport_records', $collectionImportRecordJson);
+                    
+                    
+                    //optional for creating hasPart relations to parent item set
+                    if (isset($options['itemSet'])) {
+                        $itemSetUpdateData['dcterms:hasPart'][] = array(
+                                'property_id'       => $dctermsHasPartId,
+                                'value_resource_id' => $itemSetId
+                                );
+                    }
+                    $options['collectionItemSet'] = $itemSetId;
+                }
+                
                 $this->importItems($options);
             }
             $page++;
@@ -99,7 +125,7 @@ class Import extends AbstractJob
         
         //add dcterms:hasPart data to the 'parent' item set for
         //each of the imported (as item sets) collections
-        if (isset($options['itemSet'])) {
+        if (! empty($options['itemSet'])) {
             $this->api->update('item_sets', $options['itemSet'], $itemSetUpdateData, array(), true);
         }
     }
@@ -161,7 +187,7 @@ class Import extends AbstractJob
         foreach($createContent as $remoteId => $resourceReference) {
             $createImportRecordsJson[] = $this->buildImportRecordJson($remoteId, $resourceReference);
         }
-        $createImportRecordResponse = $this->api->batchCreate('omeka2items', $createImportRecordsJson, array(), true);
+        $createImportRecordResponse = $this->api->batchCreate('omekaimport_records', $createImportRecordsJson, array(), true);
     }
 
     protected function updateItems($toUpdate) 
@@ -176,17 +202,24 @@ class Import extends AbstractJob
         $importRecordUpdateJson = array('o:job' => array('o:id' => $this->job->getId()),
                            );
         foreach ($updateResponses as $importRecordId => $resourceReference) {
-            $updateImportRecordResponse = $this->api->update('omeka2items', $importRecordId, $importRecordUpdateJson);
+            $updateImportRecordResponse = $this->api->update('omekaimport_records', $importRecordId, $importRecordUpdateJson);
         }
     }
     
-    protected function buildImportRecordJson($remoteId, $resourceReference)
+    protected function buildImportRecordJson($remoteId, $resourceReference, $type = 'item')
     {
-        $recordJson = array('o:job'     => array('o:id' => $this->job->getId()),
-                            'endpoint'  => $this->endpoint,
-                            'o:item'    => array('o:id' => $resourceReference->id()),
-                            'remote_id' => $remoteId
+        $recordJson = array('o:job'       => array('o:id' => $this->job->getId()),
+                            'endpoint'    => $this->endpoint,
+                            'remote_type' => $type,
+                            'remote_id'   => $remoteId
                             );
+        if ($type == 'item') {
+            $recordJson['o:item'] = array('o:id' => $resourceReference->id());
+        }
+        
+        if ($type == 'collection') {
+            $recordJson['o:item_set'] = array('o:id' => $resourceReference->id());
+        }
         return $recordJson;
     }
     
@@ -308,10 +341,11 @@ class Import extends AbstractJob
         return $this->termIdMap[$term];
     }
 
-    protected function importRecord($remoteId)
+    protected function importRecord($remoteId, $remoteType = 'item')
     {
         //see if the item has already been imported
-        $response = $this->api->search('omeka2items', array('remote_id' => $remoteId));
+        $response = $this->api->search('omekaimport_records',
+                                array('remote_id' => $remoteId, 'remote_type' => $remoteType));
         $content = $response->getContent();
         if (empty($content)) {
             return false;

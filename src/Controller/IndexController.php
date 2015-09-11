@@ -44,7 +44,7 @@ class IndexController extends AbstractActionController
             'sort_by'    => $this->params()->fromQuery('sort_by', 'id'),
             'sort_order' => $this->params()->fromQuery('sort_order', 'desc')
         );
-        $response = $this->api()->search('omeka2imports', $query);
+        $response = $this->api()->search('omekaimport_imports', $query);
         $this->paginator($response->getTotalResults(), $page);
         $view->setVariable('imports', $response->getContent());
         return $view;

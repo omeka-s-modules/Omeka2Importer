@@ -3,7 +3,7 @@ namespace Omeka2Importer\Api\Representation;
 
 use Omeka\Api\Representation\AbstractEntityRepresentation;
 
-class Omeka2ImportRepresentation extends AbstractEntityRepresentation
+class OmekaimportImportRepresentation extends AbstractEntityRepresentation
 {
     public function getJsonLd()
     {

@@ -7,8 +7,8 @@ return array(
     ),
     'api_adapters' => array(
         'invokables' => array(
-            'omeka2items'   => 'Omeka2Importer\Api\Adapter\Omeka2ItemAdapter',
-            'omeka2imports' => 'Omeka2Importer\Api\Adapter\Omeka2ImportAdapter'
+            'omekaimport_records'   => 'Omeka2Importer\Api\Adapter\OmekaimportRecordAdapter',
+            'omekaimport_imports' => 'Omeka2Importer\Api\Adapter\OmekaimportImportAdapter'
         ),
     ),
     'controllers' => array(

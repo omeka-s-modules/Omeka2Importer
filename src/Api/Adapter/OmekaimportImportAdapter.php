@@ -7,21 +7,21 @@ use Omeka\Api\Request;
 use Omeka\Entity\EntityInterface;
 use Omeka\Stdlib\ErrorStore;
 
-class Omeka2ImportAdapter extends AbstractEntityAdapter
+class OmekaimportImportAdapter extends AbstractEntityAdapter
 {
     public function getEntityClass()
     {
-        return 'Omeka2Importer\Entity\Omeka2Import';
+        return 'Omeka2Importer\Entity\OmekaimportImport';
     }
     
     public function getResourceName()
     {
-        return 'omeka2imports';
+        return 'omekaimport_imports';
     }
     
     public function getRepresentationClass()
     {
-        return 'Omeka2Importer\Api\Representation\Omeka2ImportRepresentation';
+        return 'Omeka2Importer\Api\Representation\OmekaimportImportRepresentation';
     }
     
     public function hydrate(Request $request, EntityInterface $entity,
