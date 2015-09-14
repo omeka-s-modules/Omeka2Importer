@@ -120,8 +120,7 @@ class Import extends AbstractJob
                 $this->importItems($options);
             }
             $page++;
-        //} while ($this->hasNextPage($response));
-        } while (false); // debugging
+        } while ($this->hasNextPage($response));
         
         //add dcterms:hasPart data to the 'parent' item set for
         //each of the imported (as item sets) collections
@@ -173,8 +172,7 @@ class Import extends AbstractJob
                 }
 
             $page++;
-        //} while ($this->hasNextPage($clientResponse));
-        } while (false); //debugging
+        } while ($this->hasNextPage($clientResponse));
     }
 
     protected function createItems($toCreate) 
