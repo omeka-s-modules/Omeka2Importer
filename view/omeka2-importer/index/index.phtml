@@ -6,8 +6,11 @@ $escapeHtml = $this->plugin('escapeHtml');
 <?php echo $this->pageTitle($this->translate('Import · Omeka 2 Importer')); ?>
 
 <?php echo $this->form()->openTag($form); ?>
-<div id="page-actions">
-    <button><?php echo $this->escapeHtml($this->translate('Submit')); ?></button>
-</div>
 <?php echo $this->formElements($form); ?>
+<?php 
+$mappingUrl = $this->url('admin/omeka2importer/mapping',
+              array('controller' => 'index', 'action' => 'mapping')
+          );
+?>
+<a href='<?php echo $mappingUrl; ?>'>Continue to mappings</a>
 <?php echo $this->form()->closeTag($form); ?>

@@ -54,6 +54,17 @@ return array(
                                     ),
                                 )
                             ),
+                            'mapping' => array(
+                                'type'    => 'Literal',
+                                'options' => array(
+                                    'route' => '/mapping',
+                                    'defaults' => array(
+                                        '__NAMESPACE__' => 'Omeka2Importer\Controller',
+                                        'controller'    => 'Index',
+                                        'action'        => 'mapping',
+                                    ),
+                                )
+                            ),
                         ),
                     ),
                 ),
