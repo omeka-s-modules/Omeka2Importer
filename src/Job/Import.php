@@ -271,7 +271,7 @@ class Import extends AbstractJob
         $mediaJson = array('o:media' => array());
         foreach($filesData as $fileData) {
             $fileJson = array(
-                'o:type'     => 'url',
+                'o:ingester'     => 'url',
                 'o:source'   => $fileData['file_urls']['original'],
                 'ingest_url' => $fileData['file_urls']['original'],
             );
