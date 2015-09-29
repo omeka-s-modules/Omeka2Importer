@@ -30,13 +30,12 @@ that that Element will be mapped onto during the import process.</p>
             <td colspan="3"><?php echo $name; ?></td>
         </tr>
         <?php foreach ($elementSet as $element): ?>
-        <tr class="element">
+        <tr class="element" data-element-id="<?php echo $element['id']; ?>">
             <td><?php echo $element['name'];?></td>
             <td class="mapping">
-            <input type="hidden" data-element-id="<?php echo $element['id']; ?>" name="" ></input>
             </td>
             <td>
-            <input type="checkbox" data-element-id="" name=""></input>
+                <input type="checkbox" name="element-html[<?php echo $element['id']; ?>]"></input>
             </td>
         </tr>
         <?php endforeach; ?>
@@ -44,8 +43,12 @@ that that Element will be mapped onto during the import process.</p>
     </tbody>
 </table>
 <?php
-        $selectorHtml = $this->propertySelector('Select property to map');
+        $propertySelectorHtml = $this->propertySelector('Select property to map');
+        $classSelectorHtml = $this->resourceClassSelector('Select class to map');
 ?>
-<div class='sidebar active'><?php echo $selectorHtml; ?></div>
+<div class='sidebar active'>
+<?php echo $propertySelectorHtml; ?>
+<?php echo $classSelectorHtml; ?>
+</div>
 <?php echo $this->form()->closeTag($form); ?>
 

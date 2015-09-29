@@ -21,6 +21,11 @@ return array(
             OMEKA_PATH . '/modules/Omeka2Importer/view',
         ),
     ),
+    'view_helpers' => array(
+        'invokables' => array(
+        'resourceClassSelector'    => 'Omeka2Importer\View\Helper\ResourceClassSelector',
+        )
+    ),
     'entity_manager' => array(
         'mapping_classes_paths' => array(
             OMEKA_PATH . '/modules/Omeka2Importer/src/Entity',
