@@ -9,12 +9,12 @@ $this->headLink()->appendStylesheet($this->assetUrl('css/omeka2importer.css', 'O
 <?php echo $this->pageTitle($this->translate('Import · Omeka 2 Importer')); ?>
 
 <?php echo $this->form()->openTag($form); ?>
-<div class="omeka2-import-section">
+<section id="omeka2-import-basics">
     <p class='section-label'><?php echo $this->translate('Basic Import Settings'); ?></p>
     <?php echo $this->formElements($form); ?>
-</div>
+</section>
 
-<div class="omeka2-import-section">
+<section id="omeka2-import-element-map">
     <table style="width: 60%">
         <thead>
             <tr>
@@ -42,9 +42,9 @@ $this->headLink()->appendStylesheet($this->assetUrl('css/omeka2importer.css', 'O
         <?php endforeach; ?>
         </tbody>
     </table>
-</div>
+</section>
 
-<div class="omeka2-importer-section">
+<section id="omeka2-import-item-types">
     <table style="width: 60%">
         <thead>
             <tr>
@@ -66,7 +66,7 @@ $this->headLink()->appendStylesheet($this->assetUrl('css/omeka2importer.css', 'O
         </tbody>
     </table>
 
-</div>
+</section>
 
 <?php
         $propertySelectorHtml = $this->propertySelector('Select property to map');
