@@ -22,12 +22,17 @@ class Import extends AbstractJob
     protected $itemTypeMap;
 
     protected $itemTypeElementMap;
+    
+    protected $htmlElementMap;
 
     public function perform()
     {
         include('item_type_maps.php');
         $this->itemTypeMap = $itemTypeMap;
         $this->itemTypeElementMap = $itemTypeElementMap;
+        $this->itemTypeMap = $this->getArg('itemTypeMap');
+        $this->itemTypeElementMap = $this->getArg('itemTypeElementMap');
+        $this->htmlElementMap = $this->getArg('htmlElementMap');
         $this->addedCount = 0;
         $this->updatedCount = 0;
         $this->endpoint = rtrim($this->getArg('endpoint'), '/'); //make this a filter?
@@ -260,6 +265,27 @@ class Import extends AbstractJob
         $resourceJson = array_merge($resourceJson, $this->buildPropertyJson($importData));
         $resourceJson = array_merge($resourceJson, $this->buildMediaJson($importData));
         return $resourceJson;
+    }
+    
+    protected function buildHtmlMediaJson($importData, $mediaJson)
+    {
+        //this imagines adding on to the o:media array.
+        //probably rework these two methods to play better together
+        //by generating the nested array for both, and tacking
+        //on to o:media at a higher level
+        $itemId = $importData['id'];
+        $htmlJson = array(
+                'o:ingester' => 'html',
+                'o:data'     => array(
+                    'html' => '',
+                    'dcterms:title' => array(
+                        'property_id' => $dctermsTitleId, //lookup in property map
+                        '@value'      => $value //from $importData
+                    )
+                )
+        );
+        $mediaJson[] = $htmlJson;
+        return $mediaJson;
     }
 
     protected function buildMediaJson($importData)
