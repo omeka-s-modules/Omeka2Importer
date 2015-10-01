@@ -29,7 +29,7 @@ class IndexController extends AbstractActionController
         $view->setVariable('form', $form);
         
         $client = $this->getServiceLocator()->get('Omeka2Importer\Omeka2Client');
-        $endpoint = 'http://localhost/Omeka/api'; //@todo: just for dev. need an ajax load  
+        $endpoint = 'http://mallhistory.org/api'; //@todo: just for dev. need an ajax load  
         $client->setApiBaseUrl($endpoint);
         $elementsData = array();
         $elementSetsResponse = $client->element_sets->get();
@@ -40,13 +40,17 @@ class IndexController extends AbstractActionController
             $elementsData[$elementSet['name']] = $elements;
         }
 
+        $itemTypesResponse = $client->item_types->get();
+        $itemTypes = json_decode($itemTypesResponse->getBody(), true);
+        
+        
         if ($this->getRequest()->isPost()) {
             $data = $this->params()->fromPost();
             //$endpoint = rtrim($data['endpoint'], '/');
 
         }
         $view->setVariable('elementsData', $elementsData);
-        
+        $view->setVariable('itemTypes', $itemTypes);
         return $view;
     }
 
