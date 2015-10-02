@@ -9,71 +9,21 @@ $this->headLink()->appendStylesheet($this->assetUrl('css/omeka2importer.css', 'O
 <?php echo $this->pageTitle($this->translate('Import · Omeka 2 Importer')); ?>
 
 <?php echo $this->form()->openTag($form); ?>
-<section id="omeka2-import-basics">
-    <p class='section-label'><?php echo $this->translate('Basic Import Settings'); ?></p>
+
+<a href='#' id='omeka2-import-basics' class='omeka2-import-fieldset-label'><?php echo $this->translate('Basic Import Settings'); ?></a>
+<fieldset id="omeka2-import-basics-fieldset">
     <?php echo $this->formElements($form); ?>
-</section>
+</fieldset>
 
-<section id="omeka2-import-element-map">
-    <table style="width: 60%">
-        <thead>
-            <tr>
-                <th><?php echo $this->translate("Omeka 2 Element"); ?></th>
-                <th><?php echo $this->translate("Mapped Properties"); ?></th>
-                <th><?php echo $this->translate("Import as HTML Media"); ?></th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($elementsData as $name=>$elementSet): ?>
-            <tr class="element-set">
-                <th class="omeka2-importer element-set" colspan="3"><?php echo $name; ?></th>
-            </tr>
-            <?php foreach ($elementSet as $element): ?>
-            <tr class="element" data-element-id="<?php echo $element['id']; ?>">
-                <td><?php echo $element['name'];?></td>
-                <td class="mapping element">
-                    <ul class="mappings elements"></ul>
-                </td>
-                <td>
-                    <input type="checkbox" name="element-html[<?php echo $element['id']; ?>]"></input>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
-</section>
+<p id='omeka2-import-fetch-mapping-data'>Configure element and item type mappings</p>
+<div id='mapping-data'>
 
-<section id="omeka2-import-item-types">
-    <table style="width: 60%">
-        <thead>
-            <tr>
-                <th><?php echo $this->translate('Item Type'); ?></th>
-                <th><?php echo $this->translate('Resource Class'); ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($itemTypes as $itemType): ?><tr>
-            <tr class="item-type"  data-item-type-id="<?php echo $itemType['id']; ?>" >
-                <td>
-                    <?php echo $itemType['name']; ?>
-                </td>
-                <td class="mapping item-type">
-                    <ul class="mappings item-types"></ul>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-
-</section>
-
-<?php
-        $propertySelectorHtml = $this->propertySelector('Select property to map');
-        $classSelectorHtml = $this->resourceClassSelector('Select class to map');
-?>
-<?php echo $propertySelectorHtml; ?>
-<?php echo $classSelectorHtml; ?>
+</div>
 
 
 <?php echo $this->form()->closeTag($form); ?>
+
+<?php
+    echo $this->propertySelector('Select property to map');
+    echo $this->resourceClassSelector('Select class to map');
+?>

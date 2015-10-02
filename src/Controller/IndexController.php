@@ -74,6 +74,36 @@ class IndexController extends AbstractActionController
         $view->setVariable('imports', $response->getContent());
         return $view;
     }
+    
+    public function fetchMappingDataAction()
+    {
+        $view = new ViewModel;
+        $view->setTerminal(true);
+        $client = $this->getServiceLocator()->get('Omeka2Importer\Omeka2Client');
+        $endpoint = 'http://mallhistory.org/api'; //@todo: just for dev. need an ajax load  
+        $client->setApiBaseUrl($endpoint);
+        $elementsData = array();
+        $elementSetsResponse = $client->element_sets->get();
+        $elementSets = json_decode($elementSetsResponse->getBody(), true);
+        foreach($elementSets as $elementSet) {
+            $elementsResponse = $client->elements->get(array('element_set' => $elementSet['id']));
+            $elements = json_decode($elementsResponse->getBody(), true);
+            $elementsData[$elementSet['name']] = $elements;
+        }
+
+        $itemTypesResponse = $client->item_types->get();
+        $itemTypes = json_decode($itemTypesResponse->getBody(), true);
+        
+        
+        if ($this->getRequest()->isPost()) {
+            $data = $this->params()->fromPost();
+            //$endpoint = rtrim($data['endpoint'], '/');
+
+        }
+        $view->setVariable('elementsData', $elementsData);
+        $view->setVariable('itemTypes', $itemTypes);
+        return $view;
+    }
 
     protected function undoJob($jobId) {
         $response = $this->api()->search('omekaimport_imports', array('job_id' => $jobId));

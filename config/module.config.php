@@ -66,7 +66,7 @@ return array(
                                     'defaults' => array(
                                         '__NAMESPACE__' => 'Omeka2Importer\Controller',
                                         'controller'    => 'Index',
-                                        'action'        => 'mapping',
+                                        'action'        => 'fetchMappingData',
                                     ),
                                 )
                             ),

@@ -2,11 +2,10 @@
     var activeElement = null;
     
     $(document).ready(function() {
-        $('tr.element').click(function(e) {
+        $('#mapping-data').on('click', 'tr.element', function(e) {
             if (activeElement !== null) {
                 activeElement.removeClass('active');
             }
-            
             activeElement = $(e.target).closest('tr.element');
             activeElement.addClass('active');
         });
@@ -32,6 +31,20 @@
                     alert('Element is already mapped');
                 }
             }
+        });
+        
+        $('.omeka2-import-fieldset-label').on('click', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var fieldsetId = $(e.target).attr('id') + '-fieldset';
+            $('#' + fieldsetId).toggle();
+        });
+        
+        $('#omeka2-import-fetch-mapping-data').click(function() {
+            $.ajax('omeka2importer/mapping')
+                .done(function(data) {
+                    $('#mapping-data').append(data);
+                });
         });
     });
 })(jQuery);

@@ -1,3 +1,7 @@
+a.omeka2-import-fieldset-label {
+    display: block;
+}
+
 tr.element {
     color: #f66;
     background-color: rgba(0,0,0, .08);
@@ -5,5 +9,4 @@ tr.element {
 
 tr.active {
     background-color: rgba(0,0,0, .16);
-    
 }
