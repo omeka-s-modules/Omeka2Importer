@@ -19,7 +19,7 @@
             }
         });
         
-        $('li.selector-child').on('click', function(e){
+        $('#property-selector li.selector-child').on('click', function(e){
             e.stopPropagation();
             //looks like a stopPropagation on the selector-parent forces
             //me to bind the event lower down the DOM, then work back
@@ -38,6 +38,29 @@
                     activeElement.find('ul.mappings').append('<li data-property-id="' + targetLi.data('property-id') + '">' + targetLi.data('child-search') + '</li>');
                 } else {
                     alert('Element is already mapped');
+                }
+            }
+        });
+        
+        $('#resource-class-selector li.selector-child').on('click', function(e){
+            e.stopPropagation();
+            //looks like a stopPropagation on the selector-parent forces
+            //me to bind the event lower down the DOM, then work back
+            //up to the li
+            var targetLi = $(e.target).closest('li.selector-child');
+            if (activeElement == null) {
+                alert("Select an item type at the left before choosing a resource class.");
+            } else {
+                //first, check if the property is already added
+                var hasMapping = activeElement.find('ul.mappings li');
+                if (hasMapping.length === 0) {
+                    var elementId = activeElement.data('element-id');
+                    var newInput = $('<input type="hidden" name="type-class[' + elementId + '][]" ></input>');
+                    newInput.val(targetLi.data('class-id'));
+                    activeElement.find('td.mapping').append(newInput);
+                    activeElement.find('ul.mappings').append('<li data-class-id="' + targetLi.data('class-id') + '">' + targetLi.data('child-search') + '</li>');
+                } else {
+                    alert('Omeka S Items can only have one resource class. Remove the one currently mapped before adding a new one.');
                 }
             }
         });
