@@ -2,7 +2,7 @@ a.omeka2-import-fieldset-label {
     display: block;
 }
 
-tr.element {
+tr.mappable {
     color: #f66;
     background-color: rgba(0,0,0, .08);
 }
