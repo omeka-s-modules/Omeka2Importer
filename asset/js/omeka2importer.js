@@ -2,12 +2,21 @@
     var activeElement = null;
     
     $(document).ready(function() {
-        $('#mapping-data').on('click', 'tr.element', function(e) {
+        $('#mapping-data').on('click', 'tr.mappable', function(e) {
             if (activeElement !== null) {
                 activeElement.removeClass('active');
             }
-            activeElement = $(e.target).closest('tr.element');
+            activeElement = $(e.target).closest('tr.mappable');
             activeElement.addClass('active');
+            if (activeElement.hasClass('element')) {
+                $('#resource-class-selector').removeClass('active');
+                $('#property-selector').addClass('active');
+            }
+            
+            if (activeElement.hasClass('item-type')) {
+                $('#resource-class-selector').addClass('active');
+                $('#property-selector').removeClass('active');
+            }
         });
         
         $('li.selector-child').on('click', function(e){

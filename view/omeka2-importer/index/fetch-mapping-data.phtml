@@ -14,7 +14,7 @@
                 <th class="omeka2-importer element-set" colspan="3"><?php echo $name; ?></th>
             </tr>
             <?php foreach ($elementSet as $element): ?>
-            <tr class="element" data-element-id="<?php echo $element['id']; ?>">
+            <tr class="element mappable" data-element-id="<?php echo $element['id']; ?>">
                 <td><?php echo $element['name'];?></td>
                 <td class="mapping element">
                     <ul class="mappings elements"></ul>
@@ -40,7 +40,7 @@
         </thead>
         <tbody>
             <?php foreach ($itemTypes as $itemType): ?><tr>
-            <tr class="item-type"  data-item-type-id="<?php echo $itemType['id']; ?>" >
+            <tr class="item-type mappable"  data-item-type-id="<?php echo $itemType['id']; ?>" >
                 <td>
                     <?php echo $itemType['name']; ?>
                 </td>
