@@ -75,10 +75,19 @@
         });
         
         $('#omeka2-import-fetch-mapping-data').click(function() {
-            $.ajax('omeka2importer/mapping')
-                .done(function(data) {
+            var endpoint = $('#endpoint').val();
+            
+            if (endpoint === '') {
+                alert('enter a value');
+            } else {
+                $.ajax('omeka2importer/mapping',
+                       {'data': {'endpoint' : endpoint }}
+                ).done(function(data) {
                     $('#mapping-data').append(data);
                 });
+            }
+            
+
         });
         
         

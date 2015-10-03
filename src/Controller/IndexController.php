@@ -27,30 +27,7 @@ class IndexController extends AbstractActionController
         }
 
         $view->setVariable('form', $form);
-        
-        $client = $this->getServiceLocator()->get('Omeka2Importer\Omeka2Client');
-        $endpoint = 'http://mallhistory.org/api'; //@todo: just for dev. need an ajax load  
-        $client->setApiBaseUrl($endpoint);
-        $elementsData = array();
-        $elementSetsResponse = $client->element_sets->get();
-        $elementSets = json_decode($elementSetsResponse->getBody(), true);
-        foreach($elementSets as $elementSet) {
-            $elementsResponse = $client->elements->get(array('element_set' => $elementSet['id']));
-            $elements = json_decode($elementsResponse->getBody(), true);
-            $elementsData[$elementSet['name']] = $elements;
-        }
 
-        $itemTypesResponse = $client->item_types->get();
-        $itemTypes = json_decode($itemTypesResponse->getBody(), true);
-        
-        
-        if ($this->getRequest()->isPost()) {
-            $data = $this->params()->fromPost();
-            //$endpoint = rtrim($data['endpoint'], '/');
-
-        }
-        $view->setVariable('elementsData', $elementsData);
-        $view->setVariable('itemTypes', $itemTypes);
         return $view;
     }
 
@@ -80,7 +57,8 @@ class IndexController extends AbstractActionController
         $view = new ViewModel;
         $view->setTerminal(true);
         $client = $this->getServiceLocator()->get('Omeka2Importer\Omeka2Client');
-        $endpoint = 'http://mallhistory.org/api'; //@todo: just for dev. need an ajax load  
+        $data = $this->params()->fromQuery();
+        $endpoint = $data['endpoint'];
         $client->setApiBaseUrl($endpoint);
         $elementsData = array();
         $elementSetsResponse = $client->element_sets->get();
