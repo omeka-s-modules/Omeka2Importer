@@ -29,8 +29,14 @@
     </table>
 </fieldset>
 
-<a href='#' id='omeka2-import-types-map' class='omeka2-import-fieldset-label'><?php echo $this->translate('Map Omeka 2 Item Types to Omeka S Resource Classes'); ?></a>
+<a href='#' id='omeka2-import-types-map' class='omeka2-import-fieldset-label'>
+<?php echo $this->translate('Map Omeka 2 Item Types to Omeka S Resource Classes'); ?>
+</a>
+
 <fieldset id="omeka2-import-types-map-fieldset">
+    <p>
+        <?php echo $this->translate('Items can have only one resource class. Clicking more than one resource class for an item type will replace it.'); ?>
+    </p>
     <table style="width: 60%">
         <thead>
             <tr>

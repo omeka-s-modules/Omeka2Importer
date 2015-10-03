@@ -54,17 +54,16 @@
             if (activeElement == null) {
                 alert("Select an item type at the left before choosing a resource class.");
             } else {
-                //first, check if the property is already added
-                var hasMapping = activeElement.find('ul.mappings li');
-                if (hasMapping.length === 0) {
-                    var elementId = activeElement.data('element-id');
-                    var newInput = $('<input type="hidden" name="type-class[' + elementId + '][]" ></input>');
-                    newInput.val(targetLi.data('class-id'));
-                    activeElement.find('td.mapping').append(newInput);
-                    activeElement.find('ul.mappings').append('<li class="mapping" data-class-id="' + targetLi.data('class-id') + '">' + targetLi.data('child-search') + '</li>');
-                } else {
-                    alert('Omeka S Items can only have one resource class. Remove the one currently mapped before adding a new one.');
-                }
+                //first, check if a class is already added
+                //var hasMapping = activeElement.find('ul.mappings li');
+                activeElement.find('ul.mappings li').remove();
+                activeElement.find('input').remove();
+                //hasMapping.remove();
+                var typeId = activeElement.data('item-type-id');
+                var newInput = $('<input type="hidden" name="type-class[' + typeId + ']" ></input>');
+                newInput.val(targetLi.data('class-id'));
+                activeElement.find('td.mapping').append(newInput);
+                activeElement.find('ul.mappings').append('<li class="mapping" data-class-id="' + targetLi.data('class-id') + '">' + targetLi.data('child-search') + '</li>');
             }
         });
         

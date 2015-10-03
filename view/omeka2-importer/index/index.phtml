@@ -9,7 +9,9 @@ $this->headLink()->appendStylesheet($this->assetUrl('css/omeka2importer.css', 'O
 <?php echo $this->pageTitle($this->translate('Import · Omeka 2 Importer')); ?>
 
 <?php echo $this->form()->openTag($form); ?>
-
+<fieldset id='page-actions'>
+    <input type='submit' value='Import' />
+</fieldset>
 <a href='#' id='omeka2-import-basics' class='omeka2-import-fieldset-label'><?php echo $this->translate('Basic Import Settings'); ?></a>
 <fieldset id="omeka2-import-basics-fieldset">
     <?php echo $this->formElements($form); ?>
@@ -19,7 +21,9 @@ $this->headLink()->appendStylesheet($this->assetUrl('css/omeka2importer.css', 'O
 <div id='mapping-data'>
 
 </div>
-
+<fieldset>
+    <input type='submit' value='Import' />
+</fieldset>
 
 <?php echo $this->form()->closeTag($form); ?>
 
