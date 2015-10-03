@@ -1,6 +1,8 @@
 (function ($) {
     var activeElement = null;
     
+    var actionsHtml = '<ul class="actions"><li><a aria-label="Remove mapping" title="Remove mapping" class="o-icon-delete remove-mapping" href="#" style="display: inline;"></a></li><li><a aria-label="Undo remove mapping" title="Undo remove mapping" class="o-icon-undo restore-mapping" href="#" style="display: none;"></a></li></ul>';
+        
     $(document).ready(function() {
         $('#mapping-data').on('click', 'tr.mappable', function(e) {
             if (activeElement !== null) {
@@ -34,8 +36,9 @@
                     var elementId = activeElement.data('element-id');
                     var newInput = $('<input type="hidden" name="element-property[' + elementId + '][]" ></input>');
                     newInput.val(targetLi.data('property-id'));
-                    activeElement.find('td.mapping').append(newInput);
-                    activeElement.find('ul.mappings').append('<li data-property-id="' + targetLi.data('property-id') + '">' + targetLi.data('child-search') + '</li>');
+                    var newMappingLi = $('<li class="mapping" data-property-id="' + targetLi.data('property-id') + '">' + targetLi.data('child-search') + actionsHtml  + '</li>');
+                    newMappingLi.append(newInput);
+                    activeElement.find('ul.mappings').append(newMappingLi);
                 } else {
                     alert('Element is already mapped');
                 }
@@ -58,14 +61,14 @@
                     var newInput = $('<input type="hidden" name="type-class[' + elementId + '][]" ></input>');
                     newInput.val(targetLi.data('class-id'));
                     activeElement.find('td.mapping').append(newInput);
-                    activeElement.find('ul.mappings').append('<li data-class-id="' + targetLi.data('class-id') + '">' + targetLi.data('child-search') + '</li>');
+                    activeElement.find('ul.mappings').append('<li class="mapping" data-class-id="' + targetLi.data('class-id') + '">' + targetLi.data('child-search') + '</li>');
                 } else {
                     alert('Omeka S Items can only have one resource class. Remove the one currently mapped before adding a new one.');
                 }
             }
         });
         
-        $('.omeka2-import-fieldset-label').on('click', function(e) {
+        $('body').on('click', '.omeka2-import-fieldset-label', function(e) {
             e.stopPropagation();
             e.preventDefault();
             var fieldsetId = $(e.target).attr('id') + '-fieldset';
@@ -78,5 +81,30 @@
                     $('#mapping-data').append(data);
                 });
         });
+        
+        
+        // Remove mapping
+        $('#mapping-data').on('click', 'a.remove-mapping', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var mappingToRemove = $(this).parents('li.mapping');
+            mappingToRemove.find('input').prop('disabled', true);
+            mappingToRemove.addClass('delete');
+            mappingToRemove.find('.restore-mapping').show();
+            $(this).hide();
+        });
+
+        // Restore a removed mapping
+        $('#mapping-data').on('click', 'a.restore-mapping', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var mappingToRemove = $(this).parents('li.mapping');
+            mappingToRemove.find('.remove-mapping').show();
+            mappingToRemove.find('span.restore-mapping').hide();
+            mappingToRemove.find('input').prop('disabled', false);
+            mappingToRemove.removeClass('delete');
+            $(this).hide();
+        });
+        
     });
 })(jQuery);
