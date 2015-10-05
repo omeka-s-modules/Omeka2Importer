@@ -78,7 +78,7 @@
             var endpoint = $('#endpoint').val();
             
             if (endpoint === '') {
-                alert('enter a value');
+                alert('Enter an API endpoint first');
             } else {
                 $.ajax('omeka2importer/mapping',
                        {'data': {'endpoint' : endpoint }}
