@@ -19,19 +19,27 @@ class Import extends AbstractJob
 
     protected $updatedCount;
 
-    protected $itemTypeMap;
+    protected $typeMap;
 
-    protected $itemTypeElementMap;
+    protected $elementMap;
     
     protected $htmlElementMap;
 
     public function perform()
     {
-        include('item_type_maps.php');
-        $this->itemTypeMap = $itemTypeMap;
-        $this->itemTypeElementMap = $itemTypeElementMap;
-        $this->itemTypeMap = $this->getArg('itemTypeMap');
-        $this->itemTypeElementMap = $this->getArg('itemTypeElementMap');
+        if(is_array($this->getArg('type-class'))) {
+            $this->typeMap = $this->getArg('type-class');
+        } else {
+            $this->typeMap = array();
+        }
+        
+        if(is_array($this->getArg('element-property'))) {
+            $this->elementMap = $this->getArg('element-property');
+        } else {
+            $this->elementMap = array();
+        }
+        
+        
         $this->htmlElementMap = $this->getArg('htmlElementMap');
         $this->addedCount = 0;
         $this->updatedCount = 0;
@@ -240,28 +248,12 @@ class Import extends AbstractJob
         $resourceClassId = null;
         if (isset($importData['item_type'])) {
             $itemTypeName = $importData['item_type']['name'];
-            if (array_key_exists($itemTypeName, $this->itemTypeMap)) {
-                
-                //caching looked-up id in the same array from item_type_maps under 'id' key
-                if (isset($this->itemTypeMap[$itemTypeName]['id'])) {
-                    $resourceClassId = $this->itemTypeMap[$itemTypeName]['id'];
-                } else {
-                    $class = $this->itemTypeMap[$itemTypeName]['class'];
-                    $exploded = explode(':', $class);
-                    $resourceClassesResponse = $this->api->search(
-                            'resource_classes',
-                            array(
-                                  'vocabulary_prefix' => $exploded[0],
-                                  'local_name'        => $exploded[1]
-                            ));
-                    $resourceClassId = $resourceClassesResponse->getContent()[0]->id();
-                    //cache the id (gotta cache'em all)
-                    $this->itemTypeMap[$itemTypeName]['id'] = $resourceClassId;
-                }
+            $itemTypeId = $importData['item_type']['id'];
+            if (array_key_exists($itemTypeId, $this->typeMap)) {
+                $resourceClassId = $this->typeMap[$itemTypeId];
             }
-            $resourceJson['o:resource_class'] = array('o:id' => $resourceClassId);
         }
-        
+        $resourceJson['o:resource_class'] = array('o:id' => $resourceClassId);
         $resourceJson = array_merge($resourceJson, $this->buildPropertyJson($importData));
         $resourceJson = array_merge($resourceJson, $this->buildMediaJson($importData));
         return $resourceJson;
@@ -310,27 +302,14 @@ class Import extends AbstractJob
     protected function buildPropertyJson($importData) {
         $propertyJson = array();
         foreach($importData['element_texts'] as $elTextData) {
-            $elementSetName = $elTextData['element_set']['name'];
-            $elementName = $elTextData['element']['name'];
-            switch ($elementSetName) {
-                case 'Dublin Core':
-                    $term = "dcterms:" . strtolower($elementName);
-                    break;
-                case 'Item Type Metadata':
-                    if (array_key_exists($elementName, $this->itemTypeElementMap)) {
-                        $term = $this->itemTypeElementMap[$elementName];
-                    } else {
-                        $term = false;
-                    }
-                    break;
-                default:
-                    $term = false;
-            }
-            if ($term) {
-                $propertyId = $this->getPropertyId($term);
-                $value = strip_tags($elTextData['text']);
-                if ($propertyId) {
-                    $propertyJson[$term][] = array(
+            $value = strip_tags($elTextData['text']);
+            $elementSetId = $elTextData['element_set']['id'];
+            $elementId = $elTextData['element']['id'];
+            
+            if(array_key_exists($elementId, $this->elementMap)) {
+                //loop through all the mappings and build json
+                foreach($this->elementMap[$elementId] as $propertyId) {
+                    $propertyJson[$propertyId][] = array(
                             '@value'      => $value,
                             'property_id' => $propertyId
                             );

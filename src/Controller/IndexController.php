@@ -58,7 +58,7 @@ class IndexController extends AbstractActionController
         $view->setTerminal(true);
         $client = $this->getServiceLocator()->get('Omeka2Importer\Omeka2Client');
         $data = $this->params()->fromQuery();
-        $endpoint = $data['endpoint'];
+        $endpoint = rtrim($data['endpoint'], '/');
         $client->setApiBaseUrl($endpoint);
         $elementsData = array();
         $elementSetsResponse = $client->element_sets->get();
@@ -71,13 +71,6 @@ class IndexController extends AbstractActionController
 
         $itemTypesResponse = $client->item_types->get();
         $itemTypes = json_decode($itemTypesResponse->getBody(), true);
-        
-        
-        if ($this->getRequest()->isPost()) {
-            $data = $this->params()->fromPost();
-            //$endpoint = rtrim($data['endpoint'], '/');
-
-        }
         $view->setVariable('elementsData', $elementsData);
         $view->setVariable('itemTypes', $itemTypes);
         return $view;

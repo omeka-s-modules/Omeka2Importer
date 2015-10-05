@@ -20,6 +20,11 @@ class OmekaimportImportRepresentation extends AbstractEntityRepresentation
             'o:undo_job'     => $undo_job
         );
     }
+    
+    public function getJsonLdType()
+    {
+        
+    }
 
     public function job()
     {

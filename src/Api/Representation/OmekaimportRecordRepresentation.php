@@ -17,6 +17,11 @@ class OmekaimportRecordRepresentation extends AbstractEntityRepresentation
             'o:job'         => $this->job()->getReference(),
         );
     }
+    
+    public function getJsonLdType()
+    {
+        
+    }
 
     public function lastModified()
     {
