@@ -23,7 +23,7 @@ class OmekaimportImportRepresentation extends AbstractEntityRepresentation
     
     public function getJsonLdType()
     {
-        
+        return 'o:OmekaimportImport';
     }
 
     public function job()

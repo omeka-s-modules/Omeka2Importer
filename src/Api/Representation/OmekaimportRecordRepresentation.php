@@ -20,7 +20,7 @@ class OmekaimportRecordRepresentation extends AbstractEntityRepresentation
     
     public function getJsonLdType()
     {
-        
+        return 'o:OmekaimportRecord';
     }
 
     public function lastModified()
