@@ -1,4 +1,5 @@
 <a href='#' id='omeka2-import-elements-map' class='omeka2-import-fieldset-label'><?php echo $this->translate('Map Omeka 2 Elements to Omeka S Properties'); ?></a>
+
 <fieldset id="omeka2-import-elements-map-fieldset">
     <table style="width: 60%">
         <thead>
@@ -17,7 +18,11 @@
             <tr class="element mappable" data-element-id="<?php echo $element['id']; ?>">
                 <td><?php echo $element['name'];?></td>
                 <td class="mapping element">
-                    <ul class="mappings elements"></ul>
+                    <ul class="mappings elements">
+                    <?php if(in_array($elementSet, $elementDefaultMap)):?>
+                        <li>set</li>
+                    <?php endif; ?>
+                    </ul>
                 </td>
                 <td>
                     <input type="checkbox" name="element-html[<?php echo $element['id']; ?>]"></input>
