@@ -29,27 +29,27 @@ class OmekaimportImportRepresentation extends AbstractEntityRepresentation
     public function job()
     {
         return $this->getAdapter('jobs')
-            ->getRepresentation(null, $this->getData()->getJob());
+            ->getRepresentation($this->resource->getJob());
     }
 
     public function undoJob()
     {
         return $this->getAdapter('jobs')
-            ->getRepresentation(null, $this->getData()->getUndoJob());
+            ->getRepresentation($this->resource->getUndoJob());
     }
 
     public function comment()
     {
-        return $this->getData()->getComment();
+        return $this->resource->getComment();
     }
 
     public function addedCount()
     {
-        return $this->getData()->getAddedCount();
+        return $this->resource->getAddedCount();
     }
 
     public function updatedCount()
     {
-        return $this->getData()->getUpdatedCount();
+        return $this->resource->getUpdatedCount();
     }
 }

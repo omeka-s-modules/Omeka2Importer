@@ -25,40 +25,40 @@ class OmekaimportRecordRepresentation extends AbstractEntityRepresentation
 
     public function lastModified()
     {
-        return $this->getData()->getlastModified();
+        return $this->resource->getlastModified();
     }
 
     public function endpoint()
     {
-        return $this->getData()->getEndpoint();
+        return $this->resource->getEndpoint();
     }
     
     public function remoteType()
     {
-        $this->getData()->getRemoteType();
+        return $this->resource->getRemoteType();
     }
     
     public function remoteId()
     {
-        return $this->getData()->getRemoteId();
+        return $this->resource->getRemoteId();
     }
 
     public function item()
     {
         return $this->getAdapter('items')
-            ->getRepresentation(null, $this->getData()->getItem());
+            ->getRepresentation($this->resource->getItem());
     }
 
     public function itemSet()
     {
         return $this->getAdapter('item_sets')
-            ->getRepresentation(null, $this->getData()->getItemSet());
+            ->getRepresentation($this->resource->getItemSet());
     }
 
     public function job()
     {
         return $this->getAdapter('jobs')
-            ->getRepresentation(null, $this->getData()->getJob());
+            ->getRepresentation($this->resource->getJob());
     }
 
 }
