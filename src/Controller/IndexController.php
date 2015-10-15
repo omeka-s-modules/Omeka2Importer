@@ -113,11 +113,14 @@ class IndexController extends AbstractActionController
                     }
 
                 } else {
-                    if (in_array($elementName, $itemTypeElementMap)) {
+                    if (array_key_exists($elementName, $itemTypeElementMap)) {
                         $term = $itemTypeElementMap[$elementName];
-                        $property = $this->api()->read('properties', array('term' => $term));
-                        $propertyId = $property->id();
-                        $propertyLabel = $property->label();
+                        $propertyResponse = $this->api()->search('properties', array('term' => $term));
+                        if (!empty($propertyResponse->getContent())) {
+                            $property = $propertyResponse->getContent()[0];
+                            $propertyId = $property->id();
+                            $propertyLabel = $property->label();
+                        }
                     }
                 }
                 if ($propertyId) {
