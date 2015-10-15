@@ -68,9 +68,10 @@ class IndexController extends AbstractActionController
             $elements = json_decode($elementsResponse->getBody(), true);
             $elementsData[$elementSet['name']] = $elements;
         }
-
+        $elementDefaultMap = $this->buildElementDefaultMap($elementsData);
         $itemTypesResponse = $client->item_types->get();
         $itemTypes = json_decode($itemTypesResponse->getBody(), true);
+        $view->setVariable('elementDefaultMap', $elementDefaultMap);
         $view->setVariable('elementsData', $elementsData);
         $view->setVariable('itemTypes', $itemTypes);
         return $view;
@@ -92,5 +93,44 @@ class IndexController extends AbstractActionController
                 );
         if ($response->isError()) {
         }
+    }
+    
+    protected function buildElementDefaultMap($elementsData)
+    {
+        include('item_type_maps.php');
+        $elementMap = array();
+        foreach ($elementsData as $elementSet => $elements) {
+            foreach ($elements as $elementData) {
+                $propertyId = false;
+                $elementName = $elementData['name'];
+                if ($elementSet == 'Dublin Core') {
+                    $term = "dcterms:" . lcfirst(str_replace(" ", "", $elementName));
+                    $propertyResponse = $this->api()->search('properties', array('term' => $term));
+                    if (!empty($propertyResponse->getContent())) {
+                        $property = $propertyResponse->getContent()[0];
+                        $propertyId = $property->id();
+                        $propertyLabel = $property->label();
+                    }
+
+                } else {
+                    if (in_array($elementName, $itemTypeElementMap)) {
+                        $term = $itemTypeElementMap[$elementName];
+                        $property = $this->api()->read('properties', array('term' => $term));
+                        $propertyId = $property->id();
+                        $propertyLabel = $property->label();
+                    }
+                }
+                if ($propertyId) {
+                    $elementMap[$elementSet][$elementName] = 
+                        array('propertyId' => $propertyId, 'term' => $term, 'propertyLabel' => $propertyLabel);
+                }
+            }
+        }
+        return $elementMap;
+    }
+    
+    protected function buildTypeDefaultMap($itemTypes)
+    {
+        
     }
 }

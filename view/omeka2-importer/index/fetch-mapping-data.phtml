@@ -1,5 +1,5 @@
 <a href='#' id='omeka2-import-elements-map' class='omeka2-import-fieldset-label'><?php echo $this->translate('Map Omeka 2 Elements to Omeka S Properties'); ?></a>
-
+<?php print_r($elementDefaultMap); ?>
 <fieldset id="omeka2-import-elements-map-fieldset">
     <table style="width: 60%">
         <thead>
@@ -19,8 +19,13 @@
                 <td><?php echo $element['name'];?></td>
                 <td class="mapping element">
                     <ul class="mappings elements">
-                    <?php if(in_array($elementSet, $elementDefaultMap)):?>
-                        <li>set</li>
+                    <?php if(array_key_exists($name, $elementDefaultMap) 
+                             && array_key_exists($element['name'], $elementDefaultMap[$name])):?>
+                        <li class='mapping' data-property-id='<?php echo $element['id']; ?>'>
+                            <?php echo $elementDefaultMap[$name][$element['name']]['propertyLabel']; ?>
+                            <ul class="actions"><li><a aria-label="Remove mapping" title="Remove mapping" class="o-icon-delete remove-mapping" href="#" style="display: inline;"></a></li><li><a aria-label="Undo remove mapping" title="Undo remove mapping" class="o-icon-undo restore-mapping" href="#" style="display: none;"></a></li></ul>
+                            <input type='hidden' name='element-property[<?php echo $element['id']; ?>][]' value='<?php echo $elementDefaultMap[$name][$element['name']]['propertyLabel']; ?>' />
+                        </li>
                     <?php endif; ?>
                     </ul>
                 </td>
