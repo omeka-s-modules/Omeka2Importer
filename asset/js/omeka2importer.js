@@ -84,6 +84,10 @@
                        {'data': {'endpoint' : endpoint }}
                 ).done(function(data) {
                     $('#mapping-data').append(data);
+                    $('#fetch-data').removeClass('active');
+                    $('#property-selector').addClass('active');
+                }).fail(function(data) {
+                    alert('Something went wrong. Check the URL and try again.');
                 });
             }
             
