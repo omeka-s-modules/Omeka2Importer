@@ -17,7 +17,6 @@ $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
     <?php echo $this->formElements($form); ?>
 </fieldset>
 
-<a href='#' id='omeka2-import-fetch-mapping-data'>Configure element and item type mappings</a>
 <div id='mapping-data'>
 
 </div>
@@ -27,7 +26,15 @@ $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
 
 <?php echo $this->form()->closeTag($form); ?>
 
+<div id='fetch-data' class='sidebar active'>
+<p>Enter the Omeka 2 API endpoint. 
+Then click "Get Data" to load the element and item type data from that site.
+After that, you will be able to configure mappings between Omeka 2 and Omeka S.
+</p>
+<button id='omeka2-import-fetch-mapping-data'>Get Data</button>
+</div>
+
 <?php
-    echo $this->propertySelector('Select property to map');
-    echo $this->resourceClassSelector('Select class to map');
+    echo $this->propertySelector('Select property to map', false);
+    echo $this->resourceClassSelector('Select class to map', false);
 ?>

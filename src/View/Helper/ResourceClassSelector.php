@@ -10,7 +10,7 @@ class ResourceClassSelector extends AbstractHelper
      *
      * @return string
      */
-    public function __invoke($text = null) 
+    public function __invoke($text = null, $active = true)
     {
         $response = $this->getView()->api()->search('vocabularies');
         if ($response->isError()) {
@@ -36,7 +36,8 @@ class ResourceClassSelector extends AbstractHelper
             'omeka2-importer/common/resource-class-selector',
             array(
                 'vocabularies'       => $response->getContent(),
-                'text'               => $text
+                'text'               => $text,
+                'state'              => $active ? 'active' : ''
             )
         );
         

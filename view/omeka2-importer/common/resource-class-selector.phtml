@@ -1,7 +1,7 @@
 <?php
 $escape = $this->plugin('escapeHtml');
 ?>
-<div id="resource-class-selector" class='selector sidebar'>
+<div id="resource-class-selector" class='selector sidebar <?php echo $state; ?>'>
     <?php if ($text) :?>
     <p><?php echo $escape($text); ?></p>
     <?php else: ?>
