@@ -74,9 +74,9 @@
             $('#' + fieldsetId).toggle();
         });
         
+        // Fetch element data from Omeka 2
         $('#omeka2-import-fetch-mapping-data').click(function() {
             var endpoint = $('#endpoint').val();
-            
             if (endpoint === '') {
                 alert('Enter an API endpoint first');
             } else {
@@ -90,8 +90,14 @@
                     alert('Something went wrong. Check the URL and try again.');
                 });
             }
-            
-
+        });
+        
+        // Clear default mappings
+        $('body').on('click', '.clear-defaults', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var fieldset = $(this).parents('fieldset');
+            fieldset.find('li.mapping.default').remove();
         });
         
         
