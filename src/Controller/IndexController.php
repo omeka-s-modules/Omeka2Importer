@@ -71,7 +71,9 @@ class IndexController extends AbstractActionController
         $elementDefaultMap = $this->buildElementDefaultMap($elementsData);
         $itemTypesResponse = $client->item_types->get();
         $itemTypes = json_decode($itemTypesResponse->getBody(), true);
+        $typeDefaultMap = $this->buildTypeDefaultMap($itemTypes);
         $view->setVariable('elementDefaultMap', $elementDefaultMap);
+        $view->setVariable('typeDefaultMap', $typeDefaultMap);
         $view->setVariable('elementsData', $elementsData);
         $view->setVariable('itemTypes', $itemTypes);
         return $view;
@@ -134,6 +136,20 @@ class IndexController extends AbstractActionController
     
     protected function buildTypeDefaultMap($itemTypes)
     {
-        
+        include('item_type_maps.php');
+        $typeMap = array();
+        foreach ($itemTypes as $type) {
+            if(array_key_exists($type['name'], $itemTypeMap)) {
+                $classResponse = $this->api()->search('resource_classes', array('term' => $itemTypeMap[$type['name']]));
+                if (!empty($classResponse->getContent())) {
+                    $class = $classResponse->getContent()[0];
+                    $classId = $class->id();
+                    $classLabel = $class->label();
+                    $typeMap[$type['name']] = 
+                        array('classId' => $classId, 'classLabel' => $classLabel);
+                }
+            }
+        }
+        return $typeMap;
     }
 }

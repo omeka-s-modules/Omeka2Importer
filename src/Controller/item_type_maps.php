@@ -38,20 +38,20 @@ $itemTypeElementMap = array(
 );
 
 $itemTypeMap = array(
-    'Text'                        => array('class' => 'dctype:Text'), //during import, cached resource class ids will go in 'id' key of array
-    'Moving Image'                => array('class' => 'dctype:MovingImage'),
-    'Oral History'                => array('class' => 'bibo:AudioDocument'),
-    'Sound'                       => array('class' => 'dctype:Sound'),
-    'Still Image'                 => array('class' => 'dctype:StillImage'),
-    'Website'                     => array('class' => 'bibo:Website'),
-    'Event'                       => array('class' => 'dctype:Event'),
-    'Email'                       => array('class' => 'bibo:Email'),
-    'Lesson Plan'                 => array('class' => 'bibo:Workshop'),
+    'Text'                        => 'dctype:Text',
+    'Moving Image'                => 'dctype:MovingImage',
+    'Oral History'                => 'bibo:AudioDocument',
+    'Sound'                       => 'dctype:Sound',
+    'Still Image'                 => 'dctype:StillImage',
+    'Website'                     => 'bibo:Website',
+    'Event'                       => 'dctype:Event',
+    'Email'                       => 'bibo:Email',
+    'Lesson Plan'                 => 'bibo:Workshop',
     //'Hyperlink'
-    'Person'                      => array('class' => 'foaf:Person'),
-    'Interactive Resource'        => array('class' => 'dctype:InteractiveResource'),
-    'Dataset'                     => array('class' => 'dctype:Dataset'),
-    'Physical Object'             => array('class' => 'dctype:PhysicalObject'),
-    'Service'                     => array('class' => 'dctype:Service'),
-    'Software'                    => array('class' => 'dctype:Software')
+    'Person'                      => 'foaf:Person',
+    'Interactive Resource'        => 'dctype:InteractiveResource',
+    'Dataset'                     => 'dctype:Dataset',
+    'Physical Object'             => 'dctype:PhysicalObject',
+    'Service'                     => 'dctype:Service',
+    'Software'                    => 'dctype:Software'
 );

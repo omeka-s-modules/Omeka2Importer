@@ -1,6 +1,6 @@
 <a href='#' id='omeka2-import-elements-map' class='omeka2-import-fieldset-label'><?php echo $this->translate('Map Omeka 2 Elements to Omeka S Properties'); ?></a>
 <fieldset id="omeka2-import-elements-map-fieldset">
-    <table style="width: 60%">
+    <table>
         <thead>
             <tr>
                 <th><?php echo $this->translate("Omeka 2 Element"); ?></th>
@@ -46,7 +46,7 @@
     <p>
         <?php echo $this->translate('Items can have only one resource class. Clicking more than one resource class for an item type will replace it.'); ?>
     </p>
-    <table style="width: 60%">
+    <table>
         <thead>
             <tr>
                 <th><?php echo $this->translate('Item Type'); ?></th>
@@ -60,7 +60,14 @@
                     <?php echo $itemType['name']; ?>
                 </td>
                 <td class="mapping item-type">
-                    <ul class="mappings item-types"></ul>
+                    <ul class="mappings item-types">
+                        <?php if(array_key_exists($itemType['name'], $typeDefaultMap)): ?>
+                            <li class='mapping default' data-class-id='<?php echo $typeDefaultMap[$itemType['name']]['classId']; ?>'>
+                                <?php echo $typeDefaultMap[$itemType['name']]['classLabel']; ?>
+                            </li>
+                            <input type='hidden' name='type-class[<?php echo $itemType['id']?>]' value='<?php echo $typeDefaultMap[$itemType['name']]['classId']; ?>' />
+                        <?php endif; ?>
+                    </ul>
                 </td>
             </tr>
             <?php endforeach; ?>
