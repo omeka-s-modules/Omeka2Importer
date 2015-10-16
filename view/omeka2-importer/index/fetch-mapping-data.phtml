@@ -25,7 +25,7 @@
                         <li class='mapping default' data-property-id='<?php echo $element['id']; ?>'>
                             <?php echo $elementDefaultMap[$name][$element['name']]['propertyLabel']; ?>
                             <ul class="actions"><li><a aria-label="Remove mapping" title="Remove mapping" class="o-icon-delete remove-mapping" href="#" style="display: inline;"></a></li><li><a aria-label="Undo remove mapping" title="Undo remove mapping" class="o-icon-undo restore-mapping" href="#" style="display: none;"></a></li></ul>
-                            <input type='hidden' name='element-property[<?php echo $element['id']; ?>][]' value='<?php echo $elementDefaultMap[$name][$element['name']]['propertyLabel']; ?>' />
+                            <input type='hidden' name='element-property[<?php echo $element['id']; ?>][]' value='<?php echo $elementDefaultMap[$name][$element['name']]['propertyId']; ?>' />
                         </li>
                     <?php endif; ?>
                     </ul>

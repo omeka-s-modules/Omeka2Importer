@@ -306,8 +306,9 @@ class Import extends AbstractJob
             $elementSetId = $elTextData['element_set']['id'];
             $elementId = $elTextData['element']['id'];
             
+            //elementMap has keys of the element id, and array of propertyIds it's mapped to
             if(array_key_exists($elementId, $this->elementMap)) {
-                //loop through all the mappings and build json
+                //loop through all the mappings for that element and build json
                 foreach($this->elementMap[$elementId] as $propertyId) {
                     $propertyJson[$propertyId][] = array(
                             '@value'      => $value,
