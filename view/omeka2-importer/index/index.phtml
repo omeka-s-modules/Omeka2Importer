@@ -3,7 +3,7 @@ $form->prepare();
 $escapeHtml = $this->plugin('escapeHtml');
 $this->headScript()->appendFile($this->assetUrl('js/omeka2importer.js', 'Omeka2Importer'));
 $this->headLink()->appendStylesheet($this->assetUrl('css/omeka2importer.css', 'Omeka2Importer'));
-
+$this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
 ?>
 
 <?php echo $this->pageTitle($this->translate('Import · Omeka 2 Importer')); ?>
