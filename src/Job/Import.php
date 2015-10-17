@@ -24,6 +24,8 @@ class Import extends AbstractJob
     protected $elementMap;
     
     protected $htmlElementMap;
+    
+    protected $dctermsTitleId;
 
     public function perform()
     {
@@ -40,7 +42,8 @@ class Import extends AbstractJob
         }
         
         
-        $this->htmlElementMap = $this->getArg('htmlElementMap');
+        $this->htmlElementMap = $this->getArg('html-element');
+        
         $this->addedCount = 0;
         $this->updatedCount = 0;
         $this->endpoint = rtrim($this->getArg('endpoint'), '/'); //make this a filter?
@@ -48,6 +51,13 @@ class Import extends AbstractJob
         $this->client->setApiBaseUrl($this->endpoint);
         $this->client->setKey($this->getArg('key'));
         $this->api = $this->getServiceLocator()->get('Omeka\ApiManager');
+
+        //cache the dcterms:title id for reuse during mapping in buildHtmlMediaJson
+        $response = $this->api->search('properties', array('term' => 'dcterms:title'));
+        if (!empty($response->getContent())) {
+            $dctermsTitle = $response->getContent()[0];
+            $this->dctermsTitleId = $dctermsTitle->id();
+        }
         $this->prepareTermIdMap();
 
         $Omeka2ImportJson = array(
@@ -255,28 +265,34 @@ class Import extends AbstractJob
         }
         $resourceJson['o:resource_class'] = array('o:id' => $resourceClassId);
         $resourceJson = array_merge($resourceJson, $this->buildPropertyJson($importData));
-        $resourceJson = array_merge($resourceJson, $this->buildMediaJson($importData));
+        $mediaJson = $this->buildMediaJson($importData);
+        $mediaJson = $this->buildHtmlMediaJson($importData, $mediaJson);
+        $resourceJson = array_merge($resourceJson, $mediaJson);
         return $resourceJson;
     }
     
     protected function buildHtmlMediaJson($importData, $mediaJson)
     {
-        //this imagines adding on to the o:media array.
+        // @TODO this imagines adding on to the o:media array.
         //probably rework these two methods to play better together
         //by generating the nested array for both, and tacking
         //on to o:media at a higher level
         $itemId = $importData['id'];
-        $htmlJson = array(
-                'o:ingester' => 'html',
-                'o:data'     => array(
-                    'html' => '',
-                    'dcterms:title' => array(
-                        'property_id' => $dctermsTitleId, //lookup in property map
-                        '@value'      => $value //from $importData
-                    )
-                )
-        );
-        $mediaJson[] = $htmlJson;
+        foreach($importData['element_texts'] as $elTextData) {
+            if (array_key_exists($elTextData['element']['id'], $this->htmlElementMap)) {
+                $htmlJson = array(
+                        'o:ingester' => 'html',
+                        'data'     => array(
+                            'html' => $elTextData['text'],
+                            'dcterms:title' => array(
+                                'property_id' => $this->dctermsTitleId,
+                                '@value'      => $elTextData['element']['name']
+                            )
+                        )
+                );
+                $mediaJson['o:media'][] = $htmlJson;
+            }
+        }
         return $mediaJson;
     }
 
