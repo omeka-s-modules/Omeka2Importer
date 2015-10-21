@@ -96,7 +96,8 @@ class Import extends AbstractJob
         //to the 'parent' item set chosen for the import
         //$collectionItemSetIds = array();
         $itemSetUpdateData = array('dcterms:hasPart' => array());
-        $dctermsHasPartId = $this->getPropertyId('dcterms:hasPart');
+        $dctermsHasPart = $this->api->search('properties', array('term' => 'dcterms:hasPart'))->getContent()[0];
+        $dctermsHasPartId = $dctermsHasPart->id();
         do {
             $response = $this->client->collections->get(null, array('page' => $page));
             $collectionsData = json_decode($response->getBody(), true);
@@ -337,31 +338,6 @@ class Import extends AbstractJob
             }
         }
         return $propertyJson;
-    }
-
-    protected function prepareTermIdMap()
-    {
-        $this->termIdMap = array();
-        $properties = $this->api->search('properties', array(
-            'vocabulary_namespace_uri' => 'http://purl.org/dc/terms/'
-        ))->getContent();
-        foreach ($properties as $property) {
-            $term = "dcterms:" . $property->localName();
-            $this->termIdMap[$term] = $property->id();
-        }
-
-        $properties = $this->api->search('properties', array(
-            'vocabulary_namespace_uri' => 'http://purl.org/ontology/bibo/'
-        ))->getContent();
-        foreach ($properties as $property) {
-            $term = "bibo:" . $property->localName();
-            $this->termIdMap[$term] = $property->id();
-        }
-    }
-
-    protected function getPropertyId($term)
-    {
-        return $this->termIdMap[$term];
     }
 
     protected function importRecord($remoteId, $remoteType = 'item')
