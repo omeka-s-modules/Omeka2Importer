@@ -30,19 +30,19 @@ class Import extends AbstractJob
     public function perform()
     {
         if(is_array($this->getArg('type-class'))) {
-            $this->typeMap = $this->getArg('type-class');
+            $this->typeMap = $this->getArg('type-class', array());
         } else {
             $this->typeMap = array();
         }
         
         if(is_array($this->getArg('element-property'))) {
-            $this->elementMap = $this->getArg('element-property');
+            $this->elementMap = $this->getArg('element-property', array());
         } else {
             $this->elementMap = array();
         }
         
         
-        $this->htmlElementMap = $this->getArg('html-element');
+        $this->htmlElementMap = $this->getArg('html-element', array());
         
         $this->addedCount = 0;
         $this->updatedCount = 0;
