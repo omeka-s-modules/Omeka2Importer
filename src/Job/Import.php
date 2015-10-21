@@ -154,6 +154,7 @@ class Import extends AbstractJob
 
     protected function importItems($options = array())
     {
+        $em = $this->getServiceLocator()->get('Omeka\EntityManager');
         $page = 1;
         $params = array();
         //if importing by collections from Omeka 2, the collection to use as
@@ -194,7 +195,9 @@ class Import extends AbstractJob
                     $this->updateItems($toUpdate);
                 }
 
-            $page++;
+                $page++;
+                $em->flush();
+                $em->clear();
         } while ($this->hasNextPage($clientResponse));
     }
 
