@@ -58,7 +58,6 @@ class Import extends AbstractJob
             $dctermsTitle = $response->getContent()[0];
             $this->dctermsTitleId = $dctermsTitle->id();
         }
-        $this->prepareTermIdMap();
 
         $Omeka2ImportJson = array(
                             'o:job'         => array('o:id' => $this->job->getId()),
