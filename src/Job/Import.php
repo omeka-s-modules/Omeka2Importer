@@ -2,8 +2,8 @@
 namespace Omeka2Importer\Job;
 
 use Omeka\Job\AbstractJob;
-use Omeka\Job\Exception;
-
+use Omeka\Log\Writer\Job as JobWriter;
+use Omeka\Job\Exception as JobException;
 
 class Import extends AbstractJob
 {
@@ -26,9 +26,13 @@ class Import extends AbstractJob
     protected $htmlElementMap;
     
     protected $dctermsTitleId;
+    
+    protected $logger;
 
     public function perform()
     {
+        $this->logger = $this->getServiceLocator()->get('Omeka\Logger');
+        $this->logger->addWriter(new JobWriter($this->job));
         if(is_array($this->getArg('type-class'))) {
             $this->typeMap = $this->getArg('type-class', array());
         } else {
@@ -98,7 +102,16 @@ class Import extends AbstractJob
         $dctermsHasPart = $this->api->search('properties', array('term' => 'dcterms:hasPart'))->getContent()[0];
         $dctermsHasPartId = $dctermsHasPart->id();
         do {
-            $response = $this->client->collections->get(null, array('page' => $page));
+            try {
+                $clientResponse = $this->client->collections->get(null, array('page' => $page));
+            } catch(\Exception $e) {
+                $this->logger->err((string) $e);
+                continue;
+            }
+            if(! $clientResponse->isOK()) {
+                $this->logger->err("HTTP problem: " . $clientResponse->getStatusCode() . ' ' . $clientResponse->getReasonPhrase());
+                continue;
+            }
             $collectionsData = json_decode($response->getBody(), true);
             foreach ($collectionsData as $collectionData) {
 
@@ -155,6 +168,7 @@ class Import extends AbstractJob
     protected function importItems($options = array())
     {
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
+        
         $page = 1;
         $params = array();
         //if importing by collections from Omeka 2, the collection to use as
@@ -164,7 +178,18 @@ class Import extends AbstractJob
         }
         do {
                 $params['page'] = $page;
-                $clientResponse = $this->client->items->get(null, $params);
+                
+                try {
+                    $clientResponse = $this->client->items->get(null, $params);
+                } catch(\Exception $e) {
+                    $this->logger->err((string) $e);
+                    continue;
+                }
+                if(! $clientResponse->isOK()) {
+                    $this->logger->err("HTTP problem: " . $clientResponse->getStatusCode() . ' ' . $clientResponse->getReasonPhrase());
+                    continue;
+                }
+                
                 $itemsData = json_decode($clientResponse->getBody(), true);
                 $toCreate = array();
                 $toUpdate = array();
