@@ -14,13 +14,14 @@ class ImportForm extends AbstractForm
 
         $this->add(array(
             'name' => 'endpoint',
-            'type' => 'text',
+            'type' => 'url',
             'options' => array(
                 'label' => $translator->translate('Omeka 2 Api Endpoint'),
                 'info'  => $translator->translate('The URI of the Omeka 2 Api Endpoint')
             ),
             'attributes' => array(
-                'id' => 'endpoint'
+                'id' => 'endpoint',
+                'required' => 'true'
             )
         ));
 
