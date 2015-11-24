@@ -222,7 +222,9 @@ class Import extends AbstractJob
 
                 $page++;
                 $em->flush();
-                $em->clear();
+                
+                //roll through everything created or updated and detach
+                //can't use $em->clear(), because that'd clear the job, too
         } while ($this->hasNextPage($clientResponse));
     }
 
@@ -241,11 +243,19 @@ class Import extends AbstractJob
 
     protected function updateItems($toUpdate) 
     {
+        $em = $this->getServiceLocator()->get('Omeka\EntityManager');
         //  batchUpdate would be nice, but complexities abound. See https://github.com/omeka/omeka-s/issues/326
         $updateResponses = array();
         foreach ($toUpdate as $importRecordId=>$itemJson) {
             $this->updatedCount = $this->updatedCount + 1;
-            $updateResponses[$importRecordId] = $this->api->update('items', $itemJson['id'], $itemJson);
+            $updateResponse = $this->api->update('items', $itemJson['id'], $itemJson);
+            $updateResponses[$importRecordId] = $updateResponse;
+        }
+        
+        foreach($updateResponses as $response) {
+            $representation = $response->getContent();
+            $entityResponse = $this->api->read('items', $representation->id());
+            $em->detach($entityResponse->getContent());
         }
         //only updating the job id for all
         $importRecordUpdateJson = array('o:job' => array('o:id' => $this->job->getId()),
