@@ -1,4 +1,4 @@
-<a href='#' id='omeka2-import-elements-map' class='omeka2-import-fieldset-label'><?php echo $this->translate('Map Omeka 2 Elements to Omeka S Properties'); ?></a>
+<a href='#' id='omeka2-import-elements-map' class='omeka2-import-fieldset-label'><?php echo $this->translate('Map Omeka 2 Elements to Omeka S Properties'); ?><span class="collapse"></span></a>
 
 <fieldset id="omeka2-import-elements-map-fieldset">
     <button id='elements-clear-defaults' class='clear-defaults'>Clear Defaults</button>
@@ -20,7 +20,7 @@
                 <td><?php echo $element['name'];?></td>
                 <td class="mapping element">
                     <ul class="mappings elements">
-                    <?php if(array_key_exists($name, $elementDefaultMap) 
+                    <?php if(array_key_exists($name, $elementDefaultMap)
                              && array_key_exists($element['name'], $elementDefaultMap[$name])):?>
                         <li class='mapping default' data-property-id='<?php echo $element['id']; ?>'>
                             <?php echo $elementDefaultMap[$name][$element['name']]['propertyLabel']; ?>
@@ -42,6 +42,7 @@
 
 <a href='#' id='omeka2-import-types-map' class='omeka2-import-fieldset-label'>
 <?php echo $this->translate('Map Omeka 2 Item Types to Omeka S Resource Classes'); ?>
+<span class="collapse"></span>
 </a>
 
 <fieldset id="omeka2-import-types-map-fieldset">

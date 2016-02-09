@@ -1,8 +1,8 @@
 (function ($) {
     var activeElement = null;
-    
+
     var actionsHtml = '<ul class="actions"><li><a aria-label="Remove mapping" title="Remove mapping" class="o-icon-delete remove-mapping" href="#" style="display: inline;"></a></li><li><a aria-label="Undo remove mapping" title="Undo remove mapping" class="o-icon-undo restore-mapping" href="#" style="display: none;"></a></li></ul>';
-        
+
     $(document).ready(function() {
         $('#mapping-data').on('click', 'tr.mappable', function(e) {
             if (activeElement !== null) {
@@ -14,13 +14,13 @@
                 $('#resource-class-selector').removeClass('active');
                 $('#property-selector').addClass('active');
             }
-            
+
             if (activeElement.hasClass('item-type')) {
                 $('#resource-class-selector').addClass('active');
                 $('#property-selector').removeClass('active');
             }
         });
-        
+
         $('#property-selector li.selector-child').on('click', function(e){
             e.stopPropagation();
             //looks like a stopPropagation on the selector-parent forces
@@ -44,7 +44,7 @@
                 }
             }
         });
-        
+
         $('#resource-class-selector li.selector-child').on('click', function(e){
             e.stopPropagation();
             //looks like a stopPropagation on the selector-parent forces
@@ -66,14 +66,15 @@
                 activeElement.find('ul.mappings').append('<li class="mapping" data-class-id="' + targetLi.data('class-id') + '">' + targetLi.data('child-search') + '</li>');
             }
         });
-        
+
         $('body').on('click', '.omeka2-import-fieldset-label', function(e) {
             e.stopPropagation();
             e.preventDefault();
             var fieldsetId = $(e.target).attr('id') + '-fieldset';
             $('#' + fieldsetId).toggle();
+            $('.omeka2-import-fieldset-label .expand, .omeka2-import-fieldset-label .collapse').toggleClass('expand collapse');
         });
-        
+
         // Fetch element data from Omeka 2
         $('#omeka2-import-fetch-mapping-data').click(function() {
             var endpoint = $('#endpoint').val();
@@ -91,7 +92,7 @@
                 });
             }
         });
-        
+
         // Clear default mappings
         $('body').on('click', '.clear-defaults', function(e) {
             e.stopPropagation();
@@ -99,8 +100,8 @@
             var fieldset = $(this).parents('fieldset');
             fieldset.find('li.mapping.default').remove();
         });
-        
-        
+
+
         // Remove mapping
         $('#mapping-data').on('click', 'a.remove-mapping', function(e) {
             e.preventDefault();
@@ -123,6 +124,6 @@
             mappingToRemove.removeClass('delete');
             $(this).hide();
         });
-        
+
     });
 })(jQuery);

@@ -1,5 +1,17 @@
-a.omeka2-import-fieldset-label {
+.omeka2-import-fieldset-label {
     display: block;
+    border-color: rgba(0, 0, 0, 0.08);
+    border-bottom-width: 0.1875em;
+    border-bottom-style: solid;
+    padding-bottom: 0.1875em;
+    margin-bottom: 0.375em;
+    font-size: 125%;
+}
+
+.omeka2-import-fieldset-label .collapse,
+.omeka2-import-fieldset-label .expand {
+    display: block;
+    float: right;
 }
 
 tr.mappable {
@@ -22,8 +34,9 @@ tr.mappable td:nth-child(2) {
 ul.mappings {
     list-style: none;
     margin: 0;
+    padding: 0;
 }
 
 td.mapping {
-    
+
 }

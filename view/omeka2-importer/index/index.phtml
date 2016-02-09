@@ -1,4 +1,4 @@
-<?php 
+<?php
 $form->prepare();
 $escapeHtml = $this->plugin('escapeHtml');
 $this->headScript()->appendFile($this->assetUrl('js/omeka2importer.js', 'Omeka2Importer'));
@@ -12,7 +12,7 @@ $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
 <fieldset id='page-actions'>
     <input type='submit' value='Import' />
 </fieldset>
-<a href='#' id='omeka2-import-basics' class='omeka2-import-fieldset-label'><?php echo $this->translate('Basic Import Settings'); ?></a>
+<a href='#' id='omeka2-import-basics' class='omeka2-import-fieldset-label'><?php echo $this->translate('Basic Import Settings'); ?><span class="collapse"></span></a>
 <fieldset id="omeka2-import-basics-fieldset">
     <?php echo $this->formCollection($form, false); ?>
 </fieldset>
@@ -24,7 +24,7 @@ $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
 <?php echo $this->form()->closeTag($form); ?>
 
 <div id='fetch-data' class='sidebar active'>
-<p>Enter the Omeka 2 API endpoint. 
+<p>Enter the Omeka 2 API endpoint.
 Then click "Get Data" to load the element and item type data from that site.
 After that, you will be able to configure mappings between Omeka 2 and Omeka S.
 </p>
