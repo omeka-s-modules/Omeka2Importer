@@ -62,8 +62,7 @@ class IndexController extends AbstractActionController
         
         $client = $this->getServiceLocator()->get('Omeka2Importer\Omeka2Client');
         $data = $this->params()->fromQuery();
-        //$endpoint = rtrim($data['endpoint'], '/');
-        $endpoint = 'http://localhost/Omeka/api';
+        $endpoint = rtrim($data['endpoint'], '/');
         $client->setApiBaseUrl($endpoint);
         
         //gather up all the element sets
