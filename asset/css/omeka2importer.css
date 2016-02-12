@@ -37,6 +37,6 @@ ul.mappings {
     padding: 0;
 }
 
-td.mapping {
-
+li.mapping {
+    margin: 3px;
 }
