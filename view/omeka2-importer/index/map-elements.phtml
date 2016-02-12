@@ -10,12 +10,19 @@ $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
 
 <?php echo $this->form()->openTag($form); ?>
 
+<a href='#' id='omeka2-import-basics' class='omeka2-import-fieldset-label'>
+<?php echo $this->translate('Basic Import Settings'); ?>
+<span class="collapse"></span>
+</a>
 <fieldset id="omeka2-import-basics-fieldset">
+
     <?php echo $this->formCollection($form, false); ?>
 </fieldset>
 
-<a href='#' id='omeka2-import-elements-map' class='omeka2-import-fieldset-label'><?php echo $this->translate('Map Omeka 2 Elements to Omeka S Properties'); ?><span class="collapse"></span></a>
-
+<a href='#' id='omeka2-import-elements-map' class='omeka2-import-fieldset-label'>
+<?php echo $this->translate('Map Omeka 2 Elements to Omeka S Properties'); ?>
+<span class="collapse"></span>
+</a>
 <fieldset id="omeka2-import-elements-map-fieldset">
     <button id='elements-clear-defaults' class='clear-defaults'>Clear Defaults</button>
     <table>

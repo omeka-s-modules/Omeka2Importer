@@ -70,9 +70,11 @@
         $('body').on('click', '.omeka2-import-fieldset-label', function(e) {
             e.stopPropagation();
             e.preventDefault();
-            var fieldsetId = $(e.target).attr('id') + '-fieldset';
+            var target = $(e.target);
+            var fieldsetId = target.attr('id') + '-fieldset';
             $('#' + fieldsetId).toggle();
-            $('.omeka2-import-fieldset-label .expand, .omeka2-import-fieldset-label .collapse').toggleClass('expand collapse');
+            //$('.omeka2-import-fieldset-label .expand, .omeka2-import-fieldset-label .collapse').toggleClass('expand collapse');
+            $('.expand, .collapse', target).toggleClass('expand collapse');
         });
 
         // Fetch element data from Omeka 2
