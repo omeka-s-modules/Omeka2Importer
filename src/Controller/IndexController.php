@@ -53,6 +53,62 @@ class IndexController extends AbstractActionController
         return $view;
     }
     
+    public function mapElementsAction()
+    {
+        $view = new ViewModel;
+        $form = new MappingForm($this->getServiceLocator());
+        $view->setVariable('form', $form);
+        
+        
+        $client = $this->getServiceLocator()->get('Omeka2Importer\Omeka2Client');
+        $data = $this->params()->fromQuery();
+        //$endpoint = rtrim($data['endpoint'], '/');
+        $endpoint = 'http://localhost/Omeka/api';
+        $client->setApiBaseUrl($endpoint);
+        
+        //gather up all the element sets
+        $elementSetsData = array();
+        $page = 1;
+        do {
+            $elementSetsResponse = $client->element_sets->get(array('page' => $page));
+            $elementSets = json_decode($elementSetsResponse->getBody(), true);
+            $elementSetsData = array_merge($elementSetsData, $elementSets);
+            $page++;
+        } while ($this->hasNextPage($elementSetsResponse));
+        
+        
+        $elementsData = array();
+        foreach($elementSetsData as $elementSet) {
+            $page = 1;
+            $elementSetElements = array();
+            do {
+                $elementsResponse = $client->elements->get(array('element_set' => $elementSet['id'], 'page' => $page));
+                $elements = json_decode($elementsResponse->getBody(), true);
+                $elementSetElements = array_merge($elementSetElements, $elements);
+                $page++;
+            } while ($this->hasNextPage($elementsResponse));
+            $elementsData[$elementSet['name']] = $elementSetElements;
+        }
+
+        $elementDefaultMap = $this->buildElementDefaultMap($elementsData);
+        
+        $itemTypesData = array();
+        $page = 1;
+        do {
+            $itemTypesResponse = $client->item_types->get(array('page' => $page));
+            $itemTypes = json_decode($itemTypesResponse->getBody(), true);
+            $itemTypesData = array_merge($itemTypesData, $itemTypes);
+            $page++;
+        } while ($this->hasNextPage($itemTypesResponse));
+
+        $typeDefaultMap = $this->buildTypeDefaultMap($itemTypesData);
+        $view->setVariable('elementDefaultMap', $elementDefaultMap);
+        $view->setVariable('typeDefaultMap', $typeDefaultMap);
+        $view->setVariable('elementsData', $elementsData);
+        $view->setVariable('itemTypes', $itemTypesData);
+        return $view;
+    }
+    
     public function fetchMappingDataAction()
     {
         $view = new ViewModel;

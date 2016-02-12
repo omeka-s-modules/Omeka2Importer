@@ -59,14 +59,14 @@ return array(
                                     ),
                                 )
                             ),
-                            'mapping' => array(
+                            'map-elements' => array(
                                 'type'    => 'Literal',
                                 'options' => array(
-                                    'route' => '/mapping',
+                                    'route' => '/map-elements',
                                     'defaults' => array(
                                         '__NAMESPACE__' => 'Omeka2Importer\Controller',
                                         'controller'    => 'Index',
-                                        'action'        => 'fetchMappingData',
+                                        'action'        => 'map-elements',
                                     ),
                                 )
                             ),
