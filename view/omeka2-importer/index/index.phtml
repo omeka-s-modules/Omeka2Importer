@@ -3,7 +3,7 @@ $form->prepare();
 $escapeHtml = $this->plugin('escapeHtml');
 $this->headScript()->appendFile($this->assetUrl('js/omeka2importer.js', 'Omeka2Importer'));
 $this->headLink()->appendStylesheet($this->assetUrl('css/omeka2importer.css', 'Omeka2Importer'));
-$this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
+
 ?>
 
 <?php echo $this->pageTitle($this->translate('Import · Omeka 2 Importer')); ?>
@@ -12,9 +12,12 @@ $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
 <fieldset id='page-actions'>
     <input type='submit' value='Import' />
 </fieldset>
-<a href='#' id='omeka2-import-basics' class='omeka2-import-fieldset-label'><?php echo $this->translate('Basic Import Settings'); ?><span class="collapse"></span></a>
 <fieldset id="omeka2-import-basics-fieldset">
     <?php echo $this->formCollection($form, false); ?>
+    <p>Enter the Omeka 2 API endpoint.
+    Then click "Get Data" to load the element and item type data from that site.
+    After that, you will be able to configure mappings between Omeka 2 and Omeka S.
+    </p>
 </fieldset>
 
 <div id='mapping-data'>
@@ -22,16 +25,3 @@ $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
 </div>
 
 <?php echo $this->form()->closeTag($form); ?>
-
-<div id='fetch-data' class='sidebar active'>
-<p>Enter the Omeka 2 API endpoint.
-Then click "Get Data" to load the element and item type data from that site.
-After that, you will be able to configure mappings between Omeka 2 and Omeka S.
-</p>
-<button id='omeka2-import-fetch-mapping-data'>Get Omeka 2 Element and Item Type Data</button>
-</div>
-
-<?php
-    echo $this->propertySelector('Select property to map. Click an Omeka 2 element as the target, then select the properties for it.', false);
-    echo $this->resourceClassSelector('Select class to map. Click an Omeka 2 item type as the target, then select the resource class for it. Omeka S items can have only one resource class.', false);
-?>
