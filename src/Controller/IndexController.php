@@ -55,9 +55,27 @@ class IndexController extends AbstractActionController
     
     public function mapElementsAction()
     {
+
+        
         $view = new ViewModel;
         $form = new MappingForm($this->getServiceLocator());
         $view->setVariable('form', $form);
+        
+        if ($this->getRequest()->isPost()) {
+            $data = $this->params()->fromPost();
+            $form->setData($data);
+            if ($form->isValid()) {
+                $dispatcher = $this->getServiceLocator()->get('Omeka\JobDispatcher');
+                $job = $dispatcher->dispatch('Omeka2Importer\Job\Import', $data);
+                //the Omeka2Import record is created in the job, so it doesn't
+                //happen until the job is done
+                $this->messenger()->addSuccess('Importing in Job ID ' . $job->getId());
+                $view->setVariable('job', $job);
+            } else {
+                $this->messenger()->addError('There was an error during validation');
+            }
+        }
+
         
         
         $client = $this->getServiceLocator()->get('Omeka2Importer\Omeka2Client');

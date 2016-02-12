@@ -50,7 +50,7 @@ class Import extends AbstractJob
         
         $this->addedCount = 0;
         $this->updatedCount = 0;
-        $this->endpoint = rtrim($this->getArg('endpoint'), '/'); //make this a filter?
+        $this->endpoint = rtrim($this->getArg('endpoint'), '/'); //make this a filter? also, it's checked upon submission
         $this->client = $this->getServiceLocator()->get('Omeka2Importer\Omeka2Client');
         $this->client->setApiBaseUrl($this->endpoint);
         $this->client->setKey($this->getArg('key'));
