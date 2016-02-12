@@ -77,31 +77,12 @@ class IndexController extends AbstractActionController
         } while ($this->hasNextPage($elementSetsResponse));
         
         
-        $elementsData = array();
-        foreach($elementSetsData as $elementSet) {
-            $page = 1;
-            $elementSetElements = array();
-            do {
-                $elementsResponse = $client->elements->get(array('element_set' => $elementSet['id'], 'page' => $page));
-                $elements = json_decode($elementsResponse->getBody(), true);
-                $elementSetElements = array_merge($elementSetElements, $elements);
-                $page++;
-            } while ($this->hasNextPage($elementsResponse));
-            $elementsData[$elementSet['name']] = $elementSetElements;
-        }
+        $elementsData = $this->fetchElementsMappingData($endpoint);
+        $itemTypesData = $this->fetchItemTypesMappingData($endpoint);
 
         $elementDefaultMap = $this->buildElementDefaultMap($elementsData);
-        
-        $itemTypesData = array();
-        $page = 1;
-        do {
-            $itemTypesResponse = $client->item_types->get(array('page' => $page));
-            $itemTypes = json_decode($itemTypesResponse->getBody(), true);
-            $itemTypesData = array_merge($itemTypesData, $itemTypes);
-            $page++;
-        } while ($this->hasNextPage($itemTypesResponse));
-
         $typeDefaultMap = $this->buildTypeDefaultMap($itemTypesData);
+        
         $view->setVariable('elementDefaultMap', $elementDefaultMap);
         $view->setVariable('typeDefaultMap', $typeDefaultMap);
         $view->setVariable('elementsData', $elementsData);
@@ -109,13 +90,11 @@ class IndexController extends AbstractActionController
         return $view;
     }
     
-    public function fetchMappingDataAction()
+    protected function fetchElementsMappingData($endpoint)
     {
-        $view = new ViewModel;
-        $view->setTerminal(true);
         $client = $this->getServiceLocator()->get('Omeka2Importer\Omeka2Client');
-        $data = $this->params()->fromQuery();
-        $endpoint = rtrim($data['endpoint'], '/');
+        $endpoint = rtrim($endpoint, '/');
+        
         $client->setApiBaseUrl($endpoint);
         
         //gather up all the element sets
@@ -141,8 +120,15 @@ class IndexController extends AbstractActionController
             } while ($this->hasNextPage($elementsResponse));
             $elementsData[$elementSet['name']] = $elementSetElements;
         }
-
-        $elementDefaultMap = $this->buildElementDefaultMap($elementsData);
+        return $elementsData;
+    }
+    
+    protected function fetchItemTypesMappingData($endpoint)
+    {
+        $client = $this->getServiceLocator()->get('Omeka2Importer\Omeka2Client');
+        $endpoint = rtrim($endpoint, '/');
+        
+        $client->setApiBaseUrl($endpoint);
         
         $itemTypesData = array();
         $page = 1;
@@ -152,13 +138,8 @@ class IndexController extends AbstractActionController
             $itemTypesData = array_merge($itemTypesData, $itemTypes);
             $page++;
         } while ($this->hasNextPage($itemTypesResponse));
-
-        $typeDefaultMap = $this->buildTypeDefaultMap($itemTypesData);
-        $view->setVariable('elementDefaultMap', $elementDefaultMap);
-        $view->setVariable('typeDefaultMap', $typeDefaultMap);
-        $view->setVariable('elementsData', $elementsData);
-        $view->setVariable('itemTypes', $itemTypesData);
-        return $view;
+        
+        return $itemTypesData;
     }
 
     protected function undoJob($jobId) {
