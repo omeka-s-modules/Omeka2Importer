@@ -12,6 +12,8 @@ class IndexController extends AbstractActionController
     {
         $view = new ViewModel;
         $form = new ImportForm($this->getServiceLocator());
+        $form->setAttribute('action', 'omeka2importer/map-elements');
+        $form->setAttribute('method', 'GET');
         if ($this->getRequest()->isPost()) {
             $data = $this->params()->fromPost();
             $form->setData($data);

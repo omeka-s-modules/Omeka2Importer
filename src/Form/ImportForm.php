@@ -24,5 +24,7 @@ class ImportForm extends AbstractForm
                 'required' => 'true'
             )
         ));
+
+        $this->remove('csrf');
     }
 }

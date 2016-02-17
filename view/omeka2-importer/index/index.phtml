@@ -10,13 +10,12 @@ $this->headLink()->appendStylesheet($this->assetUrl('css/omeka2importer.css', 'O
 
 <?php echo $this->form()->openTag($form); ?>
 <fieldset id='page-actions'>
-    <input type='submit' value='Import' />
+    <input type='submit' value='Next' />
 </fieldset>
 <fieldset id="omeka2-import-basics-fieldset">
     <?php echo $this->formCollection($form, false); ?>
     <p>Enter the Omeka 2 API endpoint.
-    Then click "Get Data" to load the element and item type data from that site.
-    After that, you will be able to configure mappings between Omeka 2 and Omeka S.
+    
     </p>
 </fieldset>
 
