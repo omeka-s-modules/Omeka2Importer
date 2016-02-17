@@ -16,7 +16,7 @@ $backUrl = $this->url('admin/omeka2importer');
     <a class='button' href='<?php echo $backUrl ?>'><?php echo $this->translate('Start Over'); ?></a>
     <input type='submit' value='Import' />
 </fieldset>
-
+<input name='endpoint' value='<?php echo $endpoint; ?>' type='hidden' />
 <a href='#' id='omeka2-import-basics' class='omeka2-import-fieldset-label'>
 <?php echo $this->translate('Basic Import Settings'); ?>
 <span class="collapse"></span>

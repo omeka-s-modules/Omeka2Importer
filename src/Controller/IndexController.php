@@ -106,6 +106,7 @@ class IndexController extends AbstractActionController
         $view->setVariable('typeDefaultMap', $typeDefaultMap);
         $view->setVariable('elementsData', $elementsData);
         $view->setVariable('itemTypes', $itemTypesData);
+        $view->setVariable('endpoint', $endpoint);
         return $view;
     }
     
