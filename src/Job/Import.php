@@ -168,7 +168,7 @@ class Import extends AbstractJob
     protected function importItems($options = array())
     {
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
-        
+
         $page = 1;
         $params = array();
         //if importing by collections from Omeka 2, the collection to use as
@@ -230,6 +230,7 @@ class Import extends AbstractJob
 
     protected function createItems($toCreate) 
     {
+        
         $createResponse = $this->api->batchCreate('items', $toCreate, array(), true);
         $createContent = $createResponse->getContent();
         $this->addedCount = $this->addedCount + count($createContent);
@@ -238,6 +239,7 @@ class Import extends AbstractJob
         foreach($createContent as $remoteId => $resourceReference) {
             $createImportRecordsJson[] = $this->buildImportRecordJson($remoteId, $resourceReference);
         }
+        
         $createImportRecordResponse = $this->api->batchCreate('omekaimport_records', $createImportRecordsJson, array(), true);
     }
 
@@ -366,7 +368,8 @@ class Import extends AbstractJob
                 foreach($this->elementMap[$elementId] as $propertyId) {
                     $propertyJson[$propertyId][] = array(
                             '@value'      => $value,
-                            'property_id' => $propertyId
+                            'property_id' => $propertyId,
+                            'type'        => 'literal',
                             );
                 }
             }
