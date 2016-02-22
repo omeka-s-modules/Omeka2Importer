@@ -67,14 +67,22 @@
             }
         });
 
-        $('body').on('click', '.omeka2-import-fieldset-label', function(e) {
+        $('body').on('click', '.omeka2-import-fieldset-label, .omeka2-import-fieldset-label span', function(e) {
             e.stopPropagation();
             e.preventDefault();
             var target = $(e.target);
+            if(! target.attr('id') ) {
+                target = target.parent();
+            }
             var fieldsetId = target.attr('id') + '-fieldset';
             $('#' + fieldsetId).toggle();
-            //$('.omeka2-import-fieldset-label .expand, .omeka2-import-fieldset-label .collapse').toggleClass('expand collapse');
-            $('.expand, .collapse', target).toggleClass('expand collapse');
+            var arrows = $('.expand, .collapse', target);
+            arrows.toggleClass('expand collapse');
+            if (arrows.hasClass('expand')) {
+                arrows.attr('aria-label','Expand');
+            } else {
+                arrows.attr('aria-label','Collapse');
+            }
         });
 
         // Fetch element data from Omeka 2
