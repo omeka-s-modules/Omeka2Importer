@@ -64,7 +64,7 @@ class IndexController extends AbstractActionController
         $view->setVariable('form', $form);
         
         if ($this->getRequest()->isPost()) {
-            $data = $this->params()->fromPost();
+            $data = $this->params()->fromPost(null, array());
             $form->setData($data);
             if ($form->isValid()) {
                 $dispatcher = $this->getServiceLocator()->get('Omeka\JobDispatcher');
