@@ -381,7 +381,10 @@ class Import extends AbstractJob
     {
         //see if the item has already been imported
         $response = $this->api->search('omekaimport_records',
-                                array('remote_id' => $remoteId, 'remote_type' => $remoteType));
+                                array('remote_id'   => $remoteId, 
+                                      'remote_type' => $remoteType,
+                                      'endpoint'    => $this->endpoint,
+                                       ));
         $content = $response->getContent();
         if (empty($content)) {
             return false;
