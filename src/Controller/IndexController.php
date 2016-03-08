@@ -85,6 +85,16 @@ class IndexController extends AbstractActionController
         $endpoint = rtrim($data['endpoint'], '/');
         $client->setApiBaseUrl($endpoint);
         
+        //first, check if it looks like a valid Omeka 2 endpoint
+        $testResponse = $client->resources->get();
+        if($testResponse->getStatusCode() != 200) {
+            throw new \Exception('no omeka for you!');
+            //redirect to an error page?
+            //or return the view here with error data to display
+            //would call for a branch in the view based on whether
+            //it's an error or not.
+        }
+        
         //gather up all the element sets
         $elementSetsData = array();
         $page = 1;
