@@ -103,6 +103,7 @@ class Omeka2Client
     {
         if (null === $this->httpClient) {
             $this->httpClient = new Client;
+            $this->httpClient->setOptions(array('timeout' => 30));
         }
         return $this->httpClient;
     }
