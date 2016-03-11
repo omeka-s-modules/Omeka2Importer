@@ -32,7 +32,6 @@ class Import extends AbstractJob
     public function perform()
     {
         $this->logger = $this->getServiceLocator()->get('Omeka\Logger');
-        $this->logger->addWriter(new JobWriter($this->job));
         if(is_array($this->getArg('type-class'))) {
             $this->typeMap = $this->getArg('type-class', array());
         } else {
