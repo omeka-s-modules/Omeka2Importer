@@ -177,7 +177,7 @@ class Import extends AbstractJob
         }
         do {
                 $params['page'] = $page;
-                $this->logger->info("Importing item page $page");
+                $this->logger->debug("Importing item page $page");
                 try {
                     $clientResponse = $this->client->items->get(null, $params);
                 } catch(\Exception $e) {
