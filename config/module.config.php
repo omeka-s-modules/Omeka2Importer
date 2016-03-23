@@ -89,6 +89,12 @@ return array(
                         'resource'   => 'Omeka2Importer\Controller\Index',
                     ),
                     array(
+                        'label'      => 'Import',
+                        'route'      => 'admin/omeka2importer/map-elements',
+                        'resource'   => 'Omeka2Importer\Controller\Index',
+                        'visible'   => false,
+                    ),
+                    array(
                         'label'      => 'Past Imports',
                         'route'      => 'admin/omeka2importer/past-imports',
                         'controller' => 'Index',
