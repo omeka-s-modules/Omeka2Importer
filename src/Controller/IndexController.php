@@ -176,22 +176,17 @@ class IndexController extends AbstractActionController
 
     protected function undoJob($jobId) {
         $response = $this->api()->search('omekaimport_imports', array('job_id' => $jobId));
-        if ($response->isError()) {
-
-        }
-        $fedoraImport = $response->getContent()[0];
+        $omekaImport = $response->getContent()[0];
         $dispatcher = $this->getServiceLocator()->get('Omeka\JobDispatcher');
         $job = $dispatcher->dispatch('Omeka2Importer\Job\Undo', array('jobId' => $jobId));
         $response = $this->api()->update('omekaimport_imports', 
-                    $fedoraImport->id(), 
+                    $omekaImport->id(), 
                     array(
                         'o:undo_job' => array('o:id' => $job->getId() )
                     )
                 );
-        if ($response->isError()) {
-        }
     }
-    
+
     protected function buildElementDefaultMap($elementsData)
     {
         include('item_type_maps.php');
