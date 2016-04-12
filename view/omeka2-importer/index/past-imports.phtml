@@ -4,7 +4,9 @@ $escape = $this->plugin('escapeHtml');
 ?>
 
 <?php echo $this->pageTitle($this->translate('Past Imports · Omeka 2 Importer')); ?>
+<?php if(empty($imports)): ?>
 
+<?php else: ?>
 <?php echo $this->pagination(); ?>
 
 <form method='POST'>
@@ -63,3 +65,4 @@ $escape = $this->plugin('escapeHtml');
         </tbody>
     </table>
 </form>
+<?php endif; ?>
