@@ -4,7 +4,7 @@
     var actionsHtml = '<ul class="actions"><li><a aria-label="Remove mapping" title="Remove mapping" class="o-icon-delete remove-mapping" href="#" style="display: inline;"></a></li><li><a aria-label="Undo remove mapping" title="Undo remove mapping" class="o-icon-undo restore-mapping" href="#" style="display: none;"></a></li></ul>';
 
     $(document).ready(function() {
-        $('#mapping-data').on('click', 'tr.mappable', function(e) {
+        $('.section').on('click', 'tr.mappable', function(e) {
             if (activeElement !== null) {
                 activeElement.removeClass('active');
             }
@@ -113,7 +113,7 @@
 
 
         // Remove mapping
-        $('#mapping-data').on('click', 'a.remove-mapping', function(e) {
+        $('.section').on('click', 'a.remove-mapping', function(e) {
             e.preventDefault();
             e.stopPropagation();
             var mappingToRemove = $(this).parents('li.mapping');
@@ -124,7 +124,7 @@
         });
 
         // Restore a removed mapping
-        $('#mapping-data').on('click', 'a.restore-mapping', function(e) {
+        $('.section').on('click', 'a.restore-mapping', function(e) {
             e.preventDefault();
             e.stopPropagation();
             var mappingToRemove = $(this).parents('li.mapping');
