@@ -77,7 +77,7 @@ return array(
         ),
     ),
     'navigation' => array(
-        'AdminGlobal' => array(
+        'AdminModule' => array(
             array(
                 'label'      => 'Omeka 2 Importer',
                 'route'      => 'admin/omeka2importer',
