@@ -76,11 +76,6 @@ class MappingForm extends Form
         
     }
     
-    public function setLogger($logger)
-    {
-        $this->logger = $logger;
-    }
-    
     public function setOwner($identity)
     {
         $this->owner = $identity;
