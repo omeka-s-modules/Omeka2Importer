@@ -8,18 +8,31 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
+    
+    protected $logger;
+    
+    protected $client;
+    
+    protected $jobDispatcher;
+    
+    public function __construct($logger, $jobDispatcher, $client)
+    {
+        $this->logger = $logger;
+        $this->client = $client;
+        $this->jobDispatcher = $jobDispatcher;
+    }
+    
     public function indexAction()
     {
         $view = new ViewModel;
-        $form = new ImportForm($this->getServiceLocator());
+        $form = $this->getForm(ImportForm::class);
         $form->setAttribute('action', 'omeka2importer/map-elements');
         $form->setAttribute('method', 'GET');
         if ($this->getRequest()->isPost()) {
             $data = $this->params()->fromPost();
             $form->setData($data);
             if ($form->isValid()) {
-                $dispatcher = $this->getServiceLocator()->get('Omeka\JobDispatcher');
-                $job = $dispatcher->dispatch('Omeka2Importer\Job\Import', $data);
+                $job = $this->jobDispatcher->dispatch('Omeka2Importer\Job\Import', $data);
                 //the Omeka2Import record is created in the job, so it doesn't
                 //happen until the job is done
                 $this->messenger()->addSuccess('Importing in Job ID ' . $job->getId());
@@ -60,15 +73,14 @@ class IndexController extends AbstractActionController
 
         
         $view = new ViewModel;
-        $form = new MappingForm($this->getServiceLocator());
+        $form = $this->getForm(MappingForm::class);
         $view->setVariable('form', $form);
         
         if ($this->getRequest()->isPost()) {
             $data = $this->params()->fromPost(null, array());
             $form->setData($data);
             if ($form->isValid()) {
-                $dispatcher = $this->getServiceLocator()->get('Omeka\JobDispatcher');
-                $job = $dispatcher->dispatch('Omeka2Importer\Job\Import', $data);
+                $job = $this->jobDispatcher->dispatch('Omeka2Importer\Job\Import', $data);
                 //the Omeka2Import record is created in the job, so it doesn't
                 //happen until the job is done
                 $this->messenger()->addSuccess('Importing in Job ID ' . $job->getId());
@@ -80,13 +92,12 @@ class IndexController extends AbstractActionController
 
         
         
-        $client = $this->getServiceLocator()->get('Omeka2Importer\Omeka2Client');
         $data = $this->params()->fromQuery();
         $endpoint = rtrim($data['endpoint'], '/');
-        $client->setApiBaseUrl($endpoint);
+        $this->client->setApiBaseUrl($endpoint);
         
         //first, check if it looks like a valid Omeka 2 endpoint
-        $testResponse = $client->resources->get();
+        $testResponse = $this->client->resources->get();
         if($testResponse->getStatusCode() != 200) {
             //throw new \Exception('no omeka for you!');
             $this->messenger()->addError(sprintf('The endpoint %s is not a valid Omeka 2 endpoint.', $endpoint));
@@ -101,7 +112,7 @@ class IndexController extends AbstractActionController
         $elementSetsData = array();
         $page = 1;
         do {
-            $elementSetsResponse = $client->element_sets->get(array('page' => $page));
+            $elementSetsResponse = $this->client->element_sets->get(array('page' => $page));
             $elementSets = json_decode($elementSetsResponse->getBody(), true);
             $elementSetsData = array_merge($elementSetsData, $elementSets);
             $page++;
@@ -124,16 +135,15 @@ class IndexController extends AbstractActionController
     
     protected function fetchElementsMappingData($endpoint)
     {
-        $client = $this->getServiceLocator()->get('Omeka2Importer\Omeka2Client');
         $endpoint = rtrim($endpoint, '/');
         
-        $client->setApiBaseUrl($endpoint);
+        $this->client->setApiBaseUrl($endpoint);
         
         //gather up all the element sets
         $elementSetsData = array();
         $page = 1;
         do {
-            $elementSetsResponse = $client->element_sets->get(array('page' => $page));
+            $elementSetsResponse = $this->client->element_sets->get(array('page' => $page));
             $elementSets = json_decode($elementSetsResponse->getBody(), true);
             $elementSetsData = array_merge($elementSetsData, $elementSets);
             $page++;
@@ -145,7 +155,7 @@ class IndexController extends AbstractActionController
             $page = 1;
             $elementSetElements = array();
             do {
-                $elementsResponse = $client->elements->get(array('element_set' => $elementSet['id'], 'page' => $page));
+                $elementsResponse = $this->client->elements->get(array('element_set' => $elementSet['id'], 'page' => $page));
                 $elements = json_decode($elementsResponse->getBody(), true);
                 $elementSetElements = array_merge($elementSetElements, $elements);
                 $page++;
@@ -157,15 +167,14 @@ class IndexController extends AbstractActionController
     
     protected function fetchItemTypesMappingData($endpoint)
     {
-        $client = $this->getServiceLocator()->get('Omeka2Importer\Omeka2Client');
         $endpoint = rtrim($endpoint, '/');
         
-        $client->setApiBaseUrl($endpoint);
+        $this->client->setApiBaseUrl($endpoint);
         
         $itemTypesData = array();
         $page = 1;
         do {
-            $itemTypesResponse = $client->item_types->get(array('page' => $page));
+            $itemTypesResponse = $this->client->item_types->get(array('page' => $page));
             $itemTypes = json_decode($itemTypesResponse->getBody(), true);
             $itemTypesData = array_merge($itemTypesData, $itemTypes);
             $page++;
@@ -178,7 +187,7 @@ class IndexController extends AbstractActionController
         $response = $this->api()->search('omekaimport_imports', array('job_id' => $jobId));
         $omekaImport = $response->getContent()[0];
         $dispatcher = $this->getServiceLocator()->get('Omeka\JobDispatcher');
-        $job = $dispatcher->dispatch('Omeka2Importer\Job\Undo', array('jobId' => $jobId));
+        $job = $this->jobDispatcher->dispatch('Omeka2Importer\Job\Undo', array('jobId' => $jobId));
         $response = $this->api()->update('omekaimport_imports', 
                     $omekaImport->id(), 
                     array(

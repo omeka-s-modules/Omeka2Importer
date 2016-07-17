@@ -12,10 +12,18 @@ return array(
         ),
     ),
     'controllers' => array(
-        'invokables' => array(
-            'Omeka2Importer\Controller\Index' => 'Omeka2Importer\Controller\IndexController',
+        'factories' => array(
+            'Omeka2Importer\Controller\Index' => 'Omeka2Importer\Service\Controller\IndexControllerFactory',
         ),
     ),
+    'form_elements' => [
+        'invokables' => [
+            'Omeka2Importer\Form\ImportForm' => 'Omeka2Importer\Form\ImportForm'
+        ],
+        'factories' => [
+            'Omeka2Importer\Form\MappingForm' => 'Omeka2Importer\Service\Form\MappingFormFactory'
+        ]
+    ],
     'view_manager' => array(
         'template_path_stack'      => array(
             OMEKA_PATH . '/modules/Omeka2Importer/view',

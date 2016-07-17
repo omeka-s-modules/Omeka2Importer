@@ -1,24 +1,24 @@
 <?php
 namespace Omeka2Importer\Form;
 
-use Omeka\Form\AbstractForm;
+use Zend\Form\Form;
 use Omeka\Form\Element\ResourceSelect;
 use Zend\Validator\Callback;
 use Zend\Form\Element\Select;
 
 
-class MappingForm extends AbstractForm
+class MappingForm extends Form
 {
-    public function buildForm()
+    protected $owner;
+    
+    public function init()
     {
-        $translator = $this->getTranslator();
-
         $this->add(array(
             'name' => 'key',
             'type' => 'text',
             'options' => array(
-                'label' => $translator->translate('Omeka 2 Api Key'),
-                'info'  => $translator->translate('Your Api key for this site')
+                'label' => 'Omeka 2 Api Key', // @translate
+                'info'  => 'Your Api key for this site' // @translate
             ),
             'attributes' => array(
                 'id' => 'key'
@@ -29,39 +29,40 @@ class MappingForm extends AbstractForm
             'name' => 'comment',
             'type' => 'textarea',
             'options' => array(
-                'label' => $translator->translate('Comment'),
-                'info'  => $translator->translate('A note about the purpose or source of this import.')
+                'label' => 'Comment', // @translate
+                'info'  => 'A note about the purpose or source of this import.' // @translate
             ),
             'attributes' => array(
                 'id' => 'comment'
             )
         ));
 
-        $serviceLocator = $this->getServiceLocator();
-        $auth = $serviceLocator->get('Omeka\AuthenticationService');
-
-        $itemSetSelect = new ResourceSelect($serviceLocator);
-        $itemSetSelect->setName('itemSet')
-            ->setLabel('Import into')
-            ->setOption('info', $translator->translate('Optional. Import items into this item set. It is recommended to create an Item Set for each Omeka 2 site you import.'))
-            ->setEmptyOption('Select Item Set...')
-            ->setResourceValueOptions(
-                'item_sets',
-                array('owner_id' => $auth->getIdentity()),
-                function ($itemSet, $serviceLocator) {
-                    return $itemSet->displayTitle('[no title]');
-                }
-            );
-        $this->add($itemSetSelect);
-        
+        $this->add([
+            'name' => 'itemSet',
+            'type' => ResourceSelect::class,
+            'options' => [
+                'label' => 'Import into', // @translate
+                'info' => 'Optional. Import items into this item set. It is recommended to create an Item Set for each Omeka 2 site you import.', // @translate
+                'empty_option' => 'Select Item Set...', // @translate
+                'resource_value_options' => [
+                    'resource' => 'item_sets',
+                    'query' => ['owner_id' => $this->getOwner()],
+                    'option_text_callback' => function ($itemSet) {
+                        return $itemSet->displayTitle();
+                    },
+                ],
+            ],
+        ]);
+            
         $this->add(array(
             'name' => 'importCollections',
             'type' => 'checkbox',
             'options' => array(
-                'label' => $translator->translate("Import Collections"),
-                'info'  => $translator->translate("Import Omeka 2 collections as Item Sets. Items will be added to the new Item Sets.")
+                'label' => "Import Collections", // @translate
+                'info'  => "Import Omeka 2 collections as Item Sets. Items will be added to the new Item Sets." // @translate
             ),
         ));
+        
         $inputFilter = $this->getInputFilter();
         $inputFilter->add(array(
             'name' => 'itemSet',
@@ -72,5 +73,21 @@ class MappingForm extends AbstractForm
             'name' => 'key',
             'required' => false,
         ));
+        
+    }
+    
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
+    }
+    
+    public function setOwner($identity)
+    {
+        $this->owner = $identity;
+    }
+    
+    public function getOwner()
+    {
+        return $this->owner;
     }
 }
