@@ -16,8 +16,6 @@ class MappingFormFactory implements FactoryInterface
         $form = new MappingForm(null, $this->options);
         $serviceLocator = $elements->getServiceLocator();
         $identity = $serviceLocator->get('Omeka\AuthenticationService')->getIdentity();
-        $logger = $serviceLocator->get('Omeka\Logger');
-        $form->setLogger($logger);
         $form->setOwner($identity);
         return $form;
     }
