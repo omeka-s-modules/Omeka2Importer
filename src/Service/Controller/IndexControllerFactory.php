@@ -8,12 +8,10 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class IndexControllerFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
-    {   
+    {
         $serviceLocator = $serviceLocator->getServiceLocator();
-        $logger = $serviceLocator->get('Omeka\Logger');
-        $jobDispatcher = $serviceLocator->get('Omeka\JobDispatcher');
         $client = $serviceLocator->get('Omeka2Importer\Omeka2Client');
-        $indexController = new IndexController($logger, $jobDispatcher, $client);
+        $indexController = new IndexController($client);
         return $indexController;
     }
 }
