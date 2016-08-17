@@ -1,4 +1,5 @@
 <?php
+
 namespace Omeka2Importer\Api\Adapter;
 
 use Doctrine\ORM\QueryBuilder;
@@ -13,17 +14,17 @@ class OmekaimportImportAdapter extends AbstractEntityAdapter
     {
         return 'Omeka2Importer\Entity\OmekaimportImport';
     }
-    
+
     public function getResourceName()
     {
         return 'omekaimport_imports';
     }
-    
+
     public function getRepresentationClass()
     {
         return 'Omeka2Importer\Api\Representation\OmekaimportImportRepresentation';
     }
-    
+
     public function hydrate(Request $request, EntityInterface $entity,
         ErrorStore $errorStore
     ) {
@@ -49,12 +50,12 @@ class OmekaimportImportAdapter extends AbstractEntityAdapter
             $entity->setComment($data['comment']);
         }
     }
-    
+
     public function buildQuery(QueryBuilder $qb, array $query)
     {
         if (isset($query['job_id'])) {
             $qb->andWhere($qb->expr()->eq(
-                $this->getEntityClass() . '.job',
+                $this->getEntityClass().'.job',
                 $this->createNamedParameter($qb, $query['job_id']))
             );
         }

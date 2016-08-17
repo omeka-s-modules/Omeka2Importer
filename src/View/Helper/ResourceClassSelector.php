@@ -1,4 +1,5 @@
 <?php
+
 namespace Omeka2Importer\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
@@ -31,15 +32,14 @@ class ResourceClassSelector extends AbstractHelper
                 'options' => $options,
             );
         }
-        
+
         return $this->getView()->partial(
             'omeka2-importer/common/resource-class-selector',
             array(
-                'vocabularies'       => $response->getContent(),
-                'text'               => $text,
-                'state'              => $active ? 'active' : ''
+                'vocabularies' => $response->getContent(),
+                'text' => $text,
+                'state' => $active ? 'active' : '',
             )
         );
-        
     }
 }

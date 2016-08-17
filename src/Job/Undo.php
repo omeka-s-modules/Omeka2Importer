@@ -1,4 +1,5 @@
 <?php
+
 namespace Omeka2Importer\Job;
 
 use Omeka\Job\AbstractJob;

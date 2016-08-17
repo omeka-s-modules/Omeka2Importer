@@ -1,4 +1,5 @@
 <?php
+
 namespace Omeka2Importer\Entity;
 
 use Omeka\Entity\AbstractEntity;
@@ -7,8 +8,8 @@ use Omeka\Entity\Job;
 /**
  * @Entity
  */
-class OmekaimportImport extends AbstractEntity {
-
+class OmekaimportImport extends AbstractEntity
+{
     /**
      * @Id
      * @Column(type="integer")

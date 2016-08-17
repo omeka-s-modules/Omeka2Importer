@@ -1,4 +1,5 @@
 <?php
+
 namespace Omeka2Importer\Entity;
 
 use DateTime;
@@ -12,7 +13,6 @@ use Omeka\Entity\ItemSet;
  */
 class OmekaimportRecord extends AbstractEntity
 {
-
     /**
      * @Id
      * @Column(type="integer")
@@ -29,6 +29,7 @@ class OmekaimportRecord extends AbstractEntity
     /**
      * @OneToOne(targetEntity="Omeka\Entity\Item")
      * @JoinColumn(nullable=true, onDelete="CASCADE")
+     *
      * @var int
      */
     protected $item;
@@ -36,24 +37,28 @@ class OmekaimportRecord extends AbstractEntity
     /**
      * @OneToOne(targetEntity="Omeka\Entity\ItemSet")
      * @JoinColumn(nullable=true)
+     *
      * @var int
      */
     protected $itemSet;
 
     /**
      * @Column(type="string")
+     *
      * @var string
      */
     protected $remoteType;
-    
+
     /**
      * @Column(type="integer")
+     *
      * @var int
      */
     public $remoteId;
 
     /**
      * @Column(type="string")
+     *
      * @var string
      */
     protected $endpoint;
@@ -82,7 +87,7 @@ class OmekaimportRecord extends AbstractEntity
     {
         $this->itemSet = $itemSet;
     }
-    
+
     public function setJob(Job $job)
     {
         $this->job = $job;
@@ -102,28 +107,28 @@ class OmekaimportRecord extends AbstractEntity
     {
         return $this->endpoint;
     }
-    
+
     public function setRemoteType($type)
     {
         $this->remoteType = $type;
     }
-    
+
     public function getRemoteType()
     {
         return $this->remoteType;
     }
-    
+
     public function setRemoteId($id)
     {
         $this->remoteId = $id;
     }
-    
+
     public function getRemoteId()
     {
         return $this->remoteId;
     }
 
-    public function setLastModified(DateTime $lastModified) 
+    public function setLastModified(DateTime $lastModified)
     {
         $this->lastModified = $lastModified;
     }

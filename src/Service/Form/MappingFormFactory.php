@@ -1,7 +1,6 @@
 <?php
-namespace Omeka2Importer\Service\Form;
 
-use Zend\ServiceManager\setCreationOptions;
+namespace Omeka2Importer\Service\Form;
 
 use Omeka2Importer\Form\MappingForm;
 use Zend\ServiceManager\FactoryInterface;
@@ -17,6 +16,7 @@ class MappingFormFactory implements FactoryInterface
         $serviceLocator = $elements->getServiceLocator();
         $identity = $serviceLocator->get('Omeka\AuthenticationService')->getIdentity();
         $form->setOwner($identity);
+
         return $form;
     }
 }

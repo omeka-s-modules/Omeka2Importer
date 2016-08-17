@@ -1,4 +1,5 @@
 <?php
+
 namespace Omeka2Importer\Service\Controller;
 
 use Omeka2Importer\Controller\IndexController;
@@ -12,6 +13,7 @@ class IndexControllerFactory implements FactoryInterface
         $serviceLocator = $serviceLocator->getServiceLocator();
         $client = $serviceLocator->get('Omeka2Importer\Omeka2Client');
         $indexController = new IndexController($client);
+
         return $indexController;
     }
 }

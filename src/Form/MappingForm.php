@@ -1,16 +1,15 @@
 <?php
+
 namespace Omeka2Importer\Form;
 
 use Zend\Form\Form;
 use Omeka\Form\Element\ResourceSelect;
-use Zend\Validator\Callback;
 use Zend\Form\Element\Select;
-
 
 class MappingForm extends Form
 {
     protected $owner;
-    
+
     public function init()
     {
         $this->add(array(
@@ -18,11 +17,11 @@ class MappingForm extends Form
             'type' => 'text',
             'options' => array(
                 'label' => 'Omeka 2 Api Key', // @translate
-                'info'  => 'Your Api key for this site' // @translate
+                'info' => 'Your Api key for this site', // @translate
             ),
             'attributes' => array(
-                'id' => 'key'
-            )
+                'id' => 'key',
+            ),
         ));
 
         $this->add(array(
@@ -30,11 +29,11 @@ class MappingForm extends Form
             'type' => 'textarea',
             'options' => array(
                 'label' => 'Comment', // @translate
-                'info'  => 'A note about the purpose or source of this import.' // @translate
+                'info' => 'A note about the purpose or source of this import.', // @translate
             ),
             'attributes' => array(
-                'id' => 'comment'
-            )
+                'id' => 'comment',
+            ),
         ));
 
         $this->add([
@@ -53,34 +52,33 @@ class MappingForm extends Form
                 ],
             ],
         ]);
-            
+
         $this->add(array(
             'name' => 'importCollections',
             'type' => 'checkbox',
             'options' => array(
-                'label' => "Import Collections", // @translate
-                'info'  => "Import Omeka 2 collections as Item Sets. Items will be added to the new Item Sets." // @translate
+                'label' => 'Import Collections', // @translate
+                'info' => 'Import Omeka 2 collections as Item Sets. Items will be added to the new Item Sets.', // @translate
             ),
         ));
-        
+
         $inputFilter = $this->getInputFilter();
         $inputFilter->add(array(
             'name' => 'itemSet',
             'required' => false,
         ));
-        
+
         $inputFilter->add(array(
             'name' => 'key',
             'required' => false,
         ));
-        
     }
-    
+
     public function setOwner($identity)
     {
         $this->owner = $identity;
     }
-    
+
     public function getOwner()
     {
         return $this->owner;
