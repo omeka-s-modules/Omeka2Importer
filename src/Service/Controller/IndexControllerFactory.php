@@ -2,18 +2,15 @@
 namespace Omeka2Importer\Service\Controller;
 
 use Omeka2Importer\Controller\IndexController;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
+use Interop\Container\ContainerInterface;
 
 class IndexControllerFactory implements FactoryInterface
 {
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {   
-        $serviceLocator = $serviceLocator->getServiceLocator();
-        $logger = $serviceLocator->get('Omeka\Logger');
-        $jobDispatcher = $serviceLocator->get('Omeka\JobDispatcher');
-        $client = $serviceLocator->get('Omeka2Importer\Omeka2Client');
-        $indexController = new IndexController($logger, $jobDispatcher, $client);
+        $client = $container->get('Omeka2Importer\Omeka2Client');
+        $indexController = new IndexController($client);
         return $indexController;
     }
 }
