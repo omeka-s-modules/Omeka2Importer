@@ -109,7 +109,7 @@ class Import extends AbstractJob
                 $this->logger->err('HTTP problem: '.$clientResponse->getStatusCode().' '.$clientResponse->getReasonPhrase());
                 continue;
             }
-            $collectionsData = json_decode($response->getBody(), true);
+            $collectionsData = json_decode($clientResponse->getBody(), true);
             foreach ($collectionsData as $collectionData) {
                 $omekaCollectionId = $collectionData['id'];
                 $options['collectionId'] = $omekaCollectionId;
@@ -148,7 +148,7 @@ class Import extends AbstractJob
                 $this->importItems($options);
             }
             ++$page;
-        } while ($this->hasNextPage($response));
+        } while ($this->hasNextPage($clientResponse));
 
         //add dcterms:hasPart data to the 'parent' item set for
         //each of the imported (as item sets) collections
