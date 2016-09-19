@@ -11,12 +11,9 @@ class IndexController extends AbstractActionController
 {
     protected $client;
 
-    protected $jobDispatcher;
-
     public function __construct($client)
     {
         $this->client = $client;
-        $this->jobDispatcher = $this->jobDispatcher();
     }
 
     public function indexAction()
@@ -29,7 +26,7 @@ class IndexController extends AbstractActionController
             $data = $this->params()->fromPost();
             $form->setData($data);
             if ($form->isValid()) {
-                $job = $this->jobDispatcher->dispatch('Omeka2Importer\Job\Import', $data);
+                $job = $this->jobDispatcher()->dispatch('Omeka2Importer\Job\Import', $data);
                 //the Omeka2Import record is created in the job, so it doesn't
                 //happen until the job is done
                 $this->messenger()->addSuccess('Importing in Job ID '.$job->getId());
@@ -76,7 +73,7 @@ class IndexController extends AbstractActionController
             $data = $this->params()->fromPost(null, array());
             $form->setData($data);
             if ($form->isValid()) {
-                $job = $this->jobDispatcher->dispatch('Omeka2Importer\Job\Import', $data);
+                $job = $this->jobDispatcher()->dispatch('Omeka2Importer\Job\Import', $data);
                 //the Omeka2Import record is created in the job, so it doesn't
                 //happen until the job is done
                 $this->messenger()->addSuccess('Importing in Job ID '.$job->getId());
@@ -183,7 +180,7 @@ class IndexController extends AbstractActionController
         $response = $this->api()->search('omekaimport_imports', array('job_id' => $jobId));
         $omekaImport = $response->getContent()[0];
         $dispatcher = $this->getServiceLocator()->get('Omeka\JobDispatcher');
-        $job = $this->jobDispatcher->dispatch('Omeka2Importer\Job\Undo', array('jobId' => $jobId));
+        $job = $this->jobDispatcher()->dispatch('Omeka2Importer\Job\Undo', array('jobId' => $jobId));
         $response = $this->api()->update('omekaimport_imports',
                     $omekaImport->id(),
                     array(
