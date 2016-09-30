@@ -192,16 +192,18 @@ class IndexController extends AbstractActionController
     protected function buildElementDefaultMap($elementsData)
     {
         include 'item_type_maps.php';
+
+        $propertiesByLabel = $this->getPropertiesByLabel();
+
         $elementMap = array();
         foreach ($elementsData as $elementSet => $elements) {
             foreach ($elements as $elementData) {
                 $propertyId = false;
                 $elementName = $elementData['name'];
                 if ($elementSet == 'Dublin Core') {
-                    $term = 'dcterms:'.lcfirst(str_replace(' ', '', $elementName));
-                    $propertyResponse = $this->api()->search('properties', array('term' => $term));
-                    if (!empty($propertyResponse->getContent())) {
-                        $property = $propertyResponse->getContent()[0];
+                    if (array_key_exists($elementName, $propertiesByLabel)) {
+                        $property = $propertiesByLabel[$elementName];
+                        $term = $property->term();
                         $propertyId = $property->id();
                         $propertyLabel = $property->label();
                     }
@@ -252,5 +254,19 @@ class IndexController extends AbstractActionController
         $linksHeaders = $response->getHeaders()->get('Link')->toString();
 
         return strpos($linksHeaders, 'rel="next"');
+    }
+
+    protected function getPropertiesByLabel()
+    {
+        $properties = $this->api()->search('properties', [
+            'vocabulary_prefix' => 'dcterms',
+        ])->getContent();
+
+        $propertiesByLabel = [];
+        foreach ($properties as $property) {
+            $propertiesByLabel[$property->label()] = $property;
+        }
+
+        return $propertiesByLabel;
     }
 }
