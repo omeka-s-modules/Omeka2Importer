@@ -123,6 +123,9 @@ class Import extends AbstractJob
                                                     'omekaimport_records',
                                                     $collectionImportRecord->id(),
                                                     $collectionImportRecordJson);
+
+                    $itemSetId = $collectionImportRecord->itemSet()->id();
+                    $options['collectionItemSet'] = $itemSetId;
                 } else {
                     $itemSetJson = $this->buildResourceJson($collectionData, $options);
                     $response = $this->api->create('item_sets', $itemSetJson);
