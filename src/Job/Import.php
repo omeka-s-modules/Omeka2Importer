@@ -124,8 +124,10 @@ class Import extends AbstractJob
                                                     $collectionImportRecord->id(),
                                                     $collectionImportRecordJson);
 
-                    $itemSetId = $collectionImportRecord->itemSet()->id();
-                    $options['collectionItemSet'] = $itemSetId;
+                    $itemSet = $collectionImportRecord->itemSet();
+                    if ($itemSet) {
+                        $options['collectionItemSet'] = $itemSet->id();
+                    }
                 } else {
                     $itemSetJson = $this->buildResourceJson($collectionData, $options);
                     $response = $this->api->create('item_sets', $itemSetJson);
