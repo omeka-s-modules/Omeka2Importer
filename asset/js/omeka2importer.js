@@ -11,13 +11,13 @@
             activeElement = $(e.target).closest('tr.mappable');
             activeElement.addClass('active');
             if (activeElement.hasClass('element')) {
-                $('#resource-class-selector').removeClass('active');
-                $('#property-selector').addClass('active');
+                Omeka.openSidebar($('#property-selector'));
+                Omeka.closeSidebar($('#resource-class-selector'));
             }
 
             if (activeElement.hasClass('item-type')) {
-                $('#resource-class-selector').addClass('active');
-                $('#property-selector').removeClass('active');
+                Omeka.closeSidebar($('#property-selector'));
+                Omeka.openSidebar($('#resource-class-selector'));
             }
         });
 
