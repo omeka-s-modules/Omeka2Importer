@@ -85,24 +85,6 @@
             }
         });
 
-        // Fetch element data from Omeka 2
-        $('#omeka2-import-fetch-mapping-data').click(function() {
-            var endpoint = $('#endpoint').val();
-            if (endpoint === '') {
-                alert('Enter an API endpoint first');
-            } else {
-                $.ajax('omeka2importer/mapping',
-                       {'data': {'endpoint' : endpoint }}
-                ).done(function(data) {
-                    $('#mapping-data').append(data);
-                    $('#fetch-data').removeClass('active');
-                    $('#property-selector').addClass('active');
-                }).fail(function(data) {
-                    alert('Something went wrong. Check the URL and try again.');
-                });
-            }
-        });
-
         // Clear default mappings
         $('body').on('click', '.clear-defaults', function(e) {
             e.stopPropagation();
