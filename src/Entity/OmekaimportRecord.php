@@ -36,7 +36,7 @@ class OmekaimportRecord extends AbstractEntity
 
     /**
      * @OneToOne(targetEntity="Omeka\Entity\ItemSet")
-     * @JoinColumn(nullable=true)
+     * @JoinColumn(nullable=true, onDelete="CASCADE")
      *
      * @var int
      */
