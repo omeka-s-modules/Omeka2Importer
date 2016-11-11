@@ -49,11 +49,5 @@ class Module extends AbstractModule
             $connection->exec("ALTER TABLE omekaimport_record DROP FOREIGN KEY FK_3185E9B1960278D7;");
             $connection->exec("ALTER TABLE omekaimport_record ADD CONSTRAINT FK_3185E9B1960278D7 FOREIGN KEY (item_set_id) REFERENCES item_set (id) ON DELETE CASCADE;");
         }
-
-        $sql = "
-        ALTER TABLE omekaimport_record DROP INDEX FK_3185E9B1960278D7, ADD UNIQUE INDEX UNIQ_3185E9B1960278D7 (item_set_id);
-        ALTER TABLE omekaimport_record DROP FOREIGN KEY FK_3185E9B1960278D7;
-        ALTER TABLE omekaimport_record ADD CONSTRAINT FK_3185E9B1960278D7 FOREIGN KEY (item_set_id) REFERENCES item_set (id) ON DELETE CASCADE;
-        ";
     }
 }
