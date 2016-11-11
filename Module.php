@@ -19,7 +19,6 @@ class Module extends AbstractModule
         $connection->exec('CREATE TABLE omekaimport_record (id INT AUTO_INCREMENT NOT NULL, job_id INT NOT NULL, item_id INT DEFAULT NULL, item_set_id INT DEFAULT NULL, remote_type VARCHAR(255) NOT NULL, remote_id INT NOT NULL, endpoint VARCHAR(255) NOT NULL, INDEX IDX_3185E9B1BE04EA9 (job_id), UNIQUE INDEX UNIQ_3185E9B1126F525E (item_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;');
         $connection->exec('ALTER TABLE omekaimport_record ADD CONSTRAINT FK_3185E9B1BE04EA9 FOREIGN KEY (job_id) REFERENCES job (id);');
         $connection->exec('ALTER TABLE omekaimport_record ADD CONSTRAINT FK_3185E9B1126F525E FOREIGN KEY (item_id) REFERENCES item (id) ON DELETE CASCADE;');
-        $connection->exec('ALTER TABLE omekaimport_record ADD CONSTRAINT FK_3185E9B1960278D7 FOREIGN KEY (item_set_id) REFERENCES item_set (id);');
         $connection->exec("ALTER TABLE omekaimport_record ADD CONSTRAINT FK_3185E9B1960278D7 FOREIGN KEY (item_set_id) REFERENCES item_set (id) ON DELETE CASCADE;");
 
         $connection->exec('CREATE TABLE omekaimport_import (id INT AUTO_INCREMENT NOT NULL, job_id INT NOT NULL, undo_job_id INT DEFAULT NULL, added_count INT NOT NULL, updated_count INT NOT NULL, comment VARCHAR(255) DEFAULT NULL, UNIQUE INDEX UNIQ_37FFB83DBE04EA9 (job_id), UNIQUE INDEX UNIQ_37FFB83D4C276F75 (undo_job_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;');
