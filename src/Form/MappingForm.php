@@ -39,10 +39,16 @@ class MappingForm extends Form
         $this->add([
             'name' => 'itemSet',
             'type' => ResourceSelect::class,
+            'attributes' => [
+                'id'       => 'select-item-set',
+                'required' => false,
+                'multiple' => true,
+                'data-placeholder' => 'Select Item Sets', // @translate
+                'rows' => 6,
+            ],
             'options' => [
                 'label' => 'Import into', // @translate
                 'info' => 'Optional. Import items into this item set. It is recommended to create an Item Set for each Omeka 2 site you import.', // @translate
-                'empty_option' => 'Select Item Set...', // @translate
                 'resource_value_options' => [
                     'resource' => 'item_sets',
                     'query' => ['owner_id' => $this->getOwner()],
