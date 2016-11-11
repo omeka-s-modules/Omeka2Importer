@@ -282,15 +282,23 @@ class Import extends AbstractJob
 
     protected function buildResourceJson($importData, $options = array())
     {
+        $this->logger->info($options);
         $resourceJson = array();
         $resourceJson['remote_id'] = $importData['id'];
+        $resourceJson['o:item_set'] = array();
         if (isset($options['collectionItemSet'])) {
-            $resourceJson['o:item_set'] = array();
             $resourceJson['o:item_set'][] = array('o:id' => $options['collectionItemSet']);
-        } elseif (isset($options['itemSet'])) {
-            $resourceJson['o:item_set'] = array();
-            $resourceJson['o:item_set'][] = array('o:id' => $options['itemSet']);
         }
+        if (isset($options['itemSet'])) {
+            if (is_array($options['itemSet'])) {
+                foreach($options['itemSet'] as $itemSetId) {
+                    $resourceJson['o:item_set'][] = array('o:id' => $itemSetId);
+                }
+            } else {
+                $resourceJson['o:item_set'][] = array('o:id' => $options['itemSet']);
+            }
+        }
+        
         $resourceClassId = null;
         if (isset($importData['item_type'])) {
             $itemTypeName = $importData['item_type']['name'];
