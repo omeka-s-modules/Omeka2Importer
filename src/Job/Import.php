@@ -175,7 +175,7 @@ class Import extends AbstractJob
         }
         do {
             $params['page'] = $page;
-            $this->logger->debug("Importing item page $page");
+            $this->logger->info("Importing item page $page");
             try {
                 $clientResponse = $this->client->items->get(null, $params);
             } catch (\Exception $e) {
@@ -282,7 +282,6 @@ class Import extends AbstractJob
 
     protected function buildResourceJson($importData, $options = array())
     {
-        $this->logger->info($options);
         $resourceJson = array();
         $resourceJson['remote_id'] = $importData['id'];
         $resourceJson['o:item_set'] = array();
