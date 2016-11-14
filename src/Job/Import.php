@@ -157,7 +157,8 @@ class Import extends AbstractJob
 
         //add dcterms:hasPart data to the 'parent' item set for
         //each of the imported (as item sets) collections
-        if (!empty($options['itemSet'])) {
+        if (!empty($options['itemSet']) && !empty($itemSetUpdateData['dcterms:hasPart'])) {
+            $this->logger->debug($itemSetUpdateData);
             $this->api->update('item_sets', $options['itemSet'], $itemSetUpdateData, array(), true);
         }
     }
