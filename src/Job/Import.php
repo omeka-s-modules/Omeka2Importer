@@ -157,8 +157,7 @@ class Import extends AbstractJob
 
         //add dcterms:hasPart data to the 'parent' item set for
         //each of the imported (as item sets) collections
-        if (!empty($options['itemSet']) && !empty($itemSetUpdateData['dcterms:hasPart'])) {
-            $this->logger->debug($itemSetUpdateData);
+        if (!empty($options['itemSet']) && !empty($itemSetUpdateData['dcterms:hasParto'])) {
             $this->api->update('item_sets', $options['itemSet'], $itemSetUpdateData, array(), true);
         }
     }
@@ -177,6 +176,7 @@ class Import extends AbstractJob
         do {
             $params['page'] = $page;
             $this->logger->info("Importing item page $page");
+            
             try {
                 $clientResponse = $this->client->items->get(null, $params);
             } catch (\Exception $e) {
@@ -219,7 +219,7 @@ class Import extends AbstractJob
 
             ++$page;
             $em->flush();
-
+$this->logger->debug("Memory usage: " . memory_get_usage());
                 //roll through everything created or updated and detach
                 //can't use $em->clear(), because that'd clear the job, too
         } while ($this->hasNextPage($clientResponse));
