@@ -18,8 +18,19 @@
     height: 100px;
 }
 
-tr.mappable {
+thead th {
+    padding: 6px .5em;
+}
+
+tbody th {
+    font-weight: normal;
+    font-size: 20px;
+    padding: 6px .4em;
+}
+
+tr.mappable td {
     background-color: rgba(0,0,0, .08);
+    vertical-align: top;
 }
 
 tr.active {
@@ -31,7 +42,7 @@ tr.mappable td:first-child {
 }
 
 tr.mappable td:nth-child(2) {
-    width: 30%;
+    width: 40%;
 }
 
 ul.mappings {
@@ -41,5 +52,13 @@ ul.mappings {
 }
 
 li.mapping {
-    margin: 3px;
+    margin: 3px 0 0 0;
+}
+
+li.mapping:first-child {
+    margin-top: 0;
+}
+
+li.mapping.delete {
+    text-decoration: line-through;
 }
