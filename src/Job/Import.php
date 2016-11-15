@@ -218,8 +218,10 @@ class Import extends AbstractJob
             }
 
             ++$page;
+            $em->clear('Omeka2Importer\Entity\OmekaimportRecord');
+            $em->clear('Omeka\Entity\Resource');
             $em->flush();
-$this->logger->debug("Memory usage: " . memory_get_usage());
+$this->logger->debug("Memory peak usage: " . memory_get_peak_usage());
                 //roll through everything created or updated and detach
                 //can't use $em->clear(), because that'd clear the job, too
         } while ($this->hasNextPage($clientResponse));
@@ -250,11 +252,6 @@ $this->logger->debug("Memory usage: " . memory_get_usage());
             $updateResponses[$importRecordId] = $updateResponse;
         }
 
-        foreach ($updateResponses as $response) {
-            $representation = $response->getContent();
-            $entityResponse = $this->api->read('items', $representation->id());
-            $em->detach($entityResponse->getContent());
-        }
         //only updating the job id for all
         $importRecordUpdateJson = array('o:job' => array('o:id' => $this->job->getId()),
                            );
