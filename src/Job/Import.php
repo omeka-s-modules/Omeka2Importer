@@ -221,7 +221,6 @@ class Import extends AbstractJob
             $em->clear('Omeka2Importer\Entity\OmekaimportRecord');
             $em->clear('Omeka\Entity\Resource');
             $em->flush();
-$this->logger->debug("Memory peak usage: " . memory_get_peak_usage());
                 //roll through everything created or updated and detach
                 //can't use $em->clear(), because that'd clear the job, too
         } while ($this->hasNextPage($clientResponse));
