@@ -78,6 +78,7 @@ class IndexController extends AbstractActionController
                 //the Omeka2Import record is created in the job, so it doesn't
                 //happen until the job is done
                 $this->messenger()->addSuccess('Importing in Job ID '.$job->getId());
+                return $this->redirect()->toRoute('admin/omeka2importer/past-imports', ['action' => 'browse'], true);
                 $view->setVariable('job', $job);
             } else {
                 $this->messenger()->addError('There was an error during validation');
