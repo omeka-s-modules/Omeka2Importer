@@ -47,7 +47,7 @@ $escape = $this->plugin('escapeHtml');
             <td>
             <?php if ($undoJob) {
                 if ($undoJob->ended()) {
-                    $status = $this->translate('Undone') . ' ' . $escape($this->i18n()->dateFormat($undoJob->ended()));
+                    $status = $this->translate('Undone') . ' ' . $escape($this->i18n()->dateFormat($undoJob->ended())) . ' in job ID ' . $undoJob->id();
                 } else {
                     $status = $this->translate('Undo in progress');
                 }
