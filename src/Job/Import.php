@@ -27,6 +27,8 @@ class Import extends AbstractJob
     protected $dctermsTitleId;
 
     protected $logger;
+    
+    protected $importRecordId;
 
     public function perform()
     {
@@ -68,7 +70,7 @@ class Import extends AbstractJob
                           );
 
         $response = $this->api->create('omekaimport_imports', $Omeka2ImportJson);
-        $importRecordId = $response->getContent()->id();
+        $this->importRecordId = $response->getContent()->id();
 
         $options = $this->job->getArgs();
         if ($this->getArg('importCollections', false)) {
@@ -77,15 +79,7 @@ class Import extends AbstractJob
             $this->importItems($options);
         }
 
-        $comment = $this->getArg('comment');
-        $Omeka2ImportJson = array(
-                            'o:job' => array('o:id' => $this->job->getId()),
-                            'comment' => $comment,
-                            'added_count' => $this->addedCount,
-                            'updated_count' => $this->updatedCount,
-                          );
 
-        $response = $this->api->update('omekaimport_imports', $importRecordId, $Omeka2ImportJson);
     }
 
     protected function importCollections($options = array())
@@ -218,11 +212,21 @@ class Import extends AbstractJob
             }
 
             ++$page;
+            //roll through everything created or updated and detach
             $em->clear('Omeka2Importer\Entity\OmekaimportRecord');
             $em->clear('Omeka\Entity\Resource');
             $em->flush();
-                //roll through everything created or updated and detach
-                //can't use $em->clear(), because that'd clear the job, too
+
+                
+            $comment = $this->getArg('comment');
+            $Omeka2ImportJson = array(
+                                'o:job' => array('o:id' => $this->job->getId()),
+                                'comment' => $comment,
+                                'added_count' => $this->addedCount,
+                                'updated_count' => $this->updatedCount,
+                              );
+        
+            $response = $this->api->update('omekaimport_imports', $this->importRecordId, $Omeka2ImportJson);
         } while ($this->hasNextPage($clientResponse));
     }
 
