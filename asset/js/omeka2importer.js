@@ -4,6 +4,32 @@
     var actionsHtml = '<ul class="actions"><li><a aria-label="Remove mapping" title="Remove mapping" class="o-icon-delete remove-mapping" href="#" style="display: inline;"></a></li><li><a aria-label="Undo remove mapping" title="Undo remove mapping" class="o-icon-undo restore-mapping" href="#" style="display: none;"></a></li></ul>';
 
     $(document).ready(function() {
+        $('.section').on('o:section-closed', function(e) {
+            activeElement = null;
+            $('tr.active').removeClass('active');
+            switch ($(this).attr('id')) {
+                case 'omeka2-import-types-map-fieldset':
+                    Omeka.closeSidebar($('#resource-class-selector'));
+                break;
+                case 'omeka2-import-elements-map-fieldset':
+                    Omeka.closeSidebar($('#property-selector'));
+                break;
+            }
+        });
+
+        $('.section').on('o:section-opened', function(e) {
+            activeElement = null;
+            $('tr.active').removeClass('active');
+            switch ($(this).attr('id')) {
+                case 'omeka2-import-types-map-fieldset':
+                    Omeka.openSidebar($('#resource-class-selector'));
+                break;
+                case 'omeka2-import-elements-map-fieldset':
+                    Omeka.openSidebar($('#property-selector'));
+                break;
+            }
+        });
+
         $('.section').on('click', 'tr.mappable', function(e) {
             if (activeElement !== null) {
                 activeElement.removeClass('active');
