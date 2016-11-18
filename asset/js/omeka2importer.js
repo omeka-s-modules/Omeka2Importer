@@ -36,15 +36,6 @@
             }
             activeElement = $(e.target).closest('tr.mappable');
             activeElement.addClass('active');
-            if (activeElement.hasClass('element')) {
-                Omeka.openSidebar($('#property-selector'));
-                Omeka.closeSidebar($('#resource-class-selector'));
-            }
-
-            if (activeElement.hasClass('item-type')) {
-                Omeka.closeSidebar($('#property-selector'));
-                Omeka.openSidebar($('#resource-class-selector'));
-            }
         });
 
         $('#property-selector li.selector-child').on('click', function(e){
