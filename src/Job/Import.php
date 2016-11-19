@@ -75,11 +75,13 @@ class Import extends AbstractJob
         $options = $this->job->getArgs();
         if ($this->getArg('importCollections', false)) {
             $this->importCollections($options);
-        } else {
-            $this->importItems($options);
         }
-
-
+        // @TODO This is sadly inefficient, as importCollections
+        // already will have imported items in Omeka 2 collections,
+        // making this call duplicate/update items already there.
+        // Its only virtue is solving https://github.com/omeka-s-modules/Omeka2Importer/issues/92
+        // but I don't see a way to query for item that have _no_ collection via the Omeka 2 API
+        $this->importItems($options);
     }
 
     protected function importCollections($options = array())
@@ -190,7 +192,6 @@ class Import extends AbstractJob
                 $itemJson = $this->buildResourceJson($itemData, $options);
                     //confusingly named, importRecord is the record of importing the item
                     $importRecord = $this->importRecord($itemData['id']);
-
                     //separate the items to create from those to update
                     if ($importRecord) {
                         //add the Omeka S item id to the itemJson
