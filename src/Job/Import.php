@@ -111,7 +111,9 @@ class Import extends AbstractJob
                 $options['collectionId'] = $omekaCollectionId;
 
                 $collectionImportRecord = $this->importRecord($omekaCollectionId, 'collection');
-                if ($collectionImportRecord) {
+                
+                $update = (bool) $this->getArg('update');
+                if ($update && $collectionImportRecord) {
                     $collectionImportRecordJson = array('o:job' => array('o:id' => $this->job->getId()),
                                                        );
 
@@ -208,7 +210,9 @@ class Import extends AbstractJob
             if (count($toCreate) > 0) {
                 $this->createItems($toCreate);
             }
-            if (count($toUpdate) > 0) {
+            
+            $update = (bool) $this->getArg('update');
+            if ($update && count($toUpdate) > 0) {
                 $this->updateItems($toUpdate);
             }
 

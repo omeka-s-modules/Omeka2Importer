@@ -58,6 +58,16 @@ class MappingForm extends Form
                 ],
             ],
         ]);
+        
+        $this->add([
+            'name'  => 'update',
+            'type'  => 'checkbox',
+            'options'   => [
+                'label' => 'Update a previous import', // @translate
+                'info'  => 'If checked, items will be reimported and all data replaced.', // @translate
+            ],
+            
+        ]);
 
         $this->add(array(
             'name' => 'importCollections',
