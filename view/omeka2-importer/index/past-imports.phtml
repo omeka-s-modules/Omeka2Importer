@@ -32,7 +32,9 @@ $escape = $this->plugin('escapeHtml');
         <tr class="<?php echo $undoJob ? 'undone' : ''; ?>" >
             
             <td>
+                <?php if (! $undoJob || ! $undoJob->ended()): ?>
                 <input type='checkbox' name='jobs[]' value='<?php echo $job->id(); ?>' />
+                <?php endif; ?>
             </td>
             
             <td><?php echo $job->link($escape($job->id())); ?></td>
