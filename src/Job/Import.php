@@ -153,12 +153,6 @@ class Import extends AbstractJob
             }
             ++$page;
         } while ($this->hasNextPage($clientResponse));
-
-        //add dcterms:hasPart data to the 'parent' item set for
-        //each of the imported (as item sets) collections
-        if (!empty($options['itemSet']) && !empty($itemSetUpdateData['dcterms:hasPart'])) {
-            $this->api->update('item_sets', $options['itemSet'], $itemSetUpdateData, array(), true);
-        }
     }
 
     protected function importItems($options = array())
