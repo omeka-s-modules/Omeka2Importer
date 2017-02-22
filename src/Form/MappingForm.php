@@ -64,7 +64,7 @@ class MappingForm extends Form
             'type'  => 'checkbox',
             'options'   => [
                 'label' => 'Update a previous import', // @translate
-                'info'  => 'If checked, items will be reimported and all data replaced.', // @translate
+                'info'  => 'If checked, items will be reimported and all data replaced, including Item Set membership as set on this page.', // @translate
             ],
             
         ]);

@@ -284,24 +284,12 @@ class Import extends AbstractJob
         $resourceJson['remote_id'] = $importData['id'];
         $resourceJson['o:item_set'] = array();
         
-        
-        
-        
-        
-        
-        
         if (isset($importData['collection'])) {
-            $this->logger->debug('has collection');
             $omekaCollectionId = $importData['collection']['id'];
-            $this->logger->debug($omekaCollectionId);
             if (isset($this->collectionItemSetMap[$omekaCollectionId])) {
-                $this->logger->debug('has collection map');
                 $resourceJson['o:item_set'][] = array('o:id' => $this->collectionItemSetMap[$omekaCollectionId]);
             }
         }
-        
-        
-
         
         if (isset($options['itemSet'])) {
             if (is_array($options['itemSet'])) {
