@@ -90,13 +90,7 @@ class Import extends AbstractJob
     protected function importCollections($options = array())
     {
         $page = 1;
-        //use this to keep track of all the added item sets from collections,
-        //so that when it's all done I can add the dcterms:hasPart property values
-        //to the 'parent' item set chosen for the import
-        //$collectionItemSetIds = array();
-        $itemSetUpdateData = array('dcterms:hasPart' => array());
-        $dctermsHasPart = $this->api->search('properties', array('term' => 'dcterms:hasPart'))->getContent()[0];
-        $dctermsHasPartId = $dctermsHasPart->id();
+        $itemSetUpdateData = array();
         do {
             try {
                 $clientResponse = $this->client->collections->get(null, array('page' => $page));
@@ -141,13 +135,6 @@ class Import extends AbstractJob
                                                );
                     $response = $this->api->create('omekaimport_records', $collectionImportRecordJson);
 
-                    //optional for creating hasPart relations to parent item set
-                    if (isset($options['itemSet'])) {
-                        $itemSetUpdateData['dcterms:hasPart'][] = array(
-                                'property_id' => $dctermsHasPartId,
-                                'value_resource_id' => $itemSetId,
-                                );
-                    }
                     $this->collectionItemSetMap[$omekaCollectionId] = $itemSetId;
                 }
             }
