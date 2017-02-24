@@ -79,6 +79,8 @@ class Import extends AbstractJob
         if ($this->getArg('importCollections', false)) {
             $this->importCollections($options);
         }
+        $this->importItems($options);
+        
     }
 
     protected function importCollections($options = array())
