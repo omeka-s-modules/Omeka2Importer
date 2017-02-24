@@ -52,6 +52,7 @@ class IndexController extends AbstractActionController
                 $undoJobIds[] = $undoJob->getId();
             }
             $this->messenger()->addSuccess('Undo in progress in the following jobs: ' . implode(', ', $undoJobIds));
+            return $this->redirect()->refresh();
         }
         $view = new ViewModel();
         $page = $this->params()->fromQuery('page', 1);
