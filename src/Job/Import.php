@@ -67,7 +67,6 @@ class Import extends AbstractJob
 
         $Omeka2ImportJson = array(
                             'o:job' => array('o:id' => $this->job->getId()),
-                            'comment' => 'Job started',
                             'added_count' => 0,
                             'updated_count' => 0,
                           );
