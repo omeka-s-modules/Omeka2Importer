@@ -85,10 +85,18 @@ class Import extends AbstractJob
     protected function importCollections($options = array())
     {
         $page = 1;
+        
+        if ($perPage = $this->getArg('perPage', false)) {
+            $params = array('per_page' => $perPage);
+        } else {
+            $params = array();
+        }
+
         $itemSetUpdateData = array();
         do {
+            $params['page'] = $page;
             try {
-                $clientResponse = $this->client->collections->get(null, array('page' => $page));
+                $clientResponse = $this->client->collections->get(null, $params);
             } catch (\Exception $e) {
                 $this->logger->err((string) $e);
                 continue;
@@ -142,7 +150,12 @@ class Import extends AbstractJob
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
 
         $page = 1;
-        $params = array();
+        if ($perPage = $this->getArg('perPage', false)) {
+            $params = array('per_page' => $perPage);
+        } else {
+            $params = array();
+        }
+
         //if importing by collections from Omeka 2, the collection to use as
         //the param for querying the Omeka 2 API
         do {

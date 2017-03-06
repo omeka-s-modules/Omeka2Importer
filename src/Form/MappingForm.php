@@ -60,6 +60,15 @@ class MappingForm extends Form
         ]);
         
         $this->add([
+            'name' => 'perPage',
+            'type' => 'text',
+            'options' => [
+                'label' => 'Per page', // @translate
+                'info' => 'Optional. Only retrieve this many records for each request.', // @translate
+            ],
+        ]);
+        
+        $this->add([
             'name'  => 'update',
             'type'  => 'checkbox',
             'options'   => [
