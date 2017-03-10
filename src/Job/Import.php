@@ -111,11 +111,12 @@ class Import extends AbstractJob
                 $options['collectionId'] = $omekaCollectionId;
 
                 $collectionImportRecord = $this->importRecord($omekaCollectionId, 'collection');
-                
+
                 $update = (bool) $this->getArg('update');
                 if ($update && $collectionImportRecord) {
                     $collectionImportRecordJson = array('o:job' => array('o:id' => $this->job->getId()),
                                                        );
+                    $itemSetJson = $this->buildResourceJson($collectionData, $options);
 
                     $updateImportRecordResponse = $this->api->update(
                                                     'omekaimport_records',
@@ -125,6 +126,7 @@ class Import extends AbstractJob
                     $itemSet = $collectionImportRecord->itemSet();
                     if ($itemSet) {
                         $this->collectionItemSetMap[$omekaCollectionId] = $itemSet->id();
+                        $this->api->update('item_sets', $itemSet->id(), $itemSetJson);
                     }
                 } else {
                     $itemSetJson = $this->buildResourceJson($collectionData, $options);
