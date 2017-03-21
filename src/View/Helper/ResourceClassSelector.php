@@ -14,9 +14,6 @@ class ResourceClassSelector extends AbstractHelper
     public function __invoke($text = null, $active = true)
     {
         $response = $this->getView()->api()->search('vocabularies');
-        if ($response->isError()) {
-            return;
-        }
 
         $valueOptions = array();
         foreach ($response->getContent() as $vocabulary) {

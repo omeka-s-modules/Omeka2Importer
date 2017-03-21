@@ -223,7 +223,7 @@ class Import extends AbstractJob
 
     protected function createItems($toCreate)
     {
-        $createResponse = $this->api->batchCreate('items', $toCreate, array(), true);
+        $createResponse = $this->api->batchCreate('items', $toCreate, array(), ['continueOnError' => true]);
         $createContent = $createResponse->getContent();
         $this->addedCount = $this->addedCount + count($createContent);
         $createImportRecordsJson = array();
@@ -232,7 +232,7 @@ class Import extends AbstractJob
             $createImportRecordsJson[] = $this->buildImportRecordJson($remoteId, $resourceReference);
         }
 
-        $createImportRecordResponse = $this->api->batchCreate('omekaimport_records', $createImportRecordsJson, array(), true);
+        $createImportRecordResponse = $this->api->batchCreate('omekaimport_records', $createImportRecordsJson, array(), ['continueOnError' => true]);
     }
 
     protected function updateItems($toUpdate)
