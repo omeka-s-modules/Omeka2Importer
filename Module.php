@@ -5,6 +5,7 @@ namespace Omeka2Importer;
 use Omeka\Module\AbstractModule;
 use Omeka\Entity\Job;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Composer\Semver\Comparator;
 
 class Module extends AbstractModule
 {
@@ -43,7 +44,7 @@ class Module extends AbstractModule
         ServiceLocatorInterface $serviceLocator
     )
     {
-        if (version_compare($oldVersion, '1.0.0-beta', '<')) {
+        if (Comparator::lessThan($oldVersion, '1.0.0-beta')) {
             $connection = $serviceLocator->get('Omeka\Connection');
             $connection->exec("ALTER TABLE omekaimport_record DROP INDEX FK_3185E9B1960278D7, ADD UNIQUE INDEX UNIQ_3185E9B1960278D7 (item_set_id);");
             $connection->exec("ALTER TABLE omekaimport_record DROP FOREIGN KEY FK_3185E9B1960278D7;");
