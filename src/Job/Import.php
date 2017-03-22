@@ -238,16 +238,25 @@ class Import extends AbstractJob
     protected function updateItems($toUpdate)
     {
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
-        $unitOfWork = $em->getUnitOfWork();
         //  batchUpdate would be nice, but complexities abound. See https://github.com/omeka/omeka-s/issues/326
         //only updating the job id for all
         $importRecordUpdateJson = array('o:job' => array('o:id' => $this->job->getId()));
         foreach ($toUpdate as $importRecordId => $itemJson) {
             $this->updatedCount = $this->updatedCount + 1;
-            $this->api->update('items', $itemJson['id'], $itemJson);
-            $this->api->update('omekaimport_records', $importRecordId, $importRecordUpdateJson);
-            $em->detach($unitOfWork->getIdentityMap()['Omeka\Entity\Resource'][$itemJson['id']]);
-            $em->detach($unitOfWork->getIdentityMap()['Omeka2Importer\Entity\OmekaimportRecord'][$importRecordId]);
+            $itemUpdateResponse = $this->api->update('items',
+                                                     $itemJson['id'],
+                                                     $itemJson,
+                                                     [],
+                                                     ['responseContent' => 'resource']);
+            $importRecordResponse = $this->api->update('omekaimport_records',
+                                                            $importRecordId,
+                                                            $importRecordUpdateJson,
+                                                            [],
+                                                            ['responseContent' => 'resource']);
+            $itemUpdateContent = $itemUpdateResponse->getContent();
+            $importRecordContent = $importRecordResponse->getContent();
+            $em->detach($itemUpdateContent);
+            $em->detach($importRecordContent);
         }
     }
 
