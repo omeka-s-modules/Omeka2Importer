@@ -15,12 +15,7 @@ class Undo extends AbstractJob
         if ($omeka2Items) {
             foreach ($omeka2Items as $omeka2Item) {
                 $omeka2Response = $api->delete('omekaimport_records', $omeka2Item->id());
-                if ($omeka2Response->isError()) {
-                }
-
                 $itemResponse = $api->delete('items', $omeka2Item->item()->id());
-                if ($itemResponse->isError()) {
-                }
             }
         }
     }
