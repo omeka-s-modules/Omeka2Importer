@@ -280,6 +280,8 @@ class Import extends AbstractJob
 
     protected function buildResourceJson($importData, $options = array())
     {
+        $config = $this->getServiceLocator()->get('Config');
+        $importerClasses = $config['omeka2_importer_classes'];
         $resourceJson = array();
         $resourceJson['remote_id'] = $importData['id'];
         $resourceJson['o:item_set'] = array();
@@ -315,6 +317,11 @@ class Import extends AbstractJob
         $mediaJson = $this->buildHtmlMediaJson($importData, $mediaJson);
         $resourceJson = array_merge($resourceJson, $mediaJson);
 
+        foreach ($importerClasses as $importerClass) {
+            $importer = new $importerClass($this->client, $this->getServiceLocator());
+            // job 324 commented out. later ones in effect 
+            $resourceJson = $importer->import($importData, $resourceJson);
+        }
         return $resourceJson;
     }
 
@@ -346,12 +353,19 @@ class Import extends AbstractJob
 
     protected function buildMediaJson($importData)
     {
+        $this->logger->debug('-----buildMediaJson------');
         //another query to get the filesData from the importData
         $itemId = $importData['id'];
+        $this->logger->debug('item id ' . $itemId);
+        $this->logger->debug($this->client->getResource());
         $response = $this->client->files->get(array('item' => $itemId));
+        $this->logger->debug($this->client->getResource());
         $filesData = json_decode($response->getBody(), true);
+        $this->logger->debug($filesData);
         $mediaJson = array('o:media' => array());
         foreach ($filesData as $fileData) {
+            
+            $this->logger->debug($fileData['file_urls']);
             $fileJson = array(
                 'o:ingester' => 'url',
                 'o:source' => $fileData['file_urls']['original'],

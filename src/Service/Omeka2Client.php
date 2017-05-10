@@ -163,6 +163,7 @@ class Omeka2Client
     {
         if (is_array($id)) {
             $params = $id;
+            $this->id = null;
         } else {
             $this->id = $id;
         }
@@ -249,5 +250,12 @@ class Omeka2Client
         $client->setParameterGet($params);
 
         return $client;
+    }
+    
+    //debugging
+    
+    public function getResource()
+    {
+        return $this->resource;
     }
 }
