@@ -353,19 +353,13 @@ class Import extends AbstractJob
 
     protected function buildMediaJson($importData)
     {
-        $this->logger->debug('-----buildMediaJson------');
         //another query to get the filesData from the importData
         $itemId = $importData['id'];
-        $this->logger->debug('item id ' . $itemId);
-        $this->logger->debug($this->client->getResource());
         $response = $this->client->files->get(array('item' => $itemId));
-        $this->logger->debug($this->client->getResource());
         $filesData = json_decode($response->getBody(), true);
-        $this->logger->debug($filesData);
         $mediaJson = array('o:media' => array());
         foreach ($filesData as $fileData) {
             
-            $this->logger->debug($fileData['file_urls']);
             $fileJson = array(
                 'o:ingester' => 'url',
                 'o:source' => $fileData['file_urls']['original'],

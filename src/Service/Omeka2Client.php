@@ -251,11 +251,4 @@ class Omeka2Client
 
         return $client;
     }
-    
-    //debugging
-    
-    public function getResource()
-    {
-        return $this->resource;
-    }
 }
