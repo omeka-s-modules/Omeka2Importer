@@ -65,10 +65,12 @@ class Import extends AbstractJob
             $this->dctermsTitleId = $dctermsTitle->id();
         }
 
+        $comment = $this->getArg('comment');
         $Omeka2ImportJson = array(
                             'o:job' => array('o:id' => $this->job->getId()),
                             'added_count' => 0,
                             'updated_count' => 0,
+                            'comment' => $comment,
                           );
 
         $response = $this->api->create('omekaimport_imports', $Omeka2ImportJson);
