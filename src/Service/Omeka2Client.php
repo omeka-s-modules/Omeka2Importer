@@ -163,6 +163,7 @@ class Omeka2Client
     {
         if (is_array($id)) {
             $params = $id;
+            $this->id = null;
         } else {
             $this->id = $id;
         }
