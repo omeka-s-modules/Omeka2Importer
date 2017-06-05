@@ -65,10 +65,12 @@ class Import extends AbstractJob
             $this->dctermsTitleId = $dctermsTitle->id();
         }
 
+        $comment = $this->getArg('comment');
         $Omeka2ImportJson = array(
                             'o:job' => array('o:id' => $this->job->getId()),
                             'added_count' => 0,
                             'updated_count' => 0,
+                            'comment' => $comment,
                           );
 
         $response = $this->api->create('omekaimport_imports', $Omeka2ImportJson);
@@ -280,6 +282,8 @@ class Import extends AbstractJob
 
     protected function buildResourceJson($importData, $options = array())
     {
+        $config = $this->getServiceLocator()->get('Config');
+        $importerClasses = $config['omeka2_importer_classes'];
         $resourceJson = array();
         $resourceJson['remote_id'] = $importData['id'];
         $resourceJson['o:item_set'] = array();
@@ -315,6 +319,11 @@ class Import extends AbstractJob
         $mediaJson = $this->buildHtmlMediaJson($importData, $mediaJson);
         $resourceJson = array_merge($resourceJson, $mediaJson);
 
+        foreach ($importerClasses as $importerClass) {
+            $importer = new $importerClass($this->client, $this->getServiceLocator());
+            // job 324 commented out. later ones in effect 
+            $resourceJson = $importer->import($importData, $resourceJson);
+        }
         return $resourceJson;
     }
 
@@ -352,6 +361,7 @@ class Import extends AbstractJob
         $filesData = json_decode($response->getBody(), true);
         $mediaJson = array('o:media' => array());
         foreach ($filesData as $fileData) {
+            
             $fileJson = array(
                 'o:ingester' => 'url',
                 'o:source' => $fileData['file_urls']['original'],
