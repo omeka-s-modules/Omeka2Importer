@@ -96,6 +96,7 @@ $backUrl = $this->url('admin/omeka2importer');
                         <?php if(array_key_exists($itemType['name'], $typeDefaultMap)): ?>
                             <li class='mapping default' data-class-id='<?php echo $typeDefaultMap[$itemType['name']]['classId']; ?>'>
                                 <?php echo $typeDefaultMap[$itemType['name']]['classLabel']; ?>
+                                <ul class="actions"><li><a aria-label="Remove mapping" title="Remove mapping" class="o-icon-delete remove-mapping" href="#" style="display: inline;"></a></li><li><a aria-label="Undo remove mapping" title="Undo remove mapping" class="o-icon-undo restore-mapping" href="#" style="display: none;"></a></li></ul>
                                 <input type='hidden' name='type-class[<?php echo $itemType['id']?>]' value='<?php echo $typeDefaultMap[$itemType['name']]['classId']; ?>' />
                             </li>
                         <?php endif; ?>
