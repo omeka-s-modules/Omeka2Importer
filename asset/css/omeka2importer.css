@@ -62,3 +62,7 @@ li.mapping:first-child {
 li.mapping.delete {
     text-decoration: line-through;
 }
+
+ul.actions {
+    float: right;
+}
