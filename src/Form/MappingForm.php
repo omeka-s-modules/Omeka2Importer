@@ -16,8 +16,8 @@ class MappingForm extends Form
             'name' => 'key',
             'type' => 'text',
             'options' => array(
-                'label' => 'Omeka 2 Api Key', // @translate
-                'info' => 'Your Api key for this site', // @translate
+                'label' => 'Omeka 2 API key', // @translate
+                'info' => 'Your API key for this site', // @translate
             ),
             'attributes' => array(
                 'id' => 'key',
@@ -29,7 +29,7 @@ class MappingForm extends Form
             'type' => 'textarea',
             'options' => array(
                 'label' => 'Comment', // @translate
-                'info' => 'A note about the purpose or source of this import.', // @translate
+                'info' => 'A note about the purpose or source of this import', // @translate
             ),
             'attributes' => array(
                 'id' => 'comment',
@@ -43,7 +43,7 @@ class MappingForm extends Form
                 'id'       => 'select-item-set',
                 'required' => false,
                 'multiple' => true,
-                'data-placeholder' => 'Select Item Sets', // @translate
+                'data-placeholder' => 'Select item sets', // @translate
                 'rows' => 6,
             ],
             'options' => [
@@ -83,7 +83,7 @@ class MappingForm extends Form
             'type' => 'checkbox',
             'options' => array(
                 'label' => 'Import Collections', // @translate
-                'info' => 'Import Omeka 2 collections as Item Sets. Items will be added to the new Item Sets.', // @translate
+                'info' => 'Import Omeka 2 collections as item sets. Items will be added to the new item sets.', // @translate
             ),
         ));
 

@@ -14,7 +14,7 @@ $this->headLink()->appendStylesheet($this->assetUrl('css/omeka2importer.css', 'O
 </fieldset>
 <fieldset id="omeka2-import-basics-fieldset">
     <?php echo $this->formCollection($form, false); ?>
-    <p>Enter the Omeka 2 API endpoint.</p>
+    <p><?php echo $this->translate("Enter the Omeka 2 API endpoint."); ?></p>
 </fieldset>
 
 <div id='mapping-data'>
