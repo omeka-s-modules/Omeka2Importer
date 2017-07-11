@@ -37,7 +37,7 @@ $escape = $this->plugin('escapeHtml');
                 <?php endif; ?>
             </td>
             
-            <td><?php echo $job->link($escape($job->id())); ?></td>
+            <td><?php echo $job->link($job->id()); ?></td>
             <td>
                 <?php echo $import->comment(); ?>
             </td>
