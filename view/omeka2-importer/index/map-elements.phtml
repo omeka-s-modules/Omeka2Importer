@@ -14,7 +14,7 @@ $backUrl = $this->url('admin/omeka2importer');
 <?php echo $this->form()->openTag($form); ?>
 <fieldset id='page-actions'>
     <a class='button' href='<?php echo $backUrl ?>'><?php echo $this->translate('Start Over'); ?></a>
-    <input type='submit' value='Import' />
+    <input type='submit' value='<?php echo $this->translate("Import");?>' />
 </fieldset>
 <nav class="section-nav">
     <ul>
@@ -52,7 +52,7 @@ $backUrl = $this->url('admin/omeka2importer');
                     <?php if(array_key_exists($name, $elementDefaultMap)
                              && array_key_exists($element['name'], $elementDefaultMap[$name])):?>
                         <li class='mapping default' data-property-id='<?php echo $elementDefaultMap[$name][$element['name']]['propertyId']; ?>'>
-                            <?php echo $elementDefaultMap[$name][$element['name']]['propertyLabel']; ?>
+                            <?php echo $this->translate($elementDefaultMap[$name][$element['name']]['propertyLabel']); ?>
                             <ul class="actions">
                                 <li>
                                     <a aria-label="<?php echo $escape($this->translate('Remove mapping')); ?>" title="<?php echo $escape($this->translate('Remove mapping')); ?>" class="o-icon-delete remove-mapping" href="#" style="display: inline;"></a>
@@ -76,7 +76,7 @@ $backUrl = $this->url('admin/omeka2importer');
     </table>
 
     <?php
-    echo $this->propertySelector('Select property to map. Click an Omeka 2 element as the target, then select the properties for it.', true);
+    echo $this->propertySelector($this->translate('Select property to map. Click an Omeka 2 element as the target, then select the properties for it.'), true);
     ?>
 </fieldset>
 
@@ -102,7 +102,7 @@ $backUrl = $this->url('admin/omeka2importer');
                     <ul class="mappings item-types">
                         <?php if(array_key_exists($itemType['name'], $typeDefaultMap)): ?>
                             <li class='mapping default' data-class-id='<?php echo $typeDefaultMap[$itemType['name']]['classId']; ?>'>
-                                <?php echo $typeDefaultMap[$itemType['name']]['classLabel']; ?>
+                                <?php echo $this->translate($typeDefaultMap[$itemType['name']]['classLabel']); ?>
                                 <ul class="actions"><li><a aria-label="<?php echo $escape($this->translate('Remove mapping')); ?>" title="<?php echo $escape($this->translate('Remove mapping')); ?>" class="o-icon-delete remove-mapping" href="#" style="display: inline;"></a></li><li><a aria-label="<?php echo $escape($this->translate('Undo remove mapping')); ?>" title="<?php echo $escape($this->translate('Undo remove mapping'));?>" class="o-icon-undo restore-mapping" href="#" style="display: none;"></a></li></ul>
                                 <input type='hidden' name='type-class[<?php echo $itemType['id']?>]' value='<?php echo $typeDefaultMap[$itemType['name']]['classId']; ?>' />
                             </li>

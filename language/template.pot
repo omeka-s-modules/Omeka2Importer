@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-21 15:25-0400\n"
+"POT-Creation-Date: 2017-08-21 15:40-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,6 +103,12 @@ msgstr ""
 #: view/omeka2-importer/index/map-elements.phtml:61
 #: view/omeka2-importer/index/map-elements.phtml:106
 msgid "Undo remove mapping"
+msgstr ""
+
+#: view/omeka2-importer/index/map-elements.phtml:79
+msgid ""
+"Select property to map. Click an Omeka 2 element as the target, then select "
+"the properties for it."
 msgstr ""
 
 #: view/omeka2-importer/index/map-elements.phtml:87
