@@ -98,23 +98,23 @@ return [
     'navigation' => [
         'AdminModule' => [
             [
-                'label' => 'Omeka 2 Importer',
+                'label' => 'Omeka 2 Importer', // @translate
                 'route' => 'admin/omeka2importer',
                 'resource' => 'Omeka2Importer\Controller\Index',
                 'pages' => [
                     [
-                        'label' => 'Import',
+                        'label' => 'Import', // @translate
                         'route' => 'admin/omeka2importer',
                         'resource' => 'Omeka2Importer\Controller\Index',
                     ],
                     [
-                        'label' => 'Import',
+                        'label' => 'Import', // @translate
                         'route' => 'admin/omeka2importer/map-elements',
                         'resource' => 'Omeka2Importer\Controller\Index',
                         'visible' => false,
                     ],
                     [
-                        'label' => 'Past Imports',
+                        'label' => 'Past Imports', // @translate
                         'route' => 'admin/omeka2importer/past-imports',
                         'controller' => 'Index',
                         'action' => 'past-imports',

@@ -10,7 +10,10 @@ $this->headLink()->appendStylesheet($this->assetUrl('css/omeka2importer.css', 'O
 
 <?php echo $this->form()->openTag($form); ?>
 <fieldset id='page-actions'>
-    <input type='submit' value='Next' />
+    <input type='submit'
+        value="<?php echo $this->translate('Next');?>"
+        aria-label="<?php echo $this->translate('Next');?>"
+    />
 </fieldset>
 <fieldset id="omeka2-import-basics-fieldset">
     <?php echo $this->formCollection($form, false); ?>

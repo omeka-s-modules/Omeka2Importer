@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-20 14:08-0400\n"
+"POT-Creation-Date: 2017-08-21 15:25-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,7 +67,7 @@ msgstr ""
 msgid "Import · Omeka 2 Importer"
 msgstr ""
 
-#: view/omeka2-importer/index/index.phtml:17
+#: view/omeka2-importer/index/index.phtml:20
 msgid "Enter the Omeka 2 API endpoint."
 msgstr ""
 
@@ -151,6 +151,54 @@ msgstr ""
 msgid "Undo in progress"
 msgstr ""
 
+#: src/Controller/item_type_maps.php:5
+msgid "Interviewer"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:7
+msgid "Interviewee"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:12
+msgid "Original Format"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:14
+msgid "Physical Dimensions"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:16
+msgid "Duration"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:19
+msgid "Producer"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:21
+msgid "Director"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:27
+msgid "From"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:29
+msgid "To"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:31
+msgid "CC"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:55
+msgid "Oral History"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:67
+msgid "Lesson Plan"
+msgstr ""
+
 #: src/Form/ImportForm.php:15
 msgid "Omeka 2 Api Endpoint"
 msgstr ""
@@ -211,4 +259,12 @@ msgstr ""
 msgid ""
 "Import Omeka 2 collections as item sets. Items will be added to the new item "
 "sets."
+msgstr ""
+
+#: config/module.config.php:101
+msgid "Omeka 2 Importer"
+msgstr ""
+
+#: config/module.config.php:117
+msgid "Past Imports"
 msgstr ""

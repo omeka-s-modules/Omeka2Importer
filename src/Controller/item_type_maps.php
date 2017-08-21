@@ -2,24 +2,34 @@
 
 $itemTypeElementMap = array(
     //'Text' Make html media, if type is Text
-    'Interviewer' => 'bibo:interviewer',
-    'Interviewee' => 'bibo:interviewee',
+    'Interviewer'  // @translate
+        => 'bibo:interviewer',
+    'Interviewee'  // @translate
+        => 'bibo:interviewee',
     //'Location'
     //'Transcription'
     //'Local URL'
-    'Original Format' => 'dcterms:format',
-    'Physical Dimensions' => 'dcterms:extent',
-    'Duration' => 'dcterms:extent',
+    'Original Format'  // @translate
+        => 'dcterms:format',
+    'Physical Dimensions'  // @translate
+        => 'dcterms:extent',
+    'Duration'  // @translate
+        => 'dcterms:extent',
     //'Compression'
-    'Producer' => 'bibo:producer',
-    'Director' => 'bibo:director',
+    'Producer'  // @translate
+        => 'bibo:producer',
+    'Director'  // @translate
+        => 'bibo:director',
     //'Bit Rate/Frequency'
     //'Time Summary'
     //'Email Body' media?
     //'Subject Line'
-    'From' => 'bibo:producer',
-    'To' => 'bibo:recipient',
-    'CC' => 'bibo:recipient',
+    'From'  // @translate
+        => 'bibo:producer',
+    'To'  // @translate
+        => 'bibo:recipient',
+    'CC'  // @translate
+        => 'bibo:recipient',
     //'BCC'
     //'Number of Attachments'
     //'Standards'
@@ -38,20 +48,35 @@ $itemTypeElementMap = array(
 );
 
 $itemTypeMap = array(
-    'Text' => 'dctype:Text',
-    'Moving Image' => 'dctype:MovingImage',
-    'Oral History' => 'bibo:AudioDocument',
-    'Sound' => 'dctype:Sound',
-    'Still Image' => 'dctype:StillImage',
-    'Website' => 'bibo:Website',
-    'Event' => 'dctype:Event',
-    'Email' => 'bibo:Email',
-    'Lesson Plan' => 'bibo:Workshop',
+    'Text'  // @translate
+        => 'dctype:Text',
+    'Moving Image'  // @translate
+        => 'dctype:MovingImage',
+    'Oral History'  // @translate
+        => 'bibo:AudioDocument',
+    'Sound'  // @translate
+        => 'dctype:Sound',
+    'Still Image'  // @translate
+        => 'dctype:StillImage',
+    'Website'  // @translate
+        => 'bibo:Website',
+    'Event'  // @translate
+        => 'dctype:Event',
+    'Email'  // @translate
+        => 'bibo:Email',
+    'Lesson Plan'  // @translate
+        => 'bibo:Workshop',
     //'Hyperlink'
-    'Person' => 'foaf:Person',
-    'Interactive Resource' => 'dctype:InteractiveResource',
-    'Dataset' => 'dctype:Dataset',
-    'Physical Object' => 'dctype:PhysicalObject',
-    'Service' => 'dctype:Service',
-    'Software' => 'dctype:Software',
+    'Person'  // @translate
+        => 'foaf:Person',
+    'Interactive Resource' 
+        => 'dctype:InteractiveResource',
+    'Dataset'  // @translate
+        => 'dctype:Dataset',
+    'Physical Object'  // @translate
+        => 'dctype:PhysicalObject',
+    'Service'  // @translate
+        => 'dctype:Service',
+    'Software'  // @translate
+        => 'dctype:Software',
 );
