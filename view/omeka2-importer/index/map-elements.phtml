@@ -8,8 +8,7 @@ $escape = $this->plugin('escapeHtml');
 $backUrl = $this->url('admin/omeka2importer');
 
 ?>
-
-<?php echo $this->pageTitle($this->translate('Map Elements · Omeka 2 Importer')); ?>
+<?php echo $this->pageTitle($this->translate('Omeka 2 Importer'), 1, $this->translate('Import Settings')); ?>
 
 <?php echo $this->form()->openTag($form); ?>
 <fieldset id='page-actions'>

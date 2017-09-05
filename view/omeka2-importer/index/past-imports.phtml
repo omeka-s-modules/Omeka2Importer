@@ -3,7 +3,7 @@ $this->htmlElement('body')->appendAttribute('class', 'omeka2importer jobs undo')
 $escape = $this->plugin('escapeHtml');
 ?>
 
-<?php echo $this->pageTitle($this->translate('Past Imports · Omeka 2 Importer')); ?>
+<?php echo $this->pageTitle($this->translate('Omeka 2 Import'), 1, $this->translate('Past Imports')); ?>
 <?php if(empty($imports)): ?>
 
 <?php else: ?>

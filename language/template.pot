@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-21 15:40-0400\n"
+"POT-Creation-Date: 2017-09-05 17:23-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,17 +34,17 @@ msgid "Map Omeka 2 Elements to Omeka S Properties"
 msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:8
-#: view/omeka2-importer/index/map-elements.phtml:37
+#: view/omeka2-importer/index/map-elements.phtml:36
 msgid "Omeka 2 element"
 msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:9
-#: view/omeka2-importer/index/map-elements.phtml:38
+#: view/omeka2-importer/index/map-elements.phtml:37
 msgid "Mapped properties"
 msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:10
-#: view/omeka2-importer/index/map-elements.phtml:39
+#: view/omeka2-importer/index/map-elements.phtml:38
 msgid "Import as HTML media"
 msgstr ""
 
@@ -53,7 +53,7 @@ msgid "Map Omeka 2 Item Types to Omeka S Resource Classes"
 msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:50
-#: view/omeka2-importer/index/map-elements.phtml:85
+#: view/omeka2-importer/index/map-elements.phtml:84
 msgid ""
 "Items can have only one resource class. Clicking more than one resource "
 "class for an item type will replace it."
@@ -64,73 +64,79 @@ msgid "Item type"
 msgstr ""
 
 #: view/omeka2-importer/index/index.phtml:9
-msgid "Import · Omeka 2 Importer"
+#: view/omeka2-importer/index/past-imports.phtml:6
+msgid "Omeka 2 Import"
+msgstr ""
+
+#: view/omeka2-importer/index/index.phtml:9
+#: view/omeka2-importer/index/map-elements.phtml:11
+msgid "Import Settings"
 msgstr ""
 
 #: view/omeka2-importer/index/index.phtml:20
 msgid "Enter the Omeka 2 API endpoint."
 msgstr ""
 
-#: view/omeka2-importer/index/map-elements.phtml:12
-msgid "Map Elements · Omeka 2 Importer"
+#: view/omeka2-importer/index/map-elements.phtml:11
+msgid "Omeka 2 Importer"
 msgstr ""
 
-#: view/omeka2-importer/index/map-elements.phtml:16
+#: view/omeka2-importer/index/map-elements.phtml:15
 msgid "Start Over"
 msgstr ""
 
-#: view/omeka2-importer/index/map-elements.phtml:21
+#: view/omeka2-importer/index/map-elements.phtml:20
 msgid "Basic Import Settings"
 msgstr ""
 
-#: view/omeka2-importer/index/map-elements.phtml:22
+#: view/omeka2-importer/index/map-elements.phtml:21
 msgid "Map to Omeka S Properties"
 msgstr ""
 
-#: view/omeka2-importer/index/map-elements.phtml:23
+#: view/omeka2-importer/index/map-elements.phtml:22
 msgid "Map to Omeka S Classes"
 msgstr ""
 
-#: view/omeka2-importer/index/map-elements.phtml:33
+#: view/omeka2-importer/index/map-elements.phtml:32
 msgid "Clear Defaults"
 msgstr ""
 
-#: view/omeka2-importer/index/map-elements.phtml:58
-#: view/omeka2-importer/index/map-elements.phtml:106
+#: view/omeka2-importer/index/map-elements.phtml:57
+#: view/omeka2-importer/index/map-elements.phtml:105
 msgid "Remove mapping"
 msgstr ""
 
-#: view/omeka2-importer/index/map-elements.phtml:61
-#: view/omeka2-importer/index/map-elements.phtml:106
+#: view/omeka2-importer/index/map-elements.phtml:60
+#: view/omeka2-importer/index/map-elements.phtml:105
 msgid "Undo remove mapping"
 msgstr ""
 
-#: view/omeka2-importer/index/map-elements.phtml:79
+#: view/omeka2-importer/index/map-elements.phtml:78
 msgid ""
 "Select property to map. Click an Omeka 2 element as the target, then select "
 "the properties for it."
 msgstr ""
 
-#: view/omeka2-importer/index/map-elements.phtml:87
+#: view/omeka2-importer/index/map-elements.phtml:86
 msgid "Clear defaults"
 msgstr ""
 
-#: view/omeka2-importer/index/map-elements.phtml:91
+#: view/omeka2-importer/index/map-elements.phtml:90
 msgid "Item Type"
 msgstr ""
 
-#: view/omeka2-importer/index/map-elements.phtml:92
+#: view/omeka2-importer/index/map-elements.phtml:91
 msgid "Resource Class"
 msgstr ""
 
-#: view/omeka2-importer/index/map-elements.phtml:117
+#: view/omeka2-importer/index/map-elements.phtml:116
 msgid ""
 "Select class to map. Click an Omeka 2 item type as the target, then select "
 "the resource class for it. Omeka S items can have only one resource class."
 msgstr ""
 
 #: view/omeka2-importer/index/past-imports.phtml:6
-msgid "Past Imports · Omeka 2 Importer"
+msgid "Past Imports"
 msgstr ""
 
 #: view/omeka2-importer/index/past-imports.phtml:19
@@ -265,12 +271,4 @@ msgstr ""
 msgid ""
 "Import Omeka 2 collections as item sets. Items will be added to the new item "
 "sets."
-msgstr ""
-
-#: config/module.config.php:101
-msgid "Omeka 2 Importer"
-msgstr ""
-
-#: config/module.config.php:117
-msgid "Past Imports"
 msgstr ""
