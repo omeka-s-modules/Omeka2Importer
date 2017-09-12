@@ -1,6 +1,6 @@
 <?php
 
-$itemTypeElementMap = array(
+$itemTypeElementMap = [
     //'Text' Make html media, if type is Text
     'Interviewer'  // @translate
         => 'bibo:interviewer',
@@ -45,9 +45,9 @@ $itemTypeElementMap = array(
     //'Occupation'
     //'Biographical Text'
     //'Bibliography'
-);
+];
 
-$itemTypeMap = array(
+$itemTypeMap = [
     'Text'  // @translate
         => 'dctype:Text',
     'Moving Image'  // @translate
@@ -69,7 +69,7 @@ $itemTypeMap = array(
     //'Hyperlink'
     'Person'  // @translate
         => 'foaf:Person',
-    'Interactive Resource' 
+    'Interactive Resource'
         => 'dctype:InteractiveResource',
     'Dataset'  // @translate
         => 'dctype:Dataset',
@@ -79,4 +79,4 @@ $itemTypeMap = array(
         => 'dctype:Service',
     'Software'  // @translate
         => 'dctype:Software',
-);
+];

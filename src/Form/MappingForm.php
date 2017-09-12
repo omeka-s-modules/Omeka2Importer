@@ -12,35 +12,35 @@ class MappingForm extends Form
 
     public function init()
     {
-        $this->add(array(
+        $this->add([
             'name' => 'key',
             'type' => 'text',
-            'options' => array(
+            'options' => [
                 'label' => 'Omeka 2 API key', // @translate
                 'info' => 'Your API key for this site', // @translate
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'id' => 'key',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'comment',
             'type' => 'textarea',
-            'options' => array(
+            'options' => [
                 'label' => 'Comment', // @translate
                 'info' => 'A note about the purpose or source of this import', // @translate
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'id' => 'comment',
-            ),
-        ));
+            ],
+        ]);
 
         $this->add([
             'name' => 'itemSet',
             'type' => ResourceSelect::class,
             'attributes' => [
-                'id'       => 'select-item-set',
+                'id' => 'select-item-set',
                 'required' => false,
                 'multiple' => true,
                 'data-placeholder' => 'Select item sets', // @translate
@@ -58,7 +58,7 @@ class MappingForm extends Form
                 ],
             ],
         ]);
-        
+
         $this->add([
             'name' => 'perPage',
             'type' => 'text',
@@ -67,36 +67,36 @@ class MappingForm extends Form
                 'info' => 'Optional. Only retrieve this many records for each request.', // @translate
             ],
         ]);
-        
+
         $this->add([
-            'name'  => 'update',
-            'type'  => 'checkbox',
-            'options'   => [
+            'name' => 'update',
+            'type' => 'checkbox',
+            'options' => [
                 'label' => 'Update a previous import', // @translate
-                'info'  => 'If checked, items will be reimported and all data replaced, including Item Set membership as set on this page.', // @translate
+                'info' => 'If checked, items will be reimported and all data replaced, including Item Set membership as set on this page.', // @translate
             ],
-            
+
         ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'importCollections',
             'type' => 'checkbox',
-            'options' => array(
+            'options' => [
                 'label' => 'Import Collections', // @translate
                 'info' => 'Import Omeka 2 collections as item sets. Items will be added to the new item sets.', // @translate
-            ),
-        ));
+            ],
+        ]);
 
         $inputFilter = $this->getInputFilter();
-        $inputFilter->add(array(
+        $inputFilter->add([
             'name' => 'itemSet',
             'required' => false,
-        ));
+        ]);
 
-        $inputFilter->add(array(
+        $inputFilter->add([
             'name' => 'key',
             'required' => false,
-        ));
+        ]);
     }
 
     public function setOwner($identity)

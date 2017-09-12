@@ -8,17 +8,17 @@ class ImportForm extends Form
 {
     public function init()
     {
-        $this->add(array(
+        $this->add([
             'name' => 'endpoint',
             'type' => 'url',
-            'options' => array(
+            'options' => [
                 'label' => 'Omeka 2 Api Endpoint', // @translate
                 'info' => 'The URI of the Omeka 2 Api Endpoint', // @translate
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'id' => 'endpoint',
                 'required' => 'true',
-            ),
-        ));
+            ],
+        ]);
     }
 }

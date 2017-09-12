@@ -15,28 +15,28 @@ class ResourceClassSelector extends AbstractHelper
     {
         $response = $this->getView()->api()->search('vocabularies');
 
-        $valueOptions = array();
+        $valueOptions = [];
         foreach ($response->getContent() as $vocabulary) {
-            $options = array();
+            $options = [];
             foreach ($vocabulary->resourceClasses() as $resourceClass) {
                 $options[$resourceClass->id()] = $resourceClass->label();
             }
             if (!$options) {
                 continue;
             }
-            $valueOptions[] = array(
+            $valueOptions[] = [
                 'label' => $vocabulary->label(),
                 'options' => $options,
-            );
+            ];
         }
 
         return $this->getView()->partial(
             'omeka2-importer/common/resource-class-selector',
-            array(
+            [
                 'vocabularies' => $response->getContent(),
                 'text' => $text,
                 'state' => $active ? 'active' : '',
-            )
+            ]
         );
     }
 }

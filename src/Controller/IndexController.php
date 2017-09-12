@@ -9,9 +9,8 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
-    
     protected $client;
-    
+
     public function __construct($client)
     {
         $this->client = $client;
@@ -56,11 +55,11 @@ class IndexController extends AbstractActionController
         }
         $view = new ViewModel();
         $page = $this->params()->fromQuery('page', 1);
-        $query = $this->params()->fromQuery() + array(
+        $query = $this->params()->fromQuery() + [
             'page' => $page,
             'sort_by' => $this->params()->fromQuery('sort_by', 'id'),
             'sort_order' => $this->params()->fromQuery('sort_order', 'desc'),
-        );
+        ];
         $response = $this->api()->search('omekaimport_imports', $query);
         $this->paginator($response->getTotalResults(), $page);
         $view->setVariable('imports', $response->getContent());
@@ -75,7 +74,7 @@ class IndexController extends AbstractActionController
         $view->setVariable('form', $form);
 
         if ($this->getRequest()->isPost()) {
-            $data = $this->params()->fromPost(null, array());
+            $data = $this->params()->fromPost(null, []);
             $form->setData($data);
             if ($form->isValid()) {
                 $job = $this->jobDispatcher()->dispatch('Omeka2Importer\Job\Import', $data);
@@ -107,10 +106,10 @@ class IndexController extends AbstractActionController
         }
 
         //gather up all the element sets
-        $elementSetsData = array();
+        $elementSetsData = [];
         $page = 1;
         do {
-            $elementSetsResponse = $this->client->element_sets->get(array('page' => $page));
+            $elementSetsResponse = $this->client->element_sets->get(['page' => $page]);
             $elementSets = json_decode($elementSetsResponse->getBody(), true);
             $elementSetsData = array_merge($elementSetsData, $elementSets);
             ++$page;
@@ -138,21 +137,21 @@ class IndexController extends AbstractActionController
         $this->client->setApiBaseUrl($endpoint);
 
         //gather up all the element sets
-        $elementSetsData = array();
+        $elementSetsData = [];
         $page = 1;
         do {
-            $elementSetsResponse = $this->client->element_sets->get(array('page' => $page));
+            $elementSetsResponse = $this->client->element_sets->get(['page' => $page]);
             $elementSets = json_decode($elementSetsResponse->getBody(), true);
             $elementSetsData = array_merge($elementSetsData, $elementSets);
             ++$page;
         } while ($this->hasNextPage($elementSetsResponse));
 
-        $elementsData = array();
+        $elementsData = [];
         foreach ($elementSetsData as $elementSet) {
             $page = 1;
-            $elementSetElements = array();
+            $elementSetElements = [];
             do {
-                $elementsResponse = $this->client->elements->get(array('element_set' => $elementSet['id'], 'page' => $page));
+                $elementsResponse = $this->client->elements->get(['element_set' => $elementSet['id'], 'page' => $page]);
                 $elements = json_decode($elementsResponse->getBody(), true);
                 $elementSetElements = array_merge($elementSetElements, $elements);
                 ++$page;
@@ -169,10 +168,10 @@ class IndexController extends AbstractActionController
 
         $this->client->setApiBaseUrl($endpoint);
 
-        $itemTypesData = array();
+        $itemTypesData = [];
         $page = 1;
         do {
-            $itemTypesResponse = $this->client->item_types->get(array('page' => $page));
+            $itemTypesResponse = $this->client->item_types->get(['page' => $page]);
             $itemTypes = json_decode($itemTypesResponse->getBody(), true);
             $itemTypesData = array_merge($itemTypesData, $itemTypes);
             ++$page;
@@ -183,14 +182,14 @@ class IndexController extends AbstractActionController
 
     protected function undoJob($jobId)
     {
-        $response = $this->api()->search('omekaimport_imports', array('job_id' => $jobId));
+        $response = $this->api()->search('omekaimport_imports', ['job_id' => $jobId]);
         $omekaImport = $response->getContent()[0];
-        $job = $this->jobDispatcher()->dispatch('Omeka2Importer\Job\Undo', array('jobId' => $jobId));
-        $response = $this->api()->update('omekaimport_imports', 
-                    $omekaImport->id(), 
-                    array(
-                        'o:undo_job' => array('o:id' => $job->getId()),
-                    )
+        $job = $this->jobDispatcher()->dispatch('Omeka2Importer\Job\Undo', ['jobId' => $jobId]);
+        $response = $this->api()->update('omekaimport_imports',
+                    $omekaImport->id(),
+                    [
+                        'o:undo_job' => ['o:id' => $job->getId()],
+                    ]
                 );
         return $job;
     }
@@ -201,7 +200,7 @@ class IndexController extends AbstractActionController
 
         $propertiesByLabel = $this->getPropertiesByLabel();
 
-        $elementMap = array();
+        $elementMap = [];
         foreach ($elementsData as $elementSet => $elements) {
             foreach ($elements as $elementData) {
                 $propertyId = false;
@@ -216,7 +215,7 @@ class IndexController extends AbstractActionController
                 } else {
                     if (array_key_exists($elementName, $itemTypeElementMap)) {
                         $term = $itemTypeElementMap[$elementName];
-                        $propertyResponse = $this->api()->search('properties', array('term' => $term));
+                        $propertyResponse = $this->api()->search('properties', ['term' => $term]);
                         if (!empty($propertyResponse->getContent())) {
                             $property = $propertyResponse->getContent()[0];
                             $propertyId = $property->id();
@@ -226,7 +225,7 @@ class IndexController extends AbstractActionController
                 }
                 if ($propertyId) {
                     $elementMap[$elementSet][$elementName] =
-                        array('propertyId' => $propertyId, 'term' => $term, 'propertyLabel' => $propertyLabel);
+                        ['propertyId' => $propertyId, 'term' => $term, 'propertyLabel' => $propertyLabel];
                 }
             }
         }
@@ -237,16 +236,16 @@ class IndexController extends AbstractActionController
     protected function buildTypeDefaultMap($itemTypes)
     {
         include 'item_type_maps.php';
-        $typeMap = array();
+        $typeMap = [];
         foreach ($itemTypes as $type) {
             if (array_key_exists($type['name'], $itemTypeMap)) {
-                $classResponse = $this->api()->search('resource_classes', array('term' => $itemTypeMap[$type['name']]));
+                $classResponse = $this->api()->search('resource_classes', ['term' => $itemTypeMap[$type['name']]]);
                 if (!empty($classResponse->getContent())) {
                     $class = $classResponse->getContent()[0];
                     $classId = $class->id();
                     $classLabel = $class->label();
                     $typeMap[$type['name']] =
-                        array('classId' => $classId, 'classLabel' => $classLabel);
+                        ['classId' => $classId, 'classLabel' => $classLabel];
                 }
             }
         }

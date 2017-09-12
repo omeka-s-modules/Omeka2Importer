@@ -13,7 +13,7 @@ class Import extends AbstractJob
     protected $api;
 
     protected $termIdMap;
-    
+
     protected $collectionItemSetMap;
 
     protected $addedCount;
@@ -29,26 +29,26 @@ class Import extends AbstractJob
     protected $dctermsTitleId;
 
     protected $logger;
-    
+
     protected $importRecordId;
 
     public function perform()
     {
         $this->logger = $this->getServiceLocator()->get('Omeka\Logger');
-        $this->collectionItemSetMap = array();
+        $this->collectionItemSetMap = [];
         if (is_array($this->getArg('type-class'))) {
-            $this->typeMap = $this->getArg('type-class', array());
+            $this->typeMap = $this->getArg('type-class', []);
         } else {
-            $this->typeMap = array();
+            $this->typeMap = [];
         }
 
         if (is_array($this->getArg('element-property'))) {
-            $this->elementMap = $this->getArg('element-property', array());
+            $this->elementMap = $this->getArg('element-property', []);
         } else {
-            $this->elementMap = array();
+            $this->elementMap = [];
         }
 
-        $this->htmlElementMap = $this->getArg('html-element', array());
+        $this->htmlElementMap = $this->getArg('html-element', []);
 
         $this->addedCount = 0;
         $this->updatedCount = 0;
@@ -59,19 +59,19 @@ class Import extends AbstractJob
         $this->api = $this->getServiceLocator()->get('Omeka\ApiManager');
 
         //cache the dcterms:title id for reuse during mapping in buildHtmlMediaJson
-        $response = $this->api->search('properties', array('term' => 'dcterms:title'));
+        $response = $this->api->search('properties', ['term' => 'dcterms:title']);
         if (!empty($response->getContent())) {
             $dctermsTitle = $response->getContent()[0];
             $this->dctermsTitleId = $dctermsTitle->id();
         }
 
         $comment = $this->getArg('comment');
-        $Omeka2ImportJson = array(
-                            'o:job' => array('o:id' => $this->job->getId()),
+        $Omeka2ImportJson = [
+                            'o:job' => ['o:id' => $this->job->getId()],
                             'added_count' => 0,
                             'updated_count' => 0,
                             'comment' => $comment,
-                          );
+                          ];
 
         $response = $this->api->create('omekaimport_imports', $Omeka2ImportJson);
         $this->importRecordId = $response->getContent()->id();
@@ -81,20 +81,19 @@ class Import extends AbstractJob
             $this->importCollections($options);
         }
         $this->importItems($options);
-        
     }
 
-    protected function importCollections($options = array())
+    protected function importCollections($options = [])
     {
         $page = 1;
-        
+
         if ($perPage = $this->getArg('perPage', false)) {
-            $params = array('per_page' => $perPage);
+            $params = ['per_page' => $perPage];
         } else {
-            $params = array();
+            $params = [];
         }
 
-        $itemSetUpdateData = array();
+        $itemSetUpdateData = [];
         do {
             $params['page'] = $page;
             try {
@@ -116,8 +115,8 @@ class Import extends AbstractJob
 
                 $update = (bool) $this->getArg('update');
                 if ($update && $collectionImportRecord) {
-                    $collectionImportRecordJson = array('o:job' => array('o:id' => $this->job->getId()),
-                                                       );
+                    $collectionImportRecordJson = ['o:job' => ['o:id' => $this->job->getId()],
+                                                       ];
                     $itemSetJson = $this->buildResourceJson($collectionData, $options);
 
                     $updateImportRecordResponse = $this->api->update(
@@ -149,15 +148,15 @@ class Import extends AbstractJob
         } while ($this->hasNextPage($clientResponse));
     }
 
-    protected function importItems($options = array())
+    protected function importItems($options = [])
     {
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
 
         $page = 1;
         if ($perPage = $this->getArg('perPage', false)) {
-            $params = array('per_page' => $perPage);
+            $params = ['per_page' => $perPage];
         } else {
-            $params = array();
+            $params = [];
         }
 
         //if importing by collections from Omeka 2, the collection to use as
@@ -165,7 +164,7 @@ class Import extends AbstractJob
         do {
             $params['page'] = $page;
             $this->logger->info("Importing item page $page");
-            
+
             try {
                 $clientResponse = $this->client->items->get(null, $params);
             } catch (\Exception $e) {
@@ -178,12 +177,11 @@ class Import extends AbstractJob
             }
 
             $itemsData = json_decode($clientResponse->getBody(), true);
-            $toCreate = array();
-            $toUpdate = array();
+            $toCreate = [];
+            $toUpdate = [];
             foreach ($itemsData as $itemData) {
-                $itemJson = array();
+                $itemJson = [];
                 $itemJson = $this->buildResourceJson($itemData, $options);
-                
 
                 //confusingly named, importRecord is the record of importing the item
                 $importRecord = $this->importRecord($itemData['id']);
@@ -203,38 +201,38 @@ class Import extends AbstractJob
             if (count($toCreate) > 0) {
                 $this->createItems($toCreate);
             }
-            
+
             $update = (bool) $this->getArg('update');
             if ($update && count($toUpdate) > 0) {
                 $this->updateItems($toUpdate);
             }
 
             ++$page;
-                
+
             $comment = $this->getArg('comment');
-            $Omeka2ImportJson = array(
-                                'o:job' => array('o:id' => $this->job->getId()),
+            $Omeka2ImportJson = [
+                                'o:job' => ['o:id' => $this->job->getId()],
                                 'comment' => $comment,
                                 'added_count' => $this->addedCount,
                                 'updated_count' => $this->updatedCount,
-                              );
-        
+                              ];
+
             $response = $this->api->update('omekaimport_imports', $this->importRecordId, $Omeka2ImportJson);
         } while ($this->hasNextPage($clientResponse));
     }
 
     protected function createItems($toCreate)
     {
-        $createResponse = $this->api->batchCreate('items', $toCreate, array(), ['continueOnError' => true]);
+        $createResponse = $this->api->batchCreate('items', $toCreate, [], ['continueOnError' => true]);
         $createContent = $createResponse->getContent();
         $this->addedCount = $this->addedCount + count($createContent);
-        $createImportRecordsJson = array();
+        $createImportRecordsJson = [];
 
         foreach ($createContent as $remoteId => $resourceReference) {
             $createImportRecordsJson[] = $this->buildImportRecordJson($remoteId, $resourceReference);
         }
 
-        $createImportRecordResponse = $this->api->batchCreate('omekaimport_records', $createImportRecordsJson, array(), ['continueOnError' => true]);
+        $createImportRecordResponse = $this->api->batchCreate('omekaimport_records', $createImportRecordsJson, [], ['continueOnError' => true]);
     }
 
     protected function updateItems($toUpdate)
@@ -242,7 +240,7 @@ class Import extends AbstractJob
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
         //  batchUpdate would be nice, but complexities abound. See https://github.com/omeka/omeka-s/issues/326
         //only updating the job id for all
-        $importRecordUpdateJson = array('o:job' => array('o:id' => $this->job->getId()));
+        $importRecordUpdateJson = ['o:job' => ['o:id' => $this->job->getId()]];
         foreach ($toUpdate as $importRecordId => $itemJson) {
             $this->updatedCount = $this->updatedCount + 1;
             $itemUpdateResponse = $this->api->update('items',
@@ -264,47 +262,47 @@ class Import extends AbstractJob
 
     protected function buildImportRecordJson($remoteId, $resourceReference, $type = 'item')
     {
-        $recordJson = array('o:job' => array('o:id' => $this->job->getId()),
+        $recordJson = ['o:job' => ['o:id' => $this->job->getId()],
                             'endpoint' => $this->endpoint,
                             'remote_type' => $type,
                             'remote_id' => $remoteId,
-                            );
+                            ];
         if ($type == 'item') {
-            $recordJson['o:item'] = array('o:id' => $resourceReference->id());
+            $recordJson['o:item'] = ['o:id' => $resourceReference->id()];
         }
 
         if ($type == 'collection') {
-            $recordJson['o:item_set'] = array('o:id' => $resourceReference->id());
+            $recordJson['o:item_set'] = ['o:id' => $resourceReference->id()];
         }
 
         return $recordJson;
     }
 
-    protected function buildResourceJson($importData, $options = array())
+    protected function buildResourceJson($importData, $options = [])
     {
         $config = $this->getServiceLocator()->get('Config');
         $importerClasses = $config['omeka2_importer_classes'];
-        $resourceJson = array();
+        $resourceJson = [];
         $resourceJson['remote_id'] = $importData['id'];
-        $resourceJson['o:item_set'] = array();
-        
+        $resourceJson['o:item_set'] = [];
+
         if (isset($importData['collection'])) {
             $omekaCollectionId = $importData['collection']['id'];
             if (isset($this->collectionItemSetMap[$omekaCollectionId])) {
-                $resourceJson['o:item_set'][] = array('o:id' => $this->collectionItemSetMap[$omekaCollectionId]);
+                $resourceJson['o:item_set'][] = ['o:id' => $this->collectionItemSetMap[$omekaCollectionId]];
             }
         }
-        
+
         if (isset($options['itemSet'])) {
             if (is_array($options['itemSet'])) {
-                foreach($options['itemSet'] as $itemSetId) {
-                    $resourceJson['o:item_set'][] = array('o:id' => $itemSetId);
+                foreach ($options['itemSet'] as $itemSetId) {
+                    $resourceJson['o:item_set'][] = ['o:id' => $itemSetId];
                 }
             } else {
-                $resourceJson['o:item_set'][] = array('o:id' => $options['itemSet']);
+                $resourceJson['o:item_set'][] = ['o:id' => $options['itemSet']];
             }
         }
-        
+
         $resourceClassId = null;
         if (isset($importData['item_type'])) {
             $itemTypeName = $importData['item_type']['name'];
@@ -313,7 +311,7 @@ class Import extends AbstractJob
                 $resourceClassId = $this->typeMap[$itemTypeId];
             }
         }
-        $resourceJson['o:resource_class'] = array('o:id' => $resourceClassId);
+        $resourceJson['o:resource_class'] = ['o:id' => $resourceClassId];
         $resourceJson = array_merge($resourceJson, $this->buildPropertyJson($importData));
         $mediaJson = $this->buildMediaJson($importData);
         $mediaJson = $this->buildHtmlMediaJson($importData, $mediaJson);
@@ -321,7 +319,6 @@ class Import extends AbstractJob
 
         foreach ($importerClasses as $importerClass) {
             $importer = new $importerClass($this->client, $this->getServiceLocator());
-            // job 324 commented out. later ones in effect 
             $resourceJson = $importer->import($importData, $resourceJson);
         }
         return $resourceJson;
@@ -336,16 +333,16 @@ class Import extends AbstractJob
         $itemId = $importData['id'];
         foreach ($importData['element_texts'] as $elTextData) {
             if (array_key_exists($elTextData['element']['id'], $this->htmlElementMap)) {
-                $htmlJson = array(
+                $htmlJson = [
                         'o:ingester' => 'html',
-                        'data' => array(
+                        'data' => [
                             'html' => $elTextData['text'],
-                            'dcterms:title' => array(
+                            'dcterms:title' => [
                                 'property_id' => $this->dctermsTitleId,
                                 '@value' => $elTextData['element']['name'],
-                            ),
-                        ),
-                );
+                            ],
+                        ],
+                ];
                 $mediaJson['o:media'][] = $htmlJson;
             }
         }
@@ -357,16 +354,15 @@ class Import extends AbstractJob
     {
         //another query to get the filesData from the importData
         $itemId = $importData['id'];
-        $response = $this->client->files->get(array('item' => $itemId));
+        $response = $this->client->files->get(['item' => $itemId]);
         $filesData = json_decode($response->getBody(), true);
-        $mediaJson = array('o:media' => array());
+        $mediaJson = ['o:media' => []];
         foreach ($filesData as $fileData) {
-            
-            $fileJson = array(
+            $fileJson = [
                 'o:ingester' => 'url',
                 'o:source' => $fileData['file_urls']['original'],
                 'ingest_url' => $fileData['file_urls']['original'],
-            );
+            ];
             $fileJson = array_merge($fileJson, $this->buildPropertyJson($fileData));
             $mediaJson['o:media'][] = $fileJson;
         }
@@ -376,7 +372,7 @@ class Import extends AbstractJob
 
     protected function buildPropertyJson($importData)
     {
-        $propertyJson = array();
+        $propertyJson = [];
         foreach ($importData['element_texts'] as $elTextData) {
             $value = strip_tags($elTextData['text']);
             $elementSetId = $elTextData['element_set']['id'];
@@ -386,11 +382,11 @@ class Import extends AbstractJob
             if (array_key_exists($elementId, $this->elementMap)) {
                 //loop through all the mappings for that element and build json
                 foreach ($this->elementMap[$elementId] as $propertyId) {
-                    $propertyJson[$propertyId][] = array(
+                    $propertyJson[$propertyId][] = [
                             '@value' => $value,
                             'property_id' => $propertyId,
                             'type' => 'literal',
-                            );
+                            ];
                 }
             }
         }
@@ -402,10 +398,10 @@ class Import extends AbstractJob
     {
         //see if the item has already been imported
         $response = $this->api->search('omekaimport_records',
-                                array('remote_id' => $remoteId,
+                                ['remote_id' => $remoteId,
                                       'remote_type' => $remoteType,
                                       'endpoint' => $this->endpoint,
-                                       ));
+                                       ]);
         $content = $response->getContent();
         if (empty($content)) {
             return false;

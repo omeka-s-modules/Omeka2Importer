@@ -39,11 +39,10 @@ class Module extends AbstractModule
         $connection->exec('ALTER TABLE omekaimport_import DROP FOREIGN KEY FK_37FFB83D4C276F75');
         $connection->exec('DROP TABLE omekaimport_import');
     }
-    
+
     public function upgrade($oldVersion, $newVersion,
         ServiceLocatorInterface $serviceLocator
-    )
-    {
+    ) {
         if (Comparator::lessThan($oldVersion, '1.0.0-beta')) {
             $connection = $serviceLocator->get('Omeka\Connection');
             $connection->exec("ALTER TABLE omekaimport_record DROP INDEX FK_3185E9B1960278D7, ADD UNIQUE INDEX UNIQ_3185E9B1960278D7 (item_set_id);");

@@ -10,7 +10,7 @@ class Undo extends AbstractJob
     {
         $jobId = $this->getArg('jobId');
         $api = $this->getServiceLocator()->get('Omeka\ApiManager');
-        $response = $api->search('omekaimport_records', array('job_id' => $jobId, 'remote_type' => 'item'));
+        $response = $api->search('omekaimport_records', ['job_id' => $jobId, 'remote_type' => 'item']);
         $omeka2Items = $response->getContent();
         if ($omeka2Items) {
             foreach ($omeka2Items as $omeka2Item) {
