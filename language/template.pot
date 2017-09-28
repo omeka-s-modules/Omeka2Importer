@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-05 17:23-0400\n"
+"POT-Creation-Date: 2017-09-28 11:28-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -209,6 +209,15 @@ msgstr ""
 
 #: src/Controller/item_type_maps.php:67
 msgid "Lesson Plan"
+msgstr ""
+
+#: src/Controller/IndexController.php:87
+msgid "There was an error during validation"
+msgstr ""
+
+#: src/Controller/IndexController.php:99
+#, php-format
+msgid "The endpoint %s is not a valid Omeka 2 endpoint."
 msgstr ""
 
 #: src/Form/ImportForm.php:15

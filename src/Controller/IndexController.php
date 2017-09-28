@@ -84,7 +84,7 @@ class IndexController extends AbstractActionController
                 return $this->redirect()->toRoute('admin/omeka2importer/past-imports', ['action' => 'browse'], true);
                 $view->setVariable('job', $job);
             } else {
-                $this->messenger()->addError('There was an error during validation');
+                $this->messenger()->addError('There was an error during validation'); // @translate
             }
         }
 
@@ -96,7 +96,7 @@ class IndexController extends AbstractActionController
         $testResponse = $this->client->resources->get();
         if ($testResponse->getStatusCode() != 200) {
             //throw new \Exception('no omeka for you!');
-            $this->messenger()->addError(sprintf('The endpoint %s is not a valid Omeka 2 endpoint.', $endpoint));
+            $this->messenger()->addError(sprintf('The endpoint %s is not a valid Omeka 2 endpoint.', $endpoint)); // @translate
 
             return $this->redirect()->toRoute(
                 'admin/omeka2importer',
