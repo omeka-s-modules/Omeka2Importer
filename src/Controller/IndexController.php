@@ -29,10 +29,10 @@ class IndexController extends AbstractActionController
                 $job = $this->jobDispatcher()->dispatch('Omeka2Importer\Job\Import', $data);
                 //the Omeka2Import record is created in the job, so it doesn't
                 //happen until the job is done
-                $this->messenger()->addSuccess('Importing in Job ID '.$job->getId());
+                $this->messenger()->addSuccess('Importing in Job ID '.$job->getId()); // @translate
                 $view->setVariable('job', $job);
             } else {
-                $this->messenger()->addError('There was an error during validation');
+                $this->messenger()->addError('There was an error during validation'); // @translate
             }
         }
 
@@ -50,7 +50,7 @@ class IndexController extends AbstractActionController
                 $undoJob = $this->undoJob($jobId);
                 $undoJobIds[] = $undoJob->getId();
             }
-            $this->messenger()->addSuccess('Undo in progress in the following jobs: ' . implode(', ', $undoJobIds));
+            $this->messenger()->addSuccess('Undo in progress in the following jobs: ' . implode(', ', $undoJobIds)); // @translate
             return $this->redirect()->refresh();
         }
         $view = new ViewModel();
@@ -80,7 +80,7 @@ class IndexController extends AbstractActionController
                 $job = $this->jobDispatcher()->dispatch('Omeka2Importer\Job\Import', $data);
                 //the Omeka2Import record is created in the job, so it doesn't
                 //happen until the job is done
-                $this->messenger()->addSuccess('Importing in Job ID '.$job->getId());
+                $this->messenger()->addSuccess('Importing in Job ID '.$job->getId()); // @translate
                 return $this->redirect()->toRoute('admin/omeka2importer/past-imports', ['action' => 'browse'], true);
                 $view->setVariable('job', $job);
             } else {
