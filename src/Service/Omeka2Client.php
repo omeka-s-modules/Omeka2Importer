@@ -17,12 +17,12 @@ class Omeka2Client
     /**
      * @var array
      */
-    protected $methods = array('get', 'post', 'put', 'delete');
+    protected $methods = ['get', 'post', 'put', 'delete'];
 
     /**
      * @var array
      */
-    protected $callbacks = array();
+    protected $callbacks = [];
 
     /**
      * @var string
@@ -46,7 +46,7 @@ class Omeka2Client
 
     /**
      * Proxy resources.
-     * 
+     *
      * @param string $resource
      *
      * @return Omeka
@@ -60,7 +60,7 @@ class Omeka2Client
 
     /**
      * Method overloading.
-     * 
+     *
      * @param string $method
      * @param array  $args
      *
@@ -82,12 +82,12 @@ class Omeka2Client
             return call_user_func_array($callback, $args);
         }
 
-        return call_user_func_array(array($this, $method), $args);
+        return call_user_func_array([$this, $method], $args);
     }
 
     /**
      * Set custom behavior for a resource/method.
-     * 
+     *
      * @param string   $resource
      * @param string   $method
      * @param \Closure $callback
@@ -106,7 +106,7 @@ class Omeka2Client
     {
         if (null === $this->httpClient) {
             $this->httpClient = new Client();
-            $this->httpClient->setOptions(array('timeout' => 30));
+            $this->httpClient->setOptions(['timeout' => 30]);
         }
 
         return $this->httpClient;
@@ -114,7 +114,7 @@ class Omeka2Client
 
     /**
      * Get the API base URL.
-     * 
+     *
      * @return string
      */
     public function getApiBaseUrl()
@@ -129,7 +129,7 @@ class Omeka2Client
 
     /**
      * Set the authentication key.
-     * 
+     *
      * @param string $key
      */
     public function setKey($key)
@@ -139,7 +139,7 @@ class Omeka2Client
 
     /**
      * Get the authentication key.
-     * 
+     *
      * @return string
      */
     public function getKey()
@@ -149,17 +149,17 @@ class Omeka2Client
 
     /**
      * Make a GET request.
-     * 
-     * Setting the first argument as an integer will make a request for one 
-     * resource, while not setting the first argument (or setting it as 
+     *
+     * Setting the first argument as an integer will make a request for one
+     * resource, while not setting the first argument (or setting it as
      * an array of parameters) will make a request for multiple resources.
-     * 
+     *
      * @param int|array $id
      * @param array     $params
      *
      * @return Zend\Http\Response
      */
-    protected function get($id = null, array $params = array())
+    protected function get($id = null, array $params = [])
     {
         if (is_array($id)) {
             $params = $id;
@@ -174,13 +174,13 @@ class Omeka2Client
 
     /**
      * Make a POST request.
-     * 
+     *
      * @param string $data
      * @param array  $params
      *
      * @return Zend\Http\Response
      */
-    protected function post($data, array $params = array())
+    protected function post($data, array $params = [])
     {
         $client = $this->prepare(Http\Request::METHOD_POST, $params)
             ->setRawBody($data);
@@ -190,14 +190,14 @@ class Omeka2Client
 
     /**
      * Make a PUT request.
-     * 
+     *
      * @param int    $id
      * @param string $data
      * @param array  $params
      *
      * @return Zend\Http\Response
      */
-    protected function put($id, $data, array $params = array())
+    protected function put($id, $data, array $params = [])
     {
         $this->id = $id;
         $client = $this->prepare(Http\Request::METHOD_PUT, $params)
@@ -208,14 +208,14 @@ class Omeka2Client
 
     /**
      * Make a DELETE request.
-     * 
+     *
      * @param int    $id
      * @param string $data
      * @param array  $params
      *
      * @return Zend\Http\Response
      */
-    protected function delete($id, array $params = array())
+    protected function delete($id, array $params = [])
     {
         $this->id = $id;
         $client = $this->prepare(Http\Request::METHOD_DELETE, $params);
@@ -225,13 +225,13 @@ class Omeka2Client
 
     /**
      * Prepare and return the API client.
-     * 
+     *
      * @param string $method
      * @param array  $params
      *
      * @return Zend\Http\Client
      */
-    protected function prepare($method, array $params = array())
+    protected function prepare($method, array $params = [])
     {
         if (!$this->resource) {
             throw new \Exception('A resource must be set before making a request.');
@@ -245,7 +245,7 @@ class Omeka2Client
             ->setUri($this->apiBaseUrl.$path)
             ->setMethod($method);
         if ($this->key) {
-            $params = array_merge($params, array('key' => $this->key));
+            $params = array_merge($params, ['key' => $this->key]);
         }
         $client->setParameterGet($params);
 

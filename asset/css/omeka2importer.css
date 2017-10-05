@@ -53,6 +53,7 @@ ul.mappings {
 
 li.mapping {
     margin: 3px 0 0 0;
+    display: flex;
 }
 
 li.mapping:first-child {
@@ -60,9 +61,6 @@ li.mapping:first-child {
 }
 
 li.mapping.delete {
-    text-decoration: line-through;
+    background-color: #fcc;
 }
 
-ul.actions {
-    float: right;
-}

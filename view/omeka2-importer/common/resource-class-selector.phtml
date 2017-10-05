@@ -5,9 +5,9 @@ $escape = $this->plugin('escapeHtml');
     <?php if ($text) :?>
     <h3><?php echo $escape($text); ?></h3>
     <?php else: ?>
-    <h3><?php echo $this->translate('Click on a resource class to add it to the mapped Item Types.'); ?></h3>
+    <h3><?php echo $this->translate('Click on a resource class to add it to the mapped item types.'); ?></h3>
     <?php endif; ?>
-    <input type="text" class="selector-filter" placeholder="<?php echo $this->translate('Filter Resource Classes'); ?>">
+    <input type="text" class="selector-filter" placeholder="<?php echo $this->translate('Filter resource classes'); ?>">
         <ul class='selectable-list'>
             <?php foreach ($vocabularies as $vocabulary): ?>
             <?php
@@ -19,7 +19,7 @@ $escape = $this->plugin('escapeHtml');
             ?>
             <li class='selector-parent'
                 data-vocabulary-id="<?php echo $escape($vocabulary->id()); ?>">
-                <span><?php echo $escape($vocabulary->label()); ?></span> (<span class="selector-child-count"><?php echo count($vocabulary->resourceClasses()); ?></span>)
+                <span><?php echo $escape($this->translate($vocabulary->label())); ?></span> (<span class="selector-child-count"><?php echo count($vocabulary->resourceClasses()); ?></span>)
                 <ul>
                     <?php foreach ($classes as $class): ?>
                     <li class='selector-child'
@@ -28,9 +28,9 @@ $escape = $this->plugin('escapeHtml');
                         data-class-term="<?php echo $escape($class->term()); ?>">
                         <div class="description">
                             <p class="o-icon-info"><span class="screen-reader-text"><?php echo $this->translate('More Info'); ?></span></p>
-                            <p class="field-comment"><?php echo $escape($class->comment()); ?></p>
+                            <p class="field-comment"><?php echo $escape($this->translate($class->comment())); ?></p>
                         </div>
-                        <span><?php echo $escape($class->label()); ?></span>
+                        <span><?php echo $escape($this->translate($class->label())); ?></span>
                     </li>
                     <?php endforeach; ?>
                 </ul>

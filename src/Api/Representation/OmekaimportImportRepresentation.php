@@ -13,13 +13,13 @@ class OmekaimportImportRepresentation extends AbstractEntityRepresentation
             $undo_job = $this->undoJob()->getReference();
         }
 
-        return array(
+        return [
             'added_count' => $this->addedCount(),
             'updated_count' => $this->updatedCount(),
             'comment' => $this->comment(),
             'o:job' => $this->job()->getReference(),
             'o:undo_job' => $undo_job,
-        );
+        ];
     }
 
     public function getJsonLdType()

@@ -8,7 +8,7 @@ class OmekaimportRecordRepresentation extends AbstractEntityRepresentation
 {
     public function getJsonLd()
     {
-        return array(
+        return [
             'last_modified' => $this->lastModified(),
             'endpoint' => $this->endpoint(),
             'remote_type' => $this->remoteType(),
@@ -16,7 +16,7 @@ class OmekaimportRecordRepresentation extends AbstractEntityRepresentation
             'o:item' => $this->item()->getReference(),
             'o:item_set' => $this->itemSet()->getReference(),
             'o:job' => $this->job()->getReference(),
-        );
+        ];
     }
 
     public function getJsonLdType()

@@ -1,22 +1,32 @@
 <?php
 
-return array(
-    'service_manager' => array(
-        'invokables' => array(
+return [
+    'service_manager' => [
+        'invokables' => [
             'Omeka2Importer\Omeka2Client' => 'Omeka2Importer\Service\Omeka2Client',
-        ),
-    ),
-    'api_adapters' => array(
-        'invokables' => array(
+        ],
+    ],
+    'api_adapters' => [
+        'invokables' => [
             'omekaimport_records' => 'Omeka2Importer\Api\Adapter\OmekaimportRecordAdapter',
             'omekaimport_imports' => 'Omeka2Importer\Api\Adapter\OmekaimportImportAdapter',
-        ),
-    ),
-    'controllers' => array(
-        'factories' => array(
+        ],
+    ],
+    'translator' => [
+        'translation_file_patterns' => [
+            [
+                'type' => 'gettext',
+                'base_dir' => OMEKA_PATH . '/modules/Omeka2Importer/language',
+                'pattern' => '%s.mo',
+                'text_domain' => null,
+            ],
+        ],
+    ],
+    'controllers' => [
+        'factories' => [
             'Omeka2Importer\Controller\Index' => 'Omeka2Importer\Service\Controller\IndexControllerFactory',
-        ),
-    ),
+        ],
+    ],
     'form_elements' => [
         'invokables' => [
             'Omeka2Importer\Form\ImportForm' => 'Omeka2Importer\Form\ImportForm',
@@ -25,93 +35,93 @@ return array(
             'Omeka2Importer\Form\MappingForm' => 'Omeka2Importer\Service\Form\MappingFormFactory',
         ],
     ],
-    'view_manager' => array(
-        'template_path_stack' => array(
+    'view_manager' => [
+        'template_path_stack' => [
             OMEKA_PATH.'/modules/Omeka2Importer/view',
-        ),
-    ),
-    'view_helpers' => array(
-        'invokables' => array(
+        ],
+    ],
+    'view_helpers' => [
+        'invokables' => [
         'resourceClassSelector' => 'Omeka2Importer\View\Helper\ResourceClassSelector',
-        ),
-    ),
-    'entity_manager' => array(
-        'mapping_classes_paths' => array(
+        ],
+    ],
+    'entity_manager' => [
+        'mapping_classes_paths' => [
             OMEKA_PATH.'/modules/Omeka2Importer/src/Entity',
-        ),
-    ),
+        ],
+    ],
 
-    'router' => array(
-        'routes' => array(
-            'admin' => array(
-                'child_routes' => array(
-                    'omeka2importer' => array(
+    'router' => [
+        'routes' => [
+            'admin' => [
+                'child_routes' => [
+                    'omeka2importer' => [
                         'type' => 'Literal',
-                        'options' => array(
+                        'options' => [
                             'route' => '/omeka2importer',
-                            'defaults' => array(
+                            'defaults' => [
                                 '__NAMESPACE__' => 'Omeka2Importer\Controller',
                                 'controller' => 'Index',
                                 'action' => 'index',
-                            ),
-                        ),
+                            ],
+                        ],
                         'may_terminate' => true,
-                        'child_routes' => array(
-                            'past-imports' => array(
+                        'child_routes' => [
+                            'past-imports' => [
                                 'type' => 'Literal',
-                                'options' => array(
+                                'options' => [
                                     'route' => '/past-imports',
-                                    'defaults' => array(
+                                    'defaults' => [
                                         '__NAMESPACE__' => 'Omeka2Importer\Controller',
                                         'controller' => 'Index',
                                         'action' => 'past-imports',
-                                    ),
-                                ),
-                            ),
-                            'map-elements' => array(
+                                    ],
+                                ],
+                            ],
+                            'map-elements' => [
                                 'type' => 'Literal',
-                                'options' => array(
+                                'options' => [
                                     'route' => '/map-elements',
-                                    'defaults' => array(
+                                    'defaults' => [
                                         '__NAMESPACE__' => 'Omeka2Importer\Controller',
                                         'controller' => 'Index',
                                         'action' => 'map-elements',
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
-    ),
-    'navigation' => array(
-        'AdminModule' => array(
-            array(
-                'label' => 'Omeka 2 Importer',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'navigation' => [
+        'AdminModule' => [
+            [
+                'label' => 'Omeka 2 Importer', // @translate
                 'route' => 'admin/omeka2importer',
                 'resource' => 'Omeka2Importer\Controller\Index',
-                'pages' => array(
-                    array(
-                        'label' => 'Import',
+                'pages' => [
+                    [
+                        'label' => 'Import', // @translate
                         'route' => 'admin/omeka2importer',
                         'resource' => 'Omeka2Importer\Controller\Index',
-                    ),
-                    array(
-                        'label' => 'Import',
+                    ],
+                    [
+                        'label' => 'Import', // @translate
                         'route' => 'admin/omeka2importer/map-elements',
                         'resource' => 'Omeka2Importer\Controller\Index',
                         'visible' => false,
-                    ),
-                    array(
-                        'label' => 'Past Imports',
+                    ],
+                    [
+                        'label' => 'Past Imports', // @translate
                         'route' => 'admin/omeka2importer/past-imports',
                         'controller' => 'Index',
                         'action' => 'past-imports',
                         'resource' => 'Omeka2Importer\Controller\Index',
-                    ),
-                ),
-            ),
-        ),
-    ),
-);
+                    ],
+                ],
+            ],
+        ],
+    ],
+];
