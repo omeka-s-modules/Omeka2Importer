@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-28 11:28-0400\n"
+"POT-Creation-Date: 2017-11-08 12:10-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -211,8 +211,16 @@ msgstr ""
 msgid "Lesson Plan"
 msgstr ""
 
-#: src/Controller/IndexController.php:87
+#: src/Controller/IndexController.php:32 src/Controller/IndexController.php:83
+msgid "Importing in Job ID "
+msgstr ""
+
+#: src/Controller/IndexController.php:35 src/Controller/IndexController.php:87
 msgid "There was an error during validation"
+msgstr ""
+
+#: src/Controller/IndexController.php:53
+msgid ", "
 msgstr ""
 
 #: src/Controller/IndexController.php:99
