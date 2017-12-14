@@ -6,4 +6,4 @@ See the [Omeka S user manual](http://omeka.org/s/docs/user-manual/modules/omeka2
 
 ## Installation
 
-See general end user documentation for [Installing a module](http://dev.omeka.org/docs/s/user-manual/modules/#installing-modules)
+See general end user documentation for [Installing a module](http://omeka.org/s/docs/user-manual/modules/#installing-modules)
