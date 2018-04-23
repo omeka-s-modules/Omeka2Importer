@@ -66,6 +66,9 @@ class MappingForm extends Form
                 'label' => 'Per page', // @translate
                 'info' => 'Optional. Only retrieve this many records for each request.', // @translate
             ],
+            'attributes' => [
+                'id' => 'per-page',
+            ],
         ]);
 
         $this->add([
@@ -75,7 +78,9 @@ class MappingForm extends Form
                 'label' => 'Update a previous import', // @translate
                 'info' => 'If checked, items will be reimported and all data replaced, including Item Set membership as set on this page.', // @translate
             ],
-
+            'attributes' => [
+                'id' => 'update',
+            ],
         ]);
 
         $this->add([
@@ -84,6 +89,9 @@ class MappingForm extends Form
             'options' => [
                 'label' => 'Import Collections', // @translate
                 'info' => 'Import Omeka 2 collections as item sets. Items will be added to the new item sets.', // @translate
+            ],
+            'attributes' => [
+                'id' => 'import-collections',
             ],
         ]);
 

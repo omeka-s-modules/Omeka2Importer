@@ -33,7 +33,7 @@ $escape = $this->plugin('escapeHtml');
             
             <td>
                 <?php if (! $undoJob || ! $undoJob->ended()): ?>
-                <input type='checkbox' name='jobs[]' value='<?php echo $job->id(); ?>' />
+                <input type='checkbox' name='jobs[]' value='<?php echo $job->id(); ?>' aria-label="<?php echo $this->translate('Undo job'); ?>"/>
                 <?php endif; ?>
             </td>
             
