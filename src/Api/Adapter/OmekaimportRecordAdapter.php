@@ -29,32 +29,32 @@ class OmekaimportRecordAdapter extends AbstractEntityAdapter
     {
         if (isset($query['endpoint'])) {
             $qb->andWhere($qb->expr()->eq(
-                $this->getEntityClass().'.endpoint',
+                'omeka_root.endpoint',
                 $this->createNamedParameter($qb, $query['endpoint']))
             );
         }
         if (isset($query['remote_type'])) {
             $qb->andWhere($qb->expr()->eq(
-                $this->getEntityClass().'.remoteType',
+                'omeka_root.remoteType',
                 $this->createNamedParameter($qb, $query['remote_type']))
             );
         }
 
         if (isset($query['job_id'])) {
             $qb->andWhere($qb->expr()->eq(
-                $this->getEntityClass().'.job',
+                'omeka_root.job',
                 $this->createNamedParameter($qb, $query['job_id']))
             );
         }
         if (isset($query['item_id'])) {
             $qb->andWhere($qb->expr()->eq(
-                $this->getEntityClass().'.item',
+                'omeka_root.item',
                 $this->createNamedParameter($qb, $query['item_id']))
             );
         }
         if (isset($query['remote_id'])) {
             $qb->andWhere($qb->expr()->eq(
-                $this->getEntityClass().'.remoteId',
+                'omeka_root.remoteId',
                 $this->createNamedParameter($qb, $query['remote_id']))
             );
         }

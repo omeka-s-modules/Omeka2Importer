@@ -55,7 +55,7 @@ class OmekaimportImportAdapter extends AbstractEntityAdapter
     {
         if (isset($query['job_id'])) {
             $qb->andWhere($qb->expr()->eq(
-                $this->getEntityClass().'.job',
+                'omeka_root.job',
                 $this->createNamedParameter($qb, $query['job_id']))
             );
         }
