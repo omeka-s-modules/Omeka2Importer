@@ -1,0 +1,318 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Latino Imparato <latino.imparato@gmail.com>, 2018
+# Tommaso Vitale, 2019
+# Giorgio Comai <g@giorgiocomai.eu>, 2019
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-08 11:43-0400\n"
+"PO-Revision-Date: 2017-09-14 20:16+0000\n"
+"Last-Translator: Giorgio Comai <g@giorgiocomai.eu>, 2019\n"
+"Language-Team: Italian (https://www.transifex.com/omeka/teams/14184/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: view/omeka2-importer/common/resource-class-selector.phtml:8
+msgid "Click on a resource class to add it to the mapped item types."
+msgstr ""
+"Clicca sulla classe di risorsa  per aggiungerla al tipo di contenuto "
+"mappato."
+
+#: view/omeka2-importer/common/resource-class-selector.phtml:10
+msgid "Filter resource classes"
+msgstr "Filtra le classi di risorsa"
+
+#: view/omeka2-importer/common/resource-class-selector.phtml:30
+msgid "More Info"
+msgstr "Maggiori informazioni"
+
+#: view/omeka2-importer/index/fetch-mapping-data.phtml:1
+msgid "Map Omeka 2 Elements to Omeka S Properties"
+msgstr "Mappa Elementi di Omeka 2 alle Proprietà di Omeka S"
+
+#: view/omeka2-importer/index/fetch-mapping-data.phtml:8
+#: view/omeka2-importer/index/map-elements.phtml:36
+msgid "Omeka 2 element"
+msgstr "Elemento di Omeka 2"
+
+#: view/omeka2-importer/index/fetch-mapping-data.phtml:9
+#: view/omeka2-importer/index/map-elements.phtml:37
+msgid "Mapped properties"
+msgstr "Le proprietà mappate"
+
+#: view/omeka2-importer/index/fetch-mapping-data.phtml:10
+#: view/omeka2-importer/index/map-elements.phtml:38
+#: view/omeka2-importer/index/map-elements.phtml:69
+msgid "Import as HTML media"
+msgstr "Importa come media HTML"
+
+#: view/omeka2-importer/index/fetch-mapping-data.phtml:44
+msgid "Map Omeka 2 Item Types to Omeka S Resource Classes"
+msgstr "Mappa i tipi di contenuto Omeka 2 alle classi di risorsa Omeka S"
+
+#: view/omeka2-importer/index/fetch-mapping-data.phtml:50
+#: view/omeka2-importer/index/map-elements.phtml:84
+msgid ""
+"Items can have only one resource class. Clicking more than one resource "
+"class for an item type will replace it."
+msgstr ""
+"I contenuti possono appartenere ad un'unica classe di risorsa. Selezionare "
+"più di una classe di risorsa per un tipo di contenuto porterà alla sua "
+"sostituzione."
+
+#: view/omeka2-importer/index/fetch-mapping-data.phtml:56
+msgid "Item type"
+msgstr "Tipo di contenuto"
+
+#: view/omeka2-importer/index/fetch-mapping-data.phtml:57
+msgid "Resource class"
+msgstr ""
+
+#: view/omeka2-importer/index/index.phtml:9
+#: view/omeka2-importer/index/past-imports.phtml:6
+msgid "Omeka 2 Import"
+msgstr "Importazione da Omeka 2"
+
+#: view/omeka2-importer/index/index.phtml:9
+#: view/omeka2-importer/index/map-elements.phtml:11
+msgid "Import Settings"
+msgstr "Impostazioni di importazione"
+
+#: view/omeka2-importer/index/index.phtml:20
+msgid "Enter the Omeka 2 API endpoint."
+msgstr "Inserisci alla fine Omeka 2 API"
+
+#: view/omeka2-importer/index/map-elements.phtml:11
+msgid "Omeka 2 Importer"
+msgstr "Importatore Omeka 2"
+
+#: view/omeka2-importer/index/map-elements.phtml:15
+msgid "Start Over"
+msgstr "Ricomincia dall'inizio"
+
+#: view/omeka2-importer/index/map-elements.phtml:20
+msgid "Basic Import Settings"
+msgstr "Impostazioni di importazione di base"
+
+#: view/omeka2-importer/index/map-elements.phtml:21
+msgid "Map to Omeka S Properties"
+msgstr "Mappa delle proprietà di Omeka S"
+
+#: view/omeka2-importer/index/map-elements.phtml:22
+msgid "Map to Omeka S Classes"
+msgstr "Mappa classi Omeka S"
+
+#: view/omeka2-importer/index/map-elements.phtml:32
+msgid "Clear Defaults"
+msgstr "Cancella valori predefiniti"
+
+#: view/omeka2-importer/index/map-elements.phtml:57
+#: view/omeka2-importer/index/map-elements.phtml:105
+msgid "Remove mapping"
+msgstr "Elimina mappatura"
+
+#: view/omeka2-importer/index/map-elements.phtml:60
+#: view/omeka2-importer/index/map-elements.phtml:105
+msgid "Undo remove mapping"
+msgstr "Annulla mappatura cancellata"
+
+#: view/omeka2-importer/index/map-elements.phtml:78
+msgid ""
+"Select property to map. Click an Omeka 2 element as the target, then select "
+"the properties for it."
+msgstr ""
+"Seleziona la proprietà alla mappa. Clicca sull'elemento Omeka 2 come il "
+"target, dopo seleziona le proprietà."
+
+#: view/omeka2-importer/index/map-elements.phtml:86
+msgid "Clear defaults"
+msgstr "Cancella impostazioni"
+
+#: view/omeka2-importer/index/map-elements.phtml:90
+msgid "Item Type"
+msgstr "Tipo di contenuto"
+
+#: view/omeka2-importer/index/map-elements.phtml:91
+msgid "Resource Class"
+msgstr "Classe della risorsa"
+
+#: view/omeka2-importer/index/map-elements.phtml:116
+msgid ""
+"Select class to map. Click an Omeka 2 item type as the target, then select "
+"the resource class for it. Omeka S items can have only one resource class."
+msgstr ""
+"Seleziona la classe alla mappa. Clicca il tipo di contenuto Omeka 2 come il "
+"target, dopo seleziona la classe di risorsa. I contenuti di Omeka S possono "
+"avere solo una classe di risorsa."
+
+#: view/omeka2-importer/index/past-imports.phtml:6
+msgid "Past Imports"
+msgstr "Importazioni passati "
+
+#: view/omeka2-importer/index/past-imports.phtml:19
+msgid "Undo?"
+msgstr "Annulla?"
+
+#: view/omeka2-importer/index/past-imports.phtml:20
+msgid "Job ID"
+msgstr "Lavoro ID"
+
+#: view/omeka2-importer/index/past-imports.phtml:36
+msgid "Undo job"
+msgstr ""
+
+#: view/omeka2-importer/index/past-imports.phtml:45
+msgid "Added: "
+msgstr "Aggiunto:"
+
+#: view/omeka2-importer/index/past-imports.phtml:46
+msgid "Updated: "
+msgstr "Aggiornato:"
+
+#: view/omeka2-importer/index/past-imports.phtml:52
+msgid "Undone"
+msgstr "Annullato"
+
+#: view/omeka2-importer/index/past-imports.phtml:54
+msgid "Undo in progress"
+msgstr "Annullamento in corso"
+
+#: src/Form/ImportForm.php:15
+msgid "Omeka 2 Api Endpoint"
+msgstr "Endpoint delle Api di Omeka 2"
+
+#: src/Form/ImportForm.php:16
+msgid "The URI of the Omeka 2 Api Endpoint"
+msgstr "L'URI dell'endpoint delle Api di Omeka 2"
+
+#: src/Form/MappingForm.php:19
+msgid "Omeka 2 API key"
+msgstr "Chiave API di Omeka 2"
+
+#: src/Form/MappingForm.php:20
+msgid "Your API key for this site"
+msgstr "La tua API chiave per questo sito"
+
+#: src/Form/MappingForm.php:32
+msgid "A note about the purpose or source of this import"
+msgstr "Una nota sullo scopo e sul motivo di questa importazione "
+
+#: src/Form/MappingForm.php:50
+msgid "Import into"
+msgstr "Importa in"
+
+#: src/Form/MappingForm.php:51
+msgid ""
+"Optional. Import items into this item set. It is recommended to create an "
+"Item Set for each Omeka 2 site you import."
+msgstr ""
+"Opzionale. Importa i contenuti in questa collezione. Si raccomanda di creare"
+" una collezione per ogni sito di Omeka 2 che importi."
+
+#: src/Form/MappingForm.php:66
+msgid "Per page"
+msgstr "Per pagina"
+
+#: src/Form/MappingForm.php:67
+msgid "Optional. Only retrieve this many records for each request."
+msgstr "Opzionale. Raccogli solo questo numero di record in ogni richiesta."
+
+#: src/Form/MappingForm.php:78
+msgid "Update a previous import"
+msgstr "Aggiorna un import precedente"
+
+#: src/Form/MappingForm.php:79
+msgid ""
+"If checked, items will be reimported and all data replaced, including Item "
+"Set membership as set on this page."
+msgstr ""
+"Se selezionato, i contenuti saranno reimportati e tutti i dati sostituiti, "
+"inclusa l'appartenenza ad una collezione impostata in questa pagina."
+
+#: src/Form/MappingForm.php:90
+msgid "Import Collections"
+msgstr "Importa collezioni"
+
+#: src/Form/MappingForm.php:91
+msgid ""
+"Import Omeka 2 collections as item sets. Items will be added to the new item"
+" sets."
+msgstr ""
+"Importa collezioni di Omeka 2 come collezioni. I contenuti verranno aggiunti"
+" a queste nuove collezioni."
+
+#: src/Controller/IndexController.php:32 src/Controller/IndexController.php:83
+msgid "Importing in Job ID "
+msgstr "Importazione nel ID lavoro"
+
+#: src/Controller/IndexController.php:35 src/Controller/IndexController.php:87
+msgid "There was an error during validation"
+msgstr "Si è verificato un errore durante la validazione"
+
+#: src/Controller/IndexController.php:53
+msgid ", "
+msgstr ","
+
+#: src/Controller/IndexController.php:99
+#, php-format
+msgid "The endpoint %s is not a valid Omeka 2 endpoint."
+msgstr "L'endpoint %snon è un endpoint di Omeka 2 valido."
+
+#: src/Controller/item_type_maps.php:5
+msgid "Interviewer"
+msgstr "Intervistatore"
+
+#: src/Controller/item_type_maps.php:7
+msgid "Interviewee"
+msgstr "Intervistato"
+
+#: src/Controller/item_type_maps.php:12
+msgid "Original Format"
+msgstr "Formato originale"
+
+#: src/Controller/item_type_maps.php:14
+msgid "Physical Dimensions"
+msgstr "Dimensioni fisiche"
+
+#: src/Controller/item_type_maps.php:16
+msgid "Duration"
+msgstr "Durata"
+
+#: src/Controller/item_type_maps.php:19
+msgid "Producer"
+msgstr "Produttore"
+
+#: src/Controller/item_type_maps.php:21
+msgid "Director"
+msgstr "Regista"
+
+#: src/Controller/item_type_maps.php:27
+msgid "From"
+msgstr "Da"
+
+#: src/Controller/item_type_maps.php:29
+msgid "To"
+msgstr "A"
+
+#: src/Controller/item_type_maps.php:31
+msgid "CC"
+msgstr "CC"
+
+#: src/Controller/item_type_maps.php:55
+msgid "Oral History"
+msgstr "Storia orale"
+
+#: src/Controller/item_type_maps.php:67
+msgid "Lesson Plan"
+msgstr "Il piano di lezione"
