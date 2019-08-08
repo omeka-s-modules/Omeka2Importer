@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-08 12:10-0500\n"
+"POT-Creation-Date: 2019-08-08 11:43-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,6 +45,7 @@ msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:10
 #: view/omeka2-importer/index/map-elements.phtml:38
+#: view/omeka2-importer/index/map-elements.phtml:69
 msgid "Import as HTML media"
 msgstr ""
 
@@ -61,6 +62,10 @@ msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:56
 msgid "Item type"
+msgstr ""
+
+#: view/omeka2-importer/index/fetch-mapping-data.phtml:57
+msgid "Resource class"
 msgstr ""
 
 #: view/omeka2-importer/index/index.phtml:9
@@ -147,6 +152,10 @@ msgstr ""
 msgid "Job ID"
 msgstr ""
 
+#: view/omeka2-importer/index/past-imports.phtml:36
+msgid "Undo job"
+msgstr ""
+
 #: view/omeka2-importer/index/past-imports.phtml:45
 msgid "Added: "
 msgstr ""
@@ -161,6 +170,81 @@ msgstr ""
 
 #: view/omeka2-importer/index/past-imports.phtml:54
 msgid "Undo in progress"
+msgstr ""
+
+#: src/Form/ImportForm.php:15
+msgid "Omeka 2 Api Endpoint"
+msgstr ""
+
+#: src/Form/ImportForm.php:16
+msgid "The URI of the Omeka 2 Api Endpoint"
+msgstr ""
+
+#: src/Form/MappingForm.php:19
+msgid "Omeka 2 API key"
+msgstr ""
+
+#: src/Form/MappingForm.php:20
+msgid "Your API key for this site"
+msgstr ""
+
+#: src/Form/MappingForm.php:32
+msgid "A note about the purpose or source of this import"
+msgstr ""
+
+#: src/Form/MappingForm.php:50
+msgid "Import into"
+msgstr ""
+
+#: src/Form/MappingForm.php:51
+msgid ""
+"Optional. Import items into this item set. It is recommended to create an "
+"Item Set for each Omeka 2 site you import."
+msgstr ""
+
+#: src/Form/MappingForm.php:66
+msgid "Per page"
+msgstr ""
+
+#: src/Form/MappingForm.php:67
+msgid "Optional. Only retrieve this many records for each request."
+msgstr ""
+
+#: src/Form/MappingForm.php:78
+msgid "Update a previous import"
+msgstr ""
+
+#: src/Form/MappingForm.php:79
+msgid ""
+"If checked, items will be reimported and all data replaced, including Item "
+"Set membership as set on this page."
+msgstr ""
+
+#: src/Form/MappingForm.php:90
+msgid "Import Collections"
+msgstr ""
+
+#: src/Form/MappingForm.php:91
+msgid ""
+"Import Omeka 2 collections as item sets. Items will be added to the new item "
+"sets."
+msgstr ""
+
+#: src/Controller/IndexController.php:32 src/Controller/IndexController.php:83
+msgid "Importing in Job ID "
+msgstr ""
+
+#: src/Controller/IndexController.php:35 src/Controller/IndexController.php:87
+msgid "There was an error during validation"
+msgstr ""
+
+#: src/Controller/IndexController.php:53
+msgid ", "
+msgstr ""
+
+#: src/Controller/IndexController.php:99
+#, php-format
+msgid "The endpoint %s is not a valid Omeka 2 endpoint."
 msgstr ""
 
 #: src/Controller/item_type_maps.php:5
@@ -209,83 +293,4 @@ msgstr ""
 
 #: src/Controller/item_type_maps.php:67
 msgid "Lesson Plan"
-msgstr ""
-
-#: src/Controller/IndexController.php:32 src/Controller/IndexController.php:83
-msgid "Importing in Job ID "
-msgstr ""
-
-#: src/Controller/IndexController.php:35 src/Controller/IndexController.php:87
-msgid "There was an error during validation"
-msgstr ""
-
-#: src/Controller/IndexController.php:53
-msgid ", "
-msgstr ""
-
-#: src/Controller/IndexController.php:99
-#, php-format
-msgid "The endpoint %s is not a valid Omeka 2 endpoint."
-msgstr ""
-
-#: src/Form/ImportForm.php:15
-msgid "Omeka 2 Api Endpoint"
-msgstr ""
-
-#: src/Form/ImportForm.php:16
-msgid "The URI of the Omeka 2 Api Endpoint"
-msgstr ""
-
-#: src/Form/MappingForm.php:19
-msgid "Omeka 2 API key"
-msgstr ""
-
-#: src/Form/MappingForm.php:20
-msgid "Your API key for this site"
-msgstr ""
-
-#: src/Form/MappingForm.php:32
-msgid "A note about the purpose or source of this import"
-msgstr ""
-
-#: src/Form/MappingForm.php:46
-msgid "Select item sets"
-msgstr ""
-
-#: src/Form/MappingForm.php:50
-msgid "Import into"
-msgstr ""
-
-#: src/Form/MappingForm.php:51
-msgid ""
-"Optional. Import items into this item set. It is recommended to create an "
-"Item Set for each Omeka 2 site you import."
-msgstr ""
-
-#: src/Form/MappingForm.php:66
-msgid "Per page"
-msgstr ""
-
-#: src/Form/MappingForm.php:67
-msgid "Optional. Only retrieve this many records for each request."
-msgstr ""
-
-#: src/Form/MappingForm.php:75
-msgid "Update a previous import"
-msgstr ""
-
-#: src/Form/MappingForm.php:76
-msgid ""
-"If checked, items will be reimported and all data replaced, including Item "
-"Set membership as set on this page."
-msgstr ""
-
-#: src/Form/MappingForm.php:85
-msgid "Import Collections"
-msgstr ""
-
-#: src/Form/MappingForm.php:86
-msgid ""
-"Import Omeka 2 collections as item sets. Items will be added to the new item "
-"sets."
 msgstr ""
