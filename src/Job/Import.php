@@ -285,6 +285,7 @@ class Import extends AbstractJob
         $resourceJson = [];
         $resourceJson['remote_id'] = $importData['id'];
         $resourceJson['o:item_set'] = [];
+        $resourceJson['o:is_public'] = $importData['public'];
 
         if (isset($importData['collection'])) {
             $omekaCollectionId = $importData['collection']['id'];
