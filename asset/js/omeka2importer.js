@@ -113,6 +113,7 @@
 
         // Remove mapping
         $('.section').on('click', 'a.remove-mapping', function(e) {
+            e.preventDefault();
             var mappingToRemove = $(this).parents('li.mapping');
             mappingToRemove.find('input').prop('disabled', true);
             mappingToRemove.addClass('delete');
@@ -122,6 +123,7 @@
 
         // Restore a removed mapping
         $('.section').on('click', 'a.restore-mapping', function(e) {
+            e.preventDefault();
             var mappingToRemove = $(this).parents('li.mapping');
             mappingToRemove.find('.remove-mapping').show();
             mappingToRemove.find('span.restore-mapping').hide();
