@@ -364,7 +364,7 @@ class Import extends AbstractJob
         foreach ($filesData as $fileData) {
             $fileJson = [
                 'o:ingester' => 'url',
-                'o:source' => $fileData['file_urls']['original'],
+                'o:source' => $fileData['original_filename'],
                 'ingest_url' => $fileData['file_urls']['original'],
             ];
             $fileJson = array_merge($fileJson, $this->buildPropertyJson($fileData));
