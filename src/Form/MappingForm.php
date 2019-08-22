@@ -95,6 +95,21 @@ class MappingForm extends Form
             ],
         ]);
 
+        $this->add([
+            'name' => 'tagPropertyId',
+            'type' => 'Omeka\Form\Element\PropertySelect',
+            'options' => [
+                'label' => 'Import tag as', // @translate
+                'info' => 'Import tag into this property', // @translate
+                'empty_option' => '',
+            ],
+            'attributes' => [
+                'id' => 'tag-property',
+                'class' => 'chosen-select',
+                'data-placeholder' => 'Select a property', // @translate
+            ],
+        ]);
+
         $inputFilter = $this->getInputFilter();
         $inputFilter->add([
             'name' => 'itemSet',

@@ -28,6 +28,8 @@ class Import extends AbstractJob
 
     protected $dctermsTitleId;
 
+    protected $tagPropertyId;
+
     protected $logger;
 
     protected $importRecordId;
@@ -64,6 +66,7 @@ class Import extends AbstractJob
             $dctermsTitle = $response->getContent()[0];
             $this->dctermsTitleId = $dctermsTitle->id();
         }
+        $this->tagPropertyId = $this->getArg('tagPropertyId');
 
         $comment = $this->getArg('comment');
         $Omeka2ImportJson = [
@@ -389,6 +392,16 @@ class Import extends AbstractJob
                             'type' => 'literal',
                             ];
                 }
+            }
+        }
+
+        if ($this->tagPropertyId) {
+            foreach ($importData['tags'] as $tagData) {
+                $propertyJson[$this->tagPropertyId][] = [
+                    '@value' => $tagData['name'],
+                    'property_id' => $this->tagPropertyId,
+                    'type' => 'literal',
+                ];
             }
         }
 
