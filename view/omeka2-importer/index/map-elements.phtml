@@ -35,7 +35,6 @@ $backUrl = $this->url('admin/omeka2importer');
             <tr>
                 <th><?php echo $escape($this->translate("Omeka 2 element")); ?></th>
                 <th><?php echo $escape($this->translate("Mapped properties")); ?></th>
-                <th><?php echo $escape($this->translate("Import as HTML media")); ?></th>
             </tr>
         </thead>
         <tbody>
@@ -64,9 +63,6 @@ $backUrl = $this->url('admin/omeka2importer');
                         </li>
                     <?php endif; ?>
                     </ul>
-                </td>
-                <td>
-                    <input type="checkbox" name="html-element[<?php echo $element['id']; ?>]" aria-label="<?php echo $this->translate('Import as HTML media'); ?>"></input>
                 </td>
             </tr>
             <?php endforeach; ?>
