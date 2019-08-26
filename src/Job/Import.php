@@ -24,6 +24,8 @@ class Import extends AbstractJob
 
     protected $elementMap;
 
+    protected $htmlElementMap;
+
     protected $dctermsTitleId;
 
     protected $tagPropertyId;
@@ -47,6 +49,8 @@ class Import extends AbstractJob
         } else {
             $this->elementMap = [];
         }
+
+        $this->htmlElementMap = $this->getArg('html-element', []);
 
         $this->addedCount = 0;
         $this->updatedCount = 0;
@@ -332,12 +336,15 @@ class Import extends AbstractJob
         //on to o:media at a higher level
         $itemId = $importData['id'];
         foreach ($importData['element_texts'] as $elTextData) {
-            if ($elTextData['html']) {
+            if (array_key_exists($elTextData['element']['id'], $this->htmlElementMap)) {
                 $htmlJson = [
                         'o:ingester' => 'html',
-                        'o:source' => $elTextData['element']['name'],
                         'data' => [
                             'html' => $elTextData['text'],
+                            'dcterms:title' => [
+                                'property_id' => $this->dctermsTitleId,
+                                '@value' => $elTextData['element']['name'],
+                            ],
                         ],
                 ];
                 $mediaJson['o:media'][] = $htmlJson;
@@ -371,11 +378,6 @@ class Import extends AbstractJob
     {
         $propertyJson = [];
         foreach ($importData['element_texts'] as $elTextData) {
-            if (!isset($importData['item']) && $elTextData['html']) {
-                // Skip if this is an item and the property is HTML. The element
-                // text will be saved as HTML media instead.
-                continue;
-            }
             $value = strip_tags($elTextData['text']);
             $elementSetId = $elTextData['element_set']['id'];
             $elementId = $elTextData['element']['id'];

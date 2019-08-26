@@ -7,6 +7,7 @@
             <tr>
                 <th><?php echo $this->translate("Omeka 2 element"); ?></th>
                 <th><?php echo $this->translate("Mapped properties"); ?></th>
+                <th><?php echo $this->translate("Import as HTML media"); ?></th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,9 @@
                         </li>
                     <?php endif; ?>
                     </ul>
+                </td>
+                <td>
+                    <input type="checkbox" name="html-element[<?php echo $element['id']; ?>]"></input>
                 </td>
             </tr>
             <?php endforeach; ?>
