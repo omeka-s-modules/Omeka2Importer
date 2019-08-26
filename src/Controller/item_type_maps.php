@@ -1,50 +1,74 @@
 <?php
 
 $itemTypeElementMap = [
-    //'Text' Make html media, if type is Text
+    'Text' // @translate
+        => 'oc:text',
     'Interviewer'  // @translate
         => 'bibo:interviewer',
     'Interviewee'  // @translate
         => 'bibo:interviewee',
-    //'Location'
-    //'Transcription'
-    //'Local URL'
+    'Location' // @translate
+        => 'oc:location',
+    'Transcription' // @translate
+        => 'oc:transcription',
+    'Local URL' // @translate
+        => 'oc:localUrl',
     'Original Format'  // @translate
-        => 'dcterms:format',
+        => 'oc:originalFormat',
     'Physical Dimensions'  // @translate
         => 'dcterms:extent',
     'Duration'  // @translate
-        => 'dcterms:extent',
-    //'Compression'
+        => 'oc:duration',
+    'Compression' // @translate
+        => 'oc:compression',
     'Producer'  // @translate
         => 'bibo:producer',
     'Director'  // @translate
         => 'bibo:director',
-    //'Bit Rate/Frequency'
-    //'Time Summary'
-    //'Email Body' media?
-    //'Subject Line'
+    'Bit Rate/Frequency' // @translate
+        => 'oc:bitRateFrequency',
+    'Time Summary' // @translate
+        => 'oc:timeSummary',
+    'Email Body' // @translate
+        => 'oc:emailBody',
+    'Subject Line' // @translate
+        => 'oc:subjectLine',
     'From'  // @translate
-        => 'bibo:producer',
+        => 'oc:from',
     'To'  // @translate
-        => 'bibo:recipient',
+        => 'oc:to',
     'CC'  // @translate
-        => 'bibo:recipient',
-    //'BCC'
-    //'Number of Attachments'
-    //'Standards'
-    //'Objectives'
-    //'Materials'
-    //'Lesson Plan Text' media?
-    //'URL'
-    //'Event Type'
-    //'Participants'
-    //'Birth Date'
-    //'Birthplace'
-    //'Death Date'
-    //'Occupation'
-    //'Biographical Text'
-    //'Bibliography'
+        => 'oc:cc',
+    'BCC' // @translate
+        => 'oc:bcc',
+    'Number of Attachments' // @translate
+        => 'oc:numberOfAttachments',
+    'Standards' // @translate
+        => 'oc:standards',
+    'Objectives' // @translate
+        => 'oc:objectives',
+    'Materials' // @translate
+        => 'oc:materials',
+    'Lesson Plan Text' // @translate
+        => 'oc:lessonPlanText',
+    'URL' // @translate
+        => 'bibo:uri',
+    'Event Type' // @translate
+        => 'oc:eventType',
+    'Participants' // @translate
+        => 'oc:participants',
+    'Birth Date' // @translate
+        => 'foaf:birthday',
+    'Birthplace' // @translate
+        => 'oc:birthplace',
+    'Death Date' // @translate
+        => 'oc:deathDate',
+    'Occupation' // @translate
+        => 'oc:occupation',
+    'Biographical Text' // @translate
+        => 'oc:biographicalText',
+    'Bibliography' // @translate
+        => 'oc:bibliography',
 ];
 
 $itemTypeMap = [
@@ -53,7 +77,7 @@ $itemTypeMap = [
     'Moving Image'  // @translate
         => 'dctype:MovingImage',
     'Oral History'  // @translate
-        => 'bibo:AudioDocument',
+        => 'oc:OralHistory',
     'Sound'  // @translate
         => 'dctype:Sound',
     'Still Image'  // @translate
@@ -65,8 +89,9 @@ $itemTypeMap = [
     'Email'  // @translate
         => 'bibo:Email',
     'Lesson Plan'  // @translate
-        => 'bibo:Workshop',
-    //'Hyperlink'
+        => 'oc:LessonPlan',
+    'Hyperlink' // @translate
+        => 'oc:Hyperlink',
     'Person'  // @translate
         => 'foaf:Person',
     'Interactive Resource'
