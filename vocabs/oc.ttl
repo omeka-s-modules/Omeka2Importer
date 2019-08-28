@@ -1,0 +1,173 @@
+@prefix oc: <http://omeka.org/s/vocabs/oc#> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctype: <http://purl.org/dc/dcmitype/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# The "Omeka Classic" vocabulary
+
+# This vocabulary is intended for use when migrating from Omeka Classic to
+# Omeka S. Many Omeka Classic item types and elements map directly to classes
+# and properties that ship with Omeka S. For maximum compatibility, make sure
+# Omeka S has the "Bibliographic Ontology" and "Friend of a Friend"
+# vocabularies.
+
+# Classes ######################################################################
+
+# "Text" owl:sameAs dctype:Text
+# "Moving Image" owl:sameAs dctype:MovingImage
+# "Sound" owl:sameAs dctype:Sound
+# "Still Image" owl:sameAs dctype:StillImage
+# "Website" owl:sameAs bibo:Website
+# "Event" owl:sameAs dctype:Event
+# "Email" owl:sameAs bibo:Email
+# "Person" owl:sameAs foaf:Person
+# "Interactive Resource" owl:sameAs dctype:InteractiveResource
+# "Dataset" owl:sameAs dctype:Dataset
+# "Physical Object" owl:sameAs dctype:PhysicalObject
+# "Service" owl:sameAs dctype:Service
+# "Software" owl:sameAs dctype:Software
+
+oc:OralHistory a rdfs:Class ;
+    rdfs:label "Oral History"@en ;
+    rdfs:comment "A resource containing historical information obtained in interviews with persons having firsthand knowledge."@en ;
+    rdfs:subClassOf bibo:Interview .
+
+oc:LessonPlan a rdfs:Class ;
+    rdfs:label "Lesson Plan"@en ;
+    rdfs:comment "A resource that gives a detailed description of a course of instruction."@en .
+
+oc:Hyperlink a rdfs:Class ;
+    rdfs:label "Hyperlink"@en ;
+    rdfs:comment "A link, or reference, to another resource on the Internet."@en .
+
+# Properties ###################################################################
+
+# "Producer" owl:sameAs bibo:producer
+# "Director" owl:sameAs bibo:director
+# "Interviewer" owl:sameAs bibo:interviewer
+# "Interviewee" owl:sameAs bibo:interviewee
+# "URL" owl:sameAs bibo:uri
+# "Birth Date" owl:sameAs foaf:birthday
+
+oc:text a rdf:Property ;
+    rdfs:label "Text"@en ;
+    rdfs:comment "Any textual data included in the document."@en ;
+    rdfs:subPropertyOf bibo:content .
+
+oc:originalFormat a rdf:Property ;
+    rdfs:label "Original Format"@en ;
+    rdfs:comment "The type of object, such as painting, sculpture, paper, photo, and additional data."@en ;
+    rdfs:subPropertyOf dcterms:format .
+
+oc:transcription a rdf:Property ;
+    rdfs:label "Transcription"@en ;
+    rdfs:comment "Any written text transcribed from a sound."@en ;
+    rdfs:subPropertyOf bibo:content .
+
+oc:duration a rdf:Property ;
+    rdfs:label "Duration"@en ;
+    rdfs:comment "Length of time involved (seconds, minutes, hours, days, class periods, etc.)"@en ;
+    rdfs:subPropertyOf dcterms:extent .
+
+oc:compression a rdf:Property ;
+    rdfs:label "Compression"@en ;
+    rdfs:comment "Type/rate of compression for moving image file (i.e. MPEG-4)"@en ;
+    rdfs:subPropertyOf dcterms:format .
+
+oc:bitRateFrequency a rdf:Property ;
+    rdfs:label "Bit Rate/Frequency"@en ;
+    rdfs:comment "Rate at which bits are transferred (i.e. 96 kbit/s would be FM quality audio)"@en ;
+    rdfs:subPropertyOf dcterms:format .
+
+oc:location a rdf:Property ;
+    rdfs:label "Location"@en ;
+    rdfs:comment "The location of the interview"@en .
+
+oc:timeSummary a rdf:Property ;
+    rdfs:label "Time Summary"@en ;
+    rdfs:comment "A summary of an interview given for different time stamps throughout the interview"@en ;
+    rdfs:subPropertyOf dcterms:description .
+
+oc:physicalDimensions a rdf:Property ;
+    rdfs:label "Physical Dimensions"@en ;
+    rdfs:comment "The actual physical size of the original image"@en ;
+    rdfs:subPropertyOf dcterms:format .
+
+oc:localUrl a rdf:Property ;
+    rdfs:label "Local URL"@en ;
+    rdfs:comment "The URL of the local directory containing all assets of the website"@en ;
+    rdfs:subPropertyOf bibo:uri .
+
+oc:eventType a rdf:Property ;
+    rdfs:label "Event Type"@en ;
+    rdfs:subPropertyOf dcterms:type .
+
+oc:participants a rdf:Property ;
+    rdfs:label "Participants"@en ;
+    rdfs:comment "Names of individuals or groups participating in the event"@en .
+
+oc:emailBody a rdf:Property ;
+    rdfs:label "Email Body"@en ;
+    rdfs:comment "The main body of the email, including all replied and forwarded text and headers"@en .
+
+oc:subjectLine a rdf:Property ;
+    rdfs:label "Subject Line"@en ;
+    rdfs:comment "The content of the subject line of the email"@en .
+
+oc:from a rdf:Property ;
+    rdfs:label "From"@en ;
+    rdfs:comment "The name and email address of the person sending the email"@en .
+
+oc:to a rdf:Property ;
+    rdfs:label "To"@en ;
+    rdfs:comment "The name(s) and email address(es) of the person to whom the email was sent"@en .
+
+oc:cc a rdf:Property ;
+    rdfs:label "CC"@en ;
+    rdfs:comment "The name(s) and email address(es) of the person to whom the email was carbon copied"@en .
+
+oc:bcc a rdf:Property ;
+    rdfs:label "BCC"@en ;
+    rdfs:comment "The name(s) and email address(es) of the person to whom the email was blind carbon copied"@en .
+
+oc:numberOfAttachments a rdf:Property ;
+    rdfs:label "Number of Attachments"@en ;
+    rdfs:comment "The number of attachments to the email"@en .
+
+oc:standards a rdf:Property ;
+    rdfs:label "Standards"@en ;
+    rdfs:subPropertyOf dcterms:description .
+
+oc:objectives a rdf:Property ;
+    rdfs:label "Objectives"@en ;
+    rdfs:subPropertyOf dcterms:description .
+
+oc:materials a rdf:Property ;
+    rdfs:label "Materials"@en ;
+    rdfs:subPropertyOf dcterms:description .
+
+oc:lessonPlanText a rdf:Property ;
+    rdfs:label "Lesson Plan Text"@en ;
+    rdfs:subPropertyOf bibo:content .
+
+oc:birthplace a rdf:Property ;
+    rdfs:label "Birthplace"@en .
+
+oc:deathDate a rdf:Property ;
+    rdfs:label "Death Date"@en .
+
+oc:occupation a rdf:Property ;
+    rdfs:label "Occupation"@en .
+
+oc:biographicalText a rdf:Property ;
+    rdfs:label "Biographical Text"@en .
+
+oc:bibliography a rdf:Property ;
+    rdfs:label "Bibliography"@en .
+
+oc:tag a rdf:Property ;
+    rdfs:label "Tag"@en ;
+    rdfs:subPropertyOf dcterms:subject .
