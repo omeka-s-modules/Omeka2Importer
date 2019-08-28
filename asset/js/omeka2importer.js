@@ -8,6 +8,9 @@
             activeElement = null;
             $('tr.active').removeClass('active');
             switch ($(this).attr('id')) {
+                case 'omeka2-import-templates-map-fieldset':
+                    Omeka.closeSidebar($('#resource-template-selector'));
+                break;
                 case 'omeka2-import-types-map-fieldset':
                     Omeka.closeSidebar($('#resource-class-selector'));
                 break;
@@ -21,6 +24,9 @@
             activeElement = null;
             $('tr.active').removeClass('active');
             switch ($(this).attr('id')) {
+                case 'omeka2-import-templates-map-fieldset':
+                    Omeka.openSidebar($('#resource-template-selector'));
+                break;
                 case 'omeka2-import-types-map-fieldset':
                     Omeka.openSidebar($('#resource-class-selector'));
                 break;
@@ -80,7 +86,29 @@
                 var newInput = $('<input type="hidden" name="type-class[' + typeId + ']" ></input>');
                 newInput.val(targetLi.data('class-id'));
                 activeElement.find('td.mapping').append(newInput);
-                activeElement.find('ul.mappings').append('<li class="mapping" data-class-id="' + targetLi.data('class-id') + '">' + targetLi.data('child-search') + '</li>');
+                activeElement.find('ul.mappings').append('<li class="mapping" data-class-id="' + targetLi.data('class-id') + '">' + targetLi.data('child-search') + actionsHtml + '</li>');
+            }
+        });
+
+        $('#resource-template-selector li.selector-child').on('click', function(e){
+            e.stopPropagation();
+            //looks like a stopPropagation on the selector-parent forces
+            //me to bind the event lower down the DOM, then work back
+            //up to the li
+            var targetLi = $(e.target).closest('li.selector-child');
+            if (activeElement == null) {
+                alert("Select an item type at the left before choosing a resource template.");
+            } else {
+                //first, check if a class is already added
+                //var hasMapping = activeElement.find('ul.mappings li');
+                activeElement.find('ul.mappings li').remove();
+                activeElement.find('input').remove();
+                //hasMapping.remove();
+                var typeId = activeElement.data('item-type-id');
+                var newInput = $('<input type="hidden" name="type-template[' + typeId + ']" ></input>');
+                newInput.val(targetLi.data('template-id'));
+                activeElement.find('td.mapping').append(newInput);
+                activeElement.find('ul.mappings').append('<li class="mapping" data-template-id="' + targetLi.data('template-id') + '">' + targetLi.data('child-search') + actionsHtml + '</li>');
             }
         });
 

@@ -20,6 +20,7 @@ $backUrl = $this->url('admin/omeka2importer');
         <li class="active"><a href="#omeka2-import-basics-fieldset"><?php echo $escape($this->translate('Basic Import Settings')); ?></a></li>
         <li><a href="#omeka2-import-elements-map-fieldset"><?php echo $escape($this->translate('Map to Omeka S Properties')); ?></a></li>
         <li><a href="#omeka2-import-types-map-fieldset"><?php echo $escape($this->translate('Map to Omeka S Classes')); ?></a></li>
+        <li><a href="#omeka2-import-templates-map-fieldset"><?php echo $escape($this->translate('Map to Omeka S Templates')); ?></a></li>
     </ul>
 </nav>
 <input name='endpoint' value='<?php echo $endpoint; ?>' type='hidden' />
@@ -115,6 +116,41 @@ $backUrl = $this->url('admin/omeka2importer');
     <?php
     echo $this->resourceClassSelector($this->translate('Select class to map. Click an Omeka 2 item type as the target, then select the resource class for it. Omeka S items can have only one resource class.'), true);
     ?>
+</fieldset>
+
+<fieldset id="omeka2-import-templates-map-fieldset" class="section">
+    <p><?php echo $escape($this->translate('Items can have only one resource template. Clicking more than one resource template for an item type will replace it.')); ?></p>
+    <button class='clear-defaults'><?php echo $escape($this->translate('Clear defaults')); ?></button>
+    <table>
+        <thead>
+            <tr>
+                <th><?php echo $escape($this->translate('Item Type')); ?></th>
+                <th><?php echo $escape($this->translate('Resource Template')); ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($itemTypes as $itemType): ?>
+            <tr class="mappable" data-item-type-id="<?php echo $itemType['id']; ?>">
+                <td><?php echo $itemType['name']; ?></td>
+                <td class="mapping">
+                    <ul class="mappings">
+                        <?php if (array_key_exists($itemType['name'], $templateDefaultMap)): ?>
+                        <li class="mapping default">
+                            <?php echo $this->translate($templateDefaultMap[$itemType['name']]['templateLabel']); ?>
+                            <ul class="actions">
+                                <li><a aria-label="<?php echo $escape($this->translate('Remove mapping')); ?>" title="<?php echo $escape($this->translate('Remove mapping')); ?>" class="o-icon-delete remove-mapping" href="#" style="display: inline;"></a></li>
+                                <li><a aria-label="<?php echo $escape($this->translate('Undo remove mapping')); ?>" title="<?php echo $escape($this->translate('Undo remove mapping'));?>" class="o-icon-undo restore-mapping" href="#" style="display: none;"></a></li>
+                            </ul>
+                            <input type='hidden' name='type-template[<?php echo $itemType['id']?>]' value='<?php echo $templateDefaultMap[$itemType['name']]['templateId']; ?>' />
+                        </li>
+                        <?php endif; ?>
+                    </ul>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php echo $this->resourceTemplateSelector($this->translate('Select template to map. Click an Omeka 2 item type as the target, then select the resource template for it. Omeka S items can have only one resource template.'), true); ?>
 </fieldset>
 
 <?php echo $this->form()->closeTag($form); ?>

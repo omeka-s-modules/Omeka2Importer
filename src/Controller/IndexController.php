@@ -120,9 +120,11 @@ class IndexController extends AbstractActionController
 
         $elementDefaultMap = $this->buildElementDefaultMap($elementsData);
         $typeDefaultMap = $this->buildTypeDefaultMap($itemTypesData);
+        $templateDefaultMap = $this->buildTemplateDefaultMap($itemTypesData);
 
         $view->setVariable('elementDefaultMap', $elementDefaultMap);
         $view->setVariable('typeDefaultMap', $typeDefaultMap);
+        $view->setVariable('templateDefaultMap', $templateDefaultMap);
         $view->setVariable('elementsData', $elementsData);
         $view->setVariable('itemTypes', $itemTypesData);
         $view->setVariable('endpoint', $endpoint);
@@ -251,6 +253,24 @@ class IndexController extends AbstractActionController
         }
 
         return $typeMap;
+    }
+
+    protected function buildTemplateDefaultMap($itemTypes)
+    {
+        $templateMap = [];
+        foreach ($itemTypes as $type) {
+            $template = $this->api()->search(
+                'resource_templates',
+                ['label' => $type['name']]
+            )->getContent();
+            if ($template) {
+                $templateMap[$type['name']] = [
+                    'templateId' => $template[0]->id(),
+                    'templateLabel' => $template[0]->label(),
+                ];
+            }
+        }
+        return $templateMap;
     }
 
     protected function hasNextPage($response)

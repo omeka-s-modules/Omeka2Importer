@@ -43,6 +43,7 @@ return [
     'view_helpers' => [
         'invokables' => [
         'resourceClassSelector' => 'Omeka2Importer\View\Helper\ResourceClassSelector',
+            'resourceTemplateSelector' => 'Omeka2Importer\View\Helper\ResourceTemplateSelector',
         ],
     ],
     'entity_manager' => [

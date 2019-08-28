@@ -120,6 +120,10 @@ class MappingForm extends Form
             'name' => 'key',
             'required' => false,
         ]);
+        $inputFilter->add([
+            'name' => 'tagPropertyId',
+            'required' => false,
+        ]);
     }
 
     public function setOwner($identity)

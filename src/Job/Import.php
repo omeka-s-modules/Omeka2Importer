@@ -22,6 +22,8 @@ class Import extends AbstractJob
 
     protected $typeMap;
 
+    protected $templateMap;
+
     protected $elementMap;
 
     protected $htmlElementMap;
@@ -42,6 +44,11 @@ class Import extends AbstractJob
             $this->typeMap = $this->getArg('type-class', []);
         } else {
             $this->typeMap = [];
+        }
+        if (is_array($this->getArg('type-template'))) {
+            $this->templateMap = $this->getArg('type-template', []);
+        } else {
+            $this->templateMap = [];
         }
 
         if (is_array($this->getArg('element-property'))) {
@@ -308,14 +315,19 @@ class Import extends AbstractJob
         }
 
         $resourceClassId = null;
+        $resourceTemplateId = null;
         if (isset($importData['item_type'])) {
             $itemTypeName = $importData['item_type']['name'];
             $itemTypeId = $importData['item_type']['id'];
             if (array_key_exists($itemTypeId, $this->typeMap)) {
                 $resourceClassId = $this->typeMap[$itemTypeId];
             }
+            if (array_key_exists($itemTypeId, $this->templateMap)) {
+                $resourceTemplateId = $this->templateMap[$itemTypeId];
+            }
         }
         $resourceJson['o:resource_class'] = ['o:id' => $resourceClassId];
+        $resourceJson['o:resource_template'] = ['o:id' => $resourceTemplateId];
         $resourceJson = array_merge($resourceJson, $this->buildPropertyJson($importData));
         $mediaJson = $this->buildMediaJson($importData);
         $mediaJson = $this->buildHtmlMediaJson($importData, $mediaJson);
