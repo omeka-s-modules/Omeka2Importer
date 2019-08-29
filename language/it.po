@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 11:43-0400\n"
+"POT-Creation-Date: 2019-08-29 09:07-0400\n"
 "PO-Revision-Date: 2017-09-14 20:16+0000\n"
 "Last-Translator: Giorgio Comai <g@giorgiocomai.eu>, 2019\n"
 "Language-Team: Italian (https://www.transifex.com/omeka/teams/14184/it/)\n"
@@ -37,23 +37,34 @@ msgstr "Filtra le classi di risorsa"
 msgid "More Info"
 msgstr "Maggiori informazioni"
 
+#: view/omeka2-importer/common/resource-template-selector.phtml:8
+msgid "Click on a resource template to add it to the mapped item types."
+msgstr ""
+
+#: view/omeka2-importer/common/resource-template-selector.phtml:10
+msgid "Filter resource templates"
+msgstr ""
+
+#: view/omeka2-importer/common/resource-template-selector.phtml:13
+msgid "Resource Templates"
+msgstr ""
+
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:1
 msgid "Map Omeka 2 Elements to Omeka S Properties"
 msgstr "Mappa Elementi di Omeka 2 alle Proprietà di Omeka S"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:8
-#: view/omeka2-importer/index/map-elements.phtml:36
+#: view/omeka2-importer/index/map-elements.phtml:37
 msgid "Omeka 2 element"
 msgstr "Elemento di Omeka 2"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:9
-#: view/omeka2-importer/index/map-elements.phtml:37
+#: view/omeka2-importer/index/map-elements.phtml:38
 msgid "Mapped properties"
 msgstr "Le proprietà mappate"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:10
-#: view/omeka2-importer/index/map-elements.phtml:38
-#: view/omeka2-importer/index/map-elements.phtml:69
+#: view/omeka2-importer/index/map-elements.phtml:70
 msgid "Import as HTML media"
 msgstr "Importa come media HTML"
 
@@ -62,7 +73,7 @@ msgid "Map Omeka 2 Item Types to Omeka S Resource Classes"
 msgstr "Mappa i tipi di contenuto Omeka 2 alle classi di risorsa Omeka S"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:50
-#: view/omeka2-importer/index/map-elements.phtml:84
+#: view/omeka2-importer/index/map-elements.phtml:85
 msgid ""
 "Items can have only one resource class. Clicking more than one resource "
 "class for an item type will replace it."
@@ -113,21 +124,31 @@ msgstr "Mappa delle proprietà di Omeka S"
 msgid "Map to Omeka S Classes"
 msgstr "Mappa classi Omeka S"
 
-#: view/omeka2-importer/index/map-elements.phtml:32
+#: view/omeka2-importer/index/map-elements.phtml:23
+msgid "Map to Omeka S Templates"
+msgstr ""
+
+#: view/omeka2-importer/index/map-elements.phtml:33
 msgid "Clear Defaults"
 msgstr "Cancella valori predefiniti"
 
-#: view/omeka2-importer/index/map-elements.phtml:57
-#: view/omeka2-importer/index/map-elements.phtml:105
+#: view/omeka2-importer/index/map-elements.phtml:39
+msgid "Preserve HTML as media"
+msgstr ""
+
+#: view/omeka2-importer/index/map-elements.phtml:58
+#: view/omeka2-importer/index/map-elements.phtml:106
+#: view/omeka2-importer/index/map-elements.phtml:141
 msgid "Remove mapping"
 msgstr "Elimina mappatura"
 
-#: view/omeka2-importer/index/map-elements.phtml:60
-#: view/omeka2-importer/index/map-elements.phtml:105
+#: view/omeka2-importer/index/map-elements.phtml:61
+#: view/omeka2-importer/index/map-elements.phtml:106
+#: view/omeka2-importer/index/map-elements.phtml:142
 msgid "Undo remove mapping"
 msgstr "Annulla mappatura cancellata"
 
-#: view/omeka2-importer/index/map-elements.phtml:78
+#: view/omeka2-importer/index/map-elements.phtml:79
 msgid ""
 "Select property to map. Click an Omeka 2 element as the target, then select "
 "the properties for it."
@@ -135,19 +156,21 @@ msgstr ""
 "Seleziona la proprietà alla mappa. Clicca sull'elemento Omeka 2 come il "
 "target, dopo seleziona le proprietà."
 
-#: view/omeka2-importer/index/map-elements.phtml:86
+#: view/omeka2-importer/index/map-elements.phtml:87
+#: view/omeka2-importer/index/map-elements.phtml:123
 msgid "Clear defaults"
 msgstr "Cancella impostazioni"
 
-#: view/omeka2-importer/index/map-elements.phtml:90
+#: view/omeka2-importer/index/map-elements.phtml:91
+#: view/omeka2-importer/index/map-elements.phtml:127
 msgid "Item Type"
 msgstr "Tipo di contenuto"
 
-#: view/omeka2-importer/index/map-elements.phtml:91
+#: view/omeka2-importer/index/map-elements.phtml:92
 msgid "Resource Class"
 msgstr "Classe della risorsa"
 
-#: view/omeka2-importer/index/map-elements.phtml:116
+#: view/omeka2-importer/index/map-elements.phtml:117
 msgid ""
 "Select class to map. Click an Omeka 2 item type as the target, then select "
 "the resource class for it. Omeka S items can have only one resource class."
@@ -155,6 +178,23 @@ msgstr ""
 "Seleziona la classe alla mappa. Clicca il tipo di contenuto Omeka 2 come il "
 "target, dopo seleziona la classe di risorsa. I contenuti di Omeka S possono "
 "avere solo una classe di risorsa."
+
+#: view/omeka2-importer/index/map-elements.phtml:122
+msgid ""
+"Items can have only one resource template. Clicking more than one resource "
+"template for an item type will replace it."
+msgstr ""
+
+#: view/omeka2-importer/index/map-elements.phtml:128
+msgid "Resource Template"
+msgstr ""
+
+#: view/omeka2-importer/index/map-elements.phtml:153
+msgid ""
+"Select template to map. Click an Omeka 2 item type as the target, then "
+"select the resource template for it. Omeka S items can have only one "
+"resource template."
+msgstr ""
 
 #: view/omeka2-importer/index/past-imports.phtml:6
 msgid "Past Imports"
@@ -187,6 +227,170 @@ msgstr "Annullato"
 #: view/omeka2-importer/index/past-imports.phtml:54
 msgid "Undo in progress"
 msgstr "Annullamento in corso"
+
+#: src/Controller/item_type_maps.php:6
+msgid "Interviewer"
+msgstr "Intervistatore"
+
+#: src/Controller/item_type_maps.php:8
+msgid "Interviewee"
+msgstr "Intervistato"
+
+#: src/Controller/item_type_maps.php:12
+msgid "Transcription"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:14
+msgid "Local URL"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:16
+msgid "Original Format"
+msgstr "Formato originale"
+
+#: src/Controller/item_type_maps.php:18
+msgid "Physical Dimensions"
+msgstr "Dimensioni fisiche"
+
+#: src/Controller/item_type_maps.php:20
+msgid "Duration"
+msgstr "Durata"
+
+#: src/Controller/item_type_maps.php:22
+msgid "Compression"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:24
+msgid "Producer"
+msgstr "Produttore"
+
+#: src/Controller/item_type_maps.php:26
+msgid "Director"
+msgstr "Regista"
+
+#: src/Controller/item_type_maps.php:28
+msgid "Bit Rate/Frequency"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:30
+msgid "Time Summary"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:32
+msgid "Email Body"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:34
+msgid "Subject Line"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:36
+msgid "From"
+msgstr "Da"
+
+#: src/Controller/item_type_maps.php:38
+msgid "To"
+msgstr "A"
+
+#: src/Controller/item_type_maps.php:40
+msgid "CC"
+msgstr "CC"
+
+#: src/Controller/item_type_maps.php:42
+msgid "BCC"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:44
+msgid "Number of Attachments"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:46
+msgid "Standards"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:48
+msgid "Objectives"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:50
+msgid "Materials"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:52
+msgid "Lesson Plan Text"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:56
+msgid "Event Type"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:58
+msgid "Participants"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:60
+msgid "Birth Date"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:62
+msgid "Birthplace"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:64
+msgid "Death Date"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:66
+msgid "Occupation"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:68
+msgid "Biographical Text"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:70
+msgid "Bibliography"
+msgstr ""
+
+#: src/Controller/item_type_maps.php:79
+msgid "Oral History"
+msgstr "Storia orale"
+
+#: src/Controller/item_type_maps.php:91
+msgid "Lesson Plan"
+msgstr "Il piano di lezione"
+
+#: src/Controller/item_type_maps.php:93
+msgid "Hyperlink"
+msgstr ""
+
+#: src/Controller/IndexController.php:32 src/Controller/IndexController.php:83
+msgid "Importing in Job ID "
+msgstr "Importazione nel ID lavoro"
+
+#: src/Controller/IndexController.php:35 src/Controller/IndexController.php:87
+msgid "There was an error during validation"
+msgstr "Si è verificato un errore durante la validazione"
+
+#: src/Controller/IndexController.php:53
+msgid ", "
+msgstr ","
+
+#: src/Controller/IndexController.php:99
+#, php-format
+msgid "The endpoint %s is not a valid Omeka 2 endpoint."
+msgstr "L'endpoint %snon è un endpoint di Omeka 2 valido."
+
+#: src/Form/ConfigForm.php:14
+msgid "Enable improved data mapping"
+msgstr ""
+
+#: src/Form/ConfigForm.php:15
+msgid ""
+"Check this box if you want to import the \"Omeka Classic\" vocabulary and "
+"resource templates. They may improve data mapping between Omeka Classic "
+"(Omeka 2) and Omeka S."
+msgstr ""
 
 #: src/Form/ImportForm.php:15
 msgid "Omeka 2 Api Endpoint"
@@ -252,67 +456,10 @@ msgstr ""
 "Importa collezioni di Omeka 2 come collezioni. I contenuti verranno aggiunti"
 " a queste nuove collezioni."
 
-#: src/Controller/IndexController.php:32 src/Controller/IndexController.php:83
-msgid "Importing in Job ID "
-msgstr "Importazione nel ID lavoro"
+#: src/Form/MappingForm.php:102
+msgid "Import tag as"
+msgstr ""
 
-#: src/Controller/IndexController.php:35 src/Controller/IndexController.php:87
-msgid "There was an error during validation"
-msgstr "Si è verificato un errore durante la validazione"
-
-#: src/Controller/IndexController.php:53
-msgid ", "
-msgstr ","
-
-#: src/Controller/IndexController.php:99
-#, php-format
-msgid "The endpoint %s is not a valid Omeka 2 endpoint."
-msgstr "L'endpoint %snon è un endpoint di Omeka 2 valido."
-
-#: src/Controller/item_type_maps.php:5
-msgid "Interviewer"
-msgstr "Intervistatore"
-
-#: src/Controller/item_type_maps.php:7
-msgid "Interviewee"
-msgstr "Intervistato"
-
-#: src/Controller/item_type_maps.php:12
-msgid "Original Format"
-msgstr "Formato originale"
-
-#: src/Controller/item_type_maps.php:14
-msgid "Physical Dimensions"
-msgstr "Dimensioni fisiche"
-
-#: src/Controller/item_type_maps.php:16
-msgid "Duration"
-msgstr "Durata"
-
-#: src/Controller/item_type_maps.php:19
-msgid "Producer"
-msgstr "Produttore"
-
-#: src/Controller/item_type_maps.php:21
-msgid "Director"
-msgstr "Regista"
-
-#: src/Controller/item_type_maps.php:27
-msgid "From"
-msgstr "Da"
-
-#: src/Controller/item_type_maps.php:29
-msgid "To"
-msgstr "A"
-
-#: src/Controller/item_type_maps.php:31
-msgid "CC"
-msgstr "CC"
-
-#: src/Controller/item_type_maps.php:55
-msgid "Oral History"
-msgstr "Storia orale"
-
-#: src/Controller/item_type_maps.php:67
-msgid "Lesson Plan"
-msgstr "Il piano di lezione"
+#: src/Form/MappingForm.php:103
+msgid "Import tag into this property"
+msgstr ""
