@@ -2,9 +2,9 @@
 
 namespace Omeka2Importer\Form;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 use Omeka\Form\Element\ResourceSelect;
-use Zend\Form\Element\Select;
+use Laminas\Form\Element\Select;
 
 class MappingForm extends Form
 {

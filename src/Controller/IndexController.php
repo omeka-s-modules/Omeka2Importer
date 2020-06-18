@@ -4,8 +4,8 @@ namespace Omeka2Importer\Controller;
 
 use Omeka2Importer\Form\ImportForm;
 use Omeka2Importer\Form\MappingForm;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {

@@ -1,7 +1,7 @@
 <?php
 namespace Omeka2Importer\Form;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 class ConfigForm extends Form
 {

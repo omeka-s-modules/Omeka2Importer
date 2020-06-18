@@ -4,13 +4,13 @@
  */
 namespace Omeka2Importer\Service;
 
-use Zend\Http\Client;
-use Zend\Http\Request;
+use Laminas\Http\Client;
+use Laminas\Http\Request;
 
 class Omeka2Client
 {
     /**
-     * @var Zend\Http\Client
+     * @var Laminas\Http\Client
      */
     protected $httpClient;
 
@@ -157,7 +157,7 @@ class Omeka2Client
      * @param int|array $id
      * @param array     $params
      *
-     * @return Zend\Http\Response
+     * @return Laminas\Http\Response
      */
     protected function get($id = null, array $params = [])
     {
@@ -178,7 +178,7 @@ class Omeka2Client
      * @param string $data
      * @param array  $params
      *
-     * @return Zend\Http\Response
+     * @return Laminas\Http\Response
      */
     protected function post($data, array $params = [])
     {
@@ -195,7 +195,7 @@ class Omeka2Client
      * @param string $data
      * @param array  $params
      *
-     * @return Zend\Http\Response
+     * @return Laminas\Http\Response
      */
     protected function put($id, $data, array $params = [])
     {
@@ -213,7 +213,7 @@ class Omeka2Client
      * @param string $data
      * @param array  $params
      *
-     * @return Zend\Http\Response
+     * @return Laminas\Http\Response
      */
     protected function delete($id, array $params = [])
     {
@@ -229,7 +229,7 @@ class Omeka2Client
      * @param string $method
      * @param array  $params
      *
-     * @return Zend\Http\Client
+     * @return Laminas\Http\Client
      */
     protected function prepare($method, array $params = [])
     {

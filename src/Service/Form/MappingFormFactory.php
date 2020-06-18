@@ -3,7 +3,7 @@
 namespace Omeka2Importer\Service\Form;
 
 use Omeka2Importer\Form\MappingForm;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
 
 class MappingFormFactory implements FactoryInterface

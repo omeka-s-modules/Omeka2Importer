@@ -5,9 +5,9 @@ namespace Omeka2Importer;
 use Omeka\Module\AbstractModule;
 use Omeka\Entity\Job;
 use Omeka2Importer\Form\ConfigForm;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Mvc\Controller\AbstractController;
-use Zend\View\Renderer\PhpRenderer;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\Mvc\Controller\AbstractController;
+use Laminas\View\Renderer\PhpRenderer;
 use Composer\Semver\Comparator;
 
 class Module extends AbstractModule
