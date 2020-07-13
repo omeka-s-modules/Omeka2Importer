@@ -95,6 +95,10 @@ class Import extends AbstractJob
 
     protected function importCollections($options = [])
     {
+        if ($this->shouldStop()) {
+            return;
+        }
+
         $page = 1;
 
         if ($perPage = $this->getArg('perPage', false)) {
@@ -155,11 +159,15 @@ class Import extends AbstractJob
                 }
             }
             ++$page;
-        } while ($this->hasNextPage($clientResponse));
+        } while ($this->hasNextPage($clientResponse) && !$this->shouldStop());
     }
 
     protected function importItems($options = [])
     {
+        if ($this->shouldStop()) {
+            return;
+        }
+
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
 
         $page = 1;
@@ -228,7 +236,7 @@ class Import extends AbstractJob
                               ];
 
             $response = $this->api->update('omekaimport_imports', $this->importRecordId, $Omeka2ImportJson);
-        } while ($this->hasNextPage($clientResponse));
+        } while ($this->hasNextPage($clientResponse) && !$this->shouldStop());
     }
 
     protected function createItems($toCreate)
