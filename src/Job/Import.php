@@ -117,7 +117,7 @@ class Import extends AbstractJob
                 continue;
             }
             if (!$clientResponse->isOK()) {
-                $this->logger->err('HTTP problem: '.$clientResponse->getStatusCode().' '.$clientResponse->getReasonPhrase());
+                $this->logger->err('HTTP problem: ' . $clientResponse->getStatusCode() . ' ' . $clientResponse->getReasonPhrase());
                 continue;
             }
             $collectionsData = json_decode($clientResponse->getBody(), true);
@@ -190,7 +190,7 @@ class Import extends AbstractJob
                 continue;
             }
             if (!$clientResponse->isOK()) {
-                $this->logger->err('HTTP problem: '.$clientResponse->getStatusCode().' '.$clientResponse->getReasonPhrase());
+                $this->logger->err('HTTP problem: ' . $clientResponse->getStatusCode() . ' ' . $clientResponse->getReasonPhrase());
                 continue;
             }
 

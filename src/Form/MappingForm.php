@@ -4,7 +4,6 @@ namespace Omeka2Importer\Form;
 
 use Laminas\Form\Form;
 use Omeka\Form\Element\ResourceSelect;
-use Laminas\Form\Element\Select;
 
 class MappingForm extends Form
 {

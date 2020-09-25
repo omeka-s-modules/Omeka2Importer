@@ -3,7 +3,6 @@
 namespace Omeka2Importer;
 
 use Omeka\Module\AbstractModule;
-use Omeka\Entity\Job;
 use Omeka2Importer\Form\ConfigForm;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\Mvc\Controller\AbstractController;
@@ -24,7 +23,7 @@ class Module extends AbstractModule
 
     public function getConfig()
     {
-        return include __DIR__.'/config/module.config.php';
+        return include __DIR__ . '/config/module.config.php';
     }
 
     public function install(ServiceLocatorInterface $serviceLocator)
@@ -151,7 +150,7 @@ class Module extends AbstractModule
                     'o:namespace_uri' => 'http://omeka.org/s/vocabs/oc#',
                     'o:prefix' => 'oc',
                     'o:label' => 'Omeka Classic',
-                    'o:comment' =>  null,
+                    'o:comment' => null,
                 ],
                 [
                     'file' => __DIR__ . '/vocabs/oc.ttl',

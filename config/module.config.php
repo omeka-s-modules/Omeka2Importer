@@ -37,7 +37,7 @@ return [
     ],
     'view_manager' => [
         'template_path_stack' => [
-            OMEKA_PATH.'/modules/Omeka2Importer/view',
+            OMEKA_PATH . '/modules/Omeka2Importer/view',
         ],
     ],
     'view_helpers' => [
@@ -48,7 +48,7 @@ return [
     ],
     'entity_manager' => [
         'mapping_classes_paths' => [
-            OMEKA_PATH.'/modules/Omeka2Importer/src/Entity',
+            OMEKA_PATH . '/modules/Omeka2Importer/src/Entity',
         ],
     ],
 

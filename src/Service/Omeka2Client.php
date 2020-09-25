@@ -236,13 +236,13 @@ class Omeka2Client
         if (!$this->resource) {
             throw new \Exception('A resource must be set before making a request.');
         }
-        $path = '/'.$this->resource;
+        $path = '/' . $this->resource;
         if ($this->id) {
-            $path = $path.'/'.$this->id;
+            $path = $path . '/' . $this->id;
         }
         $client = $this->getHttpClient()
             ->resetParameters()
-            ->setUri($this->apiBaseUrl.$path)
+            ->setUri($this->apiBaseUrl . $path)
             ->setMethod($method);
         if ($this->key) {
             $params = array_merge($params, ['key' => $this->key]);
