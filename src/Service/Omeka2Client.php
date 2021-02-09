@@ -45,6 +45,17 @@ class Omeka2Client
     protected $id;
 
     /**
+     * Create the client
+     *
+     * @param Client $httpClient
+     */
+    public function __construct(Client $httpClient)
+    {
+        $this->httpClient = $httpClient;
+        $this->httpClient->setOptions(['timeout' => 30]);
+    }
+
+    /**
      * Proxy resources.
      *
      * @param string $resource
@@ -104,11 +115,6 @@ class Omeka2Client
      */
     public function getHttpClient()
     {
-        if (null === $this->httpClient) {
-            $this->httpClient = new Client();
-            $this->httpClient->setOptions(['timeout' => 30]);
-        }
-
         return $this->httpClient;
     }
 

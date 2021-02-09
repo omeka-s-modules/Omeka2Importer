@@ -2,8 +2,8 @@
 
 return [
     'service_manager' => [
-        'invokables' => [
-            'Omeka2Importer\Omeka2Client' => 'Omeka2Importer\Service\Omeka2Client',
+        'factories' => [
+            'Omeka2Importer\Omeka2Client' => 'Omeka2Importer\Service\Omeka2ClientFactory',
         ],
     ],
     'api_adapters' => [
