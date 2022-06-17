@@ -418,7 +418,7 @@ class Import extends AbstractJob
             }
         }
 
-        if ($this->tagPropertyId) {
+        if ($this->tagPropertyId && is_array($importData['tags'])) {
             foreach ($importData['tags'] as $tagData) {
                 $propertyJson[$this->tagPropertyId][] = [
                     '@value' => $tagData['name'],
