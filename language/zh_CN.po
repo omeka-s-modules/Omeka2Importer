@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Hong Zhang <zhangh@unlv.nevada.edu>, 2018
+# Hong Zhang <zhangh@unlv.nevada.edu>, 2021
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-29 09:07-0400\n"
 "PO-Revision-Date: 2017-09-14 20:16+0000\n"
-"Last-Translator: Hong Zhang <zhangh@unlv.nevada.edu>, 2018\n"
+"Last-Translator: Hong Zhang <zhangh@unlv.nevada.edu>, 2021\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/omeka/teams/14184/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,15 +35,15 @@ msgstr "更多信息"
 
 #: view/omeka2-importer/common/resource-template-selector.phtml:8
 msgid "Click on a resource template to add it to the mapped item types."
-msgstr ""
+msgstr "点击一个资源模板，把它添加到匹配的条目类型中。"
 
 #: view/omeka2-importer/common/resource-template-selector.phtml:10
 msgid "Filter resource templates"
-msgstr ""
+msgstr "过滤器资源模板"
 
 #: view/omeka2-importer/common/resource-template-selector.phtml:13
 msgid "Resource Templates"
-msgstr ""
+msgstr "资源模板"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:1
 msgid "Map Omeka 2 Elements to Omeka S Properties"
@@ -62,7 +62,7 @@ msgstr "已匹配的属性"
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:10
 #: view/omeka2-importer/index/map-elements.phtml:70
 msgid "Import as HTML media"
-msgstr "按HTML媒体导入"
+msgstr "按HTML媒介导入"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:44
 msgid "Map Omeka 2 Item Types to Omeka S Resource Classes"
@@ -81,7 +81,7 @@ msgstr "条目类型"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:57
 msgid "Resource class"
-msgstr ""
+msgstr "资源类"
 
 #: view/omeka2-importer/index/index.phtml:9
 #: view/omeka2-importer/index/past-imports.phtml:6
@@ -119,7 +119,7 @@ msgstr "匹配至Omeka S类"
 
 #: view/omeka2-importer/index/map-elements.phtml:23
 msgid "Map to Omeka S Templates"
-msgstr ""
+msgstr "匹配至Omeka S模板"
 
 #: view/omeka2-importer/index/map-elements.phtml:33
 msgid "Clear Defaults"
@@ -127,7 +127,7 @@ msgstr "清除默认值"
 
 #: view/omeka2-importer/index/map-elements.phtml:39
 msgid "Preserve HTML as media"
-msgstr ""
+msgstr "把HTML保存为媒介"
 
 #: view/omeka2-importer/index/map-elements.phtml:58
 #: view/omeka2-importer/index/map-elements.phtml:106
@@ -139,7 +139,7 @@ msgstr "取消匹配"
 #: view/omeka2-importer/index/map-elements.phtml:106
 #: view/omeka2-importer/index/map-elements.phtml:142
 msgid "Undo remove mapping"
-msgstr "撤销移除匹配 "
+msgstr ""
 
 #: view/omeka2-importer/index/map-elements.phtml:79
 msgid ""
@@ -171,18 +171,18 @@ msgstr "选择类来匹配。点选一个Omeka 2条目类型作为目标，然�
 msgid ""
 "Items can have only one resource template. Clicking more than one resource "
 "template for an item type will replace it."
-msgstr ""
+msgstr "条目只能有一个资源模板。给一个条目类型点击多个资源模板将替换它。"
 
 #: view/omeka2-importer/index/map-elements.phtml:128
 msgid "Resource Template"
-msgstr ""
+msgstr "资源模板"
 
 #: view/omeka2-importer/index/map-elements.phtml:153
 msgid ""
 "Select template to map. Click an Omeka 2 item type as the target, then "
 "select the resource template for it. Omeka S items can have only one "
 "resource template."
-msgstr ""
+msgstr "选择模板来匹配。点选一个Omeka 2条目类型作为目标，然后选择给它的资源模板。Omeka S条目只能有一个资源模板。"
 
 #: view/omeka2-importer/index/past-imports.phtml:6
 msgid "Past Imports"
@@ -190,7 +190,7 @@ msgstr "过去的导入"
 
 #: view/omeka2-importer/index/past-imports.phtml:19
 msgid "Undo?"
-msgstr "撤销？"
+msgstr ""
 
 #: view/omeka2-importer/index/past-imports.phtml:20
 msgid "Job ID"
@@ -210,11 +210,11 @@ msgstr "更新："
 
 #: view/omeka2-importer/index/past-imports.phtml:52
 msgid "Undone"
-msgstr "已撤销"
+msgstr ""
 
 #: view/omeka2-importer/index/past-imports.phtml:54
 msgid "Undo in progress"
-msgstr "撤销操作正在进行"
+msgstr ""
 
 #: src/Controller/item_type_maps.php:6
 msgid "Interviewer"
@@ -226,11 +226,11 @@ msgstr "被审核人"
 
 #: src/Controller/item_type_maps.php:12
 msgid "Transcription"
-msgstr ""
+msgstr "抄本"
 
 #: src/Controller/item_type_maps.php:14
 msgid "Local URL"
-msgstr ""
+msgstr "本地URL"
 
 #: src/Controller/item_type_maps.php:16
 msgid "Original Format"
@@ -246,7 +246,7 @@ msgstr "持续时间"
 
 #: src/Controller/item_type_maps.php:22
 msgid "Compression"
-msgstr ""
+msgstr "压缩"
 
 #: src/Controller/item_type_maps.php:24
 msgid "Producer"
@@ -258,23 +258,23 @@ msgstr "导演"
 
 #: src/Controller/item_type_maps.php:28
 msgid "Bit Rate/Frequency"
-msgstr ""
+msgstr "比特率 / 频率"
 
 #: src/Controller/item_type_maps.php:30
 msgid "Time Summary"
-msgstr ""
+msgstr "时间总结"
 
 #: src/Controller/item_type_maps.php:32
 msgid "Email Body"
-msgstr ""
+msgstr "电子邮件正文"
 
 #: src/Controller/item_type_maps.php:34
 msgid "Subject Line"
-msgstr ""
+msgstr "主题行"
 
 #: src/Controller/item_type_maps.php:36
 msgid "From"
-msgstr "来自"
+msgstr "来自于"
 
 #: src/Controller/item_type_maps.php:38
 msgid "To"
@@ -286,23 +286,23 @@ msgstr "抄送"
 
 #: src/Controller/item_type_maps.php:42
 msgid "BCC"
-msgstr ""
+msgstr "密件抄送"
 
 #: src/Controller/item_type_maps.php:44
 msgid "Number of Attachments"
-msgstr ""
+msgstr "附件数"
 
 #: src/Controller/item_type_maps.php:46
 msgid "Standards"
-msgstr ""
+msgstr "标准"
 
 #: src/Controller/item_type_maps.php:48
 msgid "Objectives"
-msgstr ""
+msgstr "目的"
 
 #: src/Controller/item_type_maps.php:50
 msgid "Materials"
-msgstr ""
+msgstr "材料"
 
 #: src/Controller/item_type_maps.php:52
 msgid "Lesson Plan Text"
@@ -310,35 +310,35 @@ msgstr ""
 
 #: src/Controller/item_type_maps.php:56
 msgid "Event Type"
-msgstr ""
+msgstr "事件类型"
 
 #: src/Controller/item_type_maps.php:58
 msgid "Participants"
-msgstr ""
+msgstr "参与者"
 
 #: src/Controller/item_type_maps.php:60
 msgid "Birth Date"
-msgstr ""
+msgstr "出生日期"
 
 #: src/Controller/item_type_maps.php:62
 msgid "Birthplace"
-msgstr ""
+msgstr "出生地"
 
 #: src/Controller/item_type_maps.php:64
 msgid "Death Date"
-msgstr ""
+msgstr "死亡日期"
 
 #: src/Controller/item_type_maps.php:66
 msgid "Occupation"
-msgstr ""
+msgstr "职业"
 
 #: src/Controller/item_type_maps.php:68
 msgid "Biographical Text"
-msgstr ""
+msgstr "文献文本"
 
 #: src/Controller/item_type_maps.php:70
 msgid "Bibliography"
-msgstr ""
+msgstr "文献"
 
 #: src/Controller/item_type_maps.php:79
 msgid "Oral History"
@@ -350,7 +350,7 @@ msgstr "课程计划"
 
 #: src/Controller/item_type_maps.php:93
 msgid "Hyperlink"
-msgstr ""
+msgstr "超链"
 
 #: src/Controller/IndexController.php:32 src/Controller/IndexController.php:83
 msgid "Importing in Job ID "
@@ -371,7 +371,7 @@ msgstr "端点%s不是有效的Omeka 2端点。"
 
 #: src/Form/ConfigForm.php:14
 msgid "Enable improved data mapping"
-msgstr ""
+msgstr "启用改进的数据匹配"
 
 #: src/Form/ConfigForm.php:15
 msgid ""
@@ -440,8 +440,8 @@ msgstr "将Omeka 2 馆藏导入为条目集。条目将被添加入新的条目�
 
 #: src/Form/MappingForm.php:102
 msgid "Import tag as"
-msgstr ""
+msgstr "导入标签为"
 
 #: src/Form/MappingForm.php:103
 msgid "Import tag into this property"
-msgstr ""
+msgstr "导入标签至该属性中"

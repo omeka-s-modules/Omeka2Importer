@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: view/omeka2-importer/common/resource-class-selector.phtml:8
 msgid "Click on a resource class to add it to the mapped item types."
@@ -178,8 +178,8 @@ msgid ""
 "Select class to map. Click an Omeka 2 item type as the target, then select "
 "the resource class for it. Omeka S items can have only one resource class."
 msgstr ""
-"Sélectionnez une classe correspondante. Cliquez sur un type de contenu Omeka"
-" 2 cible puis sélectionnez la classe de ressource pour ce dernier. Les "
+"Sélectionnez une classe correspondante. Cliquez sur un type de contenu "
+"Omeka 2 cible puis sélectionnez la classe de ressource pour ce dernier. Les "
 "contenus Omeka S peuvent être associés à plusieurs classes de ressource."
 
 #: view/omeka2-importer/index/map-elements.phtml:122

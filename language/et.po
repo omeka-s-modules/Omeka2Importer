@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Rivo Zängov <eraser@eraser.ee>, 2018
+# Rivo Zängov <eraser@eraser.ee>, 2021
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-29 09:07-0400\n"
 "PO-Revision-Date: 2017-09-14 20:16+0000\n"
-"Last-Translator: Rivo Zängov <eraser@eraser.ee>, 2018\n"
+"Last-Translator: Rivo Zängov <eraser@eraser.ee>, 2021\n"
 "Language-Team: Estonian (https://www.transifex.com/omeka/teams/14184/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,11 +39,11 @@ msgstr ""
 
 #: view/omeka2-importer/common/resource-template-selector.phtml:10
 msgid "Filter resource templates"
-msgstr ""
+msgstr "Filtreeri ressursi malle"
 
 #: view/omeka2-importer/common/resource-template-selector.phtml:13
 msgid "Resource Templates"
-msgstr ""
+msgstr "Ressursi mallid"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:1
 msgid "Map Omeka 2 Elements to Omeka S Properties"
@@ -81,7 +81,7 @@ msgstr "Ühiku liik"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:57
 msgid "Resource class"
-msgstr ""
+msgstr "Ressursi klass"
 
 #: view/omeka2-importer/index/index.phtml:9
 #: view/omeka2-importer/index/past-imports.phtml:6
@@ -119,7 +119,7 @@ msgstr "Seosta Omeka S klassidega"
 
 #: view/omeka2-importer/index/map-elements.phtml:23
 msgid "Map to Omeka S Templates"
-msgstr ""
+msgstr "Seosta Omeka S mallidega"
 
 #: view/omeka2-importer/index/map-elements.phtml:33
 msgid "Clear Defaults"
@@ -127,7 +127,7 @@ msgstr "Tühjenda vaikeväärtused"
 
 #: view/omeka2-importer/index/map-elements.phtml:39
 msgid "Preserve HTML as media"
-msgstr ""
+msgstr "Säilita HTML meediana"
 
 #: view/omeka2-importer/index/map-elements.phtml:58
 #: view/omeka2-importer/index/map-elements.phtml:106
@@ -177,7 +177,7 @@ msgstr ""
 
 #: view/omeka2-importer/index/map-elements.phtml:128
 msgid "Resource Template"
-msgstr ""
+msgstr "Ressursi mall"
 
 #: view/omeka2-importer/index/map-elements.phtml:153
 msgid ""
@@ -200,7 +200,7 @@ msgstr "Töö ID"
 
 #: view/omeka2-importer/index/past-imports.phtml:36
 msgid "Undo job"
-msgstr ""
+msgstr "Tühista töö"
 
 #: view/omeka2-importer/index/past-imports.phtml:45
 msgid "Added: "
@@ -228,11 +228,11 @@ msgstr "Intervjueeritav"
 
 #: src/Controller/item_type_maps.php:12
 msgid "Transcription"
-msgstr ""
+msgstr "Transkriptsioon"
 
 #: src/Controller/item_type_maps.php:14
 msgid "Local URL"
-msgstr ""
+msgstr "Kohalik link"
 
 #: src/Controller/item_type_maps.php:16
 msgid "Original Format"
@@ -248,7 +248,7 @@ msgstr "Kestus"
 
 #: src/Controller/item_type_maps.php:22
 msgid "Compression"
-msgstr ""
+msgstr "Pakkimine"
 
 #: src/Controller/item_type_maps.php:24
 msgid "Producer"
@@ -260,19 +260,19 @@ msgstr "Direktor"
 
 #: src/Controller/item_type_maps.php:28
 msgid "Bit Rate/Frequency"
-msgstr ""
+msgstr "Bitikiirus/Sagedus"
 
 #: src/Controller/item_type_maps.php:30
 msgid "Time Summary"
-msgstr ""
+msgstr "Aja kokkuvõte"
 
 #: src/Controller/item_type_maps.php:32
 msgid "Email Body"
-msgstr ""
+msgstr "E-kirja sisu"
 
 #: src/Controller/item_type_maps.php:34
 msgid "Subject Line"
-msgstr ""
+msgstr "Teema rida"
 
 #: src/Controller/item_type_maps.php:36
 msgid "From"
@@ -288,15 +288,15 @@ msgstr "Koopia"
 
 #: src/Controller/item_type_maps.php:42
 msgid "BCC"
-msgstr ""
+msgstr "Pimekoopia"
 
 #: src/Controller/item_type_maps.php:44
 msgid "Number of Attachments"
-msgstr ""
+msgstr "Manuste arv"
 
 #: src/Controller/item_type_maps.php:46
 msgid "Standards"
-msgstr ""
+msgstr "Standardid"
 
 #: src/Controller/item_type_maps.php:48
 msgid "Objectives"
@@ -304,7 +304,7 @@ msgstr ""
 
 #: src/Controller/item_type_maps.php:50
 msgid "Materials"
-msgstr ""
+msgstr "Materjalid"
 
 #: src/Controller/item_type_maps.php:52
 msgid "Lesson Plan Text"
@@ -312,35 +312,35 @@ msgstr ""
 
 #: src/Controller/item_type_maps.php:56
 msgid "Event Type"
-msgstr ""
+msgstr "Sündmuse liik"
 
 #: src/Controller/item_type_maps.php:58
 msgid "Participants"
-msgstr ""
+msgstr "Osalejad"
 
 #: src/Controller/item_type_maps.php:60
 msgid "Birth Date"
-msgstr ""
+msgstr "Sünni kuupäev"
 
 #: src/Controller/item_type_maps.php:62
 msgid "Birthplace"
-msgstr ""
+msgstr "Sünnikoht"
 
 #: src/Controller/item_type_maps.php:64
 msgid "Death Date"
-msgstr ""
+msgstr "Surma kuupäev"
 
 #: src/Controller/item_type_maps.php:66
 msgid "Occupation"
-msgstr ""
+msgstr "Amet"
 
 #: src/Controller/item_type_maps.php:68
 msgid "Biographical Text"
-msgstr ""
+msgstr "Biograafiline tekst"
 
 #: src/Controller/item_type_maps.php:70
 msgid "Bibliography"
-msgstr ""
+msgstr "Bibliograafia"
 
 #: src/Controller/item_type_maps.php:79
 msgid "Oral History"
@@ -352,7 +352,7 @@ msgstr "Tunniplaan"
 
 #: src/Controller/item_type_maps.php:93
 msgid "Hyperlink"
-msgstr ""
+msgstr "Link"
 
 #: src/Controller/IndexController.php:32 src/Controller/IndexController.php:83
 msgid "Importing in Job ID "
@@ -373,7 +373,7 @@ msgstr "Lõpp-punkt %s pole korrektne Omeka 2 lõpp-punkt."
 
 #: src/Form/ConfigForm.php:14
 msgid "Enable improved data mapping"
-msgstr ""
+msgstr "Luba täiustatud andmete seostamine"
 
 #: src/Form/ConfigForm.php:15
 msgid ""
@@ -448,8 +448,8 @@ msgstr ""
 
 #: src/Form/MappingForm.php:102
 msgid "Import tag as"
-msgstr ""
+msgstr "Impordi silt kui"
 
 #: src/Form/MappingForm.php:103
 msgid "Import tag into this property"
-msgstr ""
+msgstr "Impordi silt sellesse omadusse"

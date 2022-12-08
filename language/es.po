@@ -6,6 +6,7 @@
 # Translators:
 # Darío Hereñú, 2019
 # Carlos Rivera <Robertohernande9z9@hotmail.com>, 2019
+# Alfonso Montejo <almontejor@gmail.com>, 2021
 # 
 #, fuzzy
 msgid ""
@@ -14,13 +15,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-29 09:07-0400\n"
 "PO-Revision-Date: 2017-09-14 20:16+0000\n"
-"Last-Translator: Carlos Rivera <Robertohernande9z9@hotmail.com>, 2019\n"
+"Last-Translator: Alfonso Montejo <almontejor@gmail.com>, 2021\n"
 "Language-Team: Spanish (https://www.transifex.com/omeka/teams/14184/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: view/omeka2-importer/common/resource-class-selector.phtml:8
 msgid "Click on a resource class to add it to the mapped item types."
@@ -39,14 +40,16 @@ msgstr "Más información"
 #: view/omeka2-importer/common/resource-template-selector.phtml:8
 msgid "Click on a resource template to add it to the mapped item types."
 msgstr ""
+"Pulsar sobre una plantilla de recursos para añadirla a los tipos de ficha "
+"asignados."
 
 #: view/omeka2-importer/common/resource-template-selector.phtml:10
 msgid "Filter resource templates"
-msgstr ""
+msgstr "Filtrar plantillas de recursos"
 
 #: view/omeka2-importer/common/resource-template-selector.phtml:13
 msgid "Resource Templates"
-msgstr ""
+msgstr "Plantillas de recursos"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:1
 msgid "Map Omeka 2 Elements to Omeka S Properties"
@@ -87,7 +90,7 @@ msgstr "Tipo de elemento"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:57
 msgid "Resource class"
-msgstr ""
+msgstr "Clase de recurso"
 
 #: view/omeka2-importer/index/index.phtml:9
 #: view/omeka2-importer/index/past-imports.phtml:6
@@ -125,7 +128,7 @@ msgstr "Mapa para clases de Omeka S"
 
 #: view/omeka2-importer/index/map-elements.phtml:23
 msgid "Map to Omeka S Templates"
-msgstr ""
+msgstr "Mapa de las plantillas de Omeka S"
 
 #: view/omeka2-importer/index/map-elements.phtml:33
 msgid "Clear Defaults"
@@ -133,7 +136,7 @@ msgstr "Eliminar predeterminados"
 
 #: view/omeka2-importer/index/map-elements.phtml:39
 msgid "Preserve HTML as media"
-msgstr ""
+msgstr "Conservar HTML como medio"
 
 #: view/omeka2-importer/index/map-elements.phtml:58
 #: view/omeka2-importer/index/map-elements.phtml:106
@@ -183,10 +186,12 @@ msgid ""
 "Items can have only one resource template. Clicking more than one resource "
 "template for an item type will replace it."
 msgstr ""
+"Las fichas sólo pueden tener una plantilla de recursos. Pulsar sobre más de "
+"una plantilla de recursos para una ficha, reemplazará la anterior."
 
 #: view/omeka2-importer/index/map-elements.phtml:128
 msgid "Resource Template"
-msgstr ""
+msgstr "Plantilla de recursos"
 
 #: view/omeka2-importer/index/map-elements.phtml:153
 msgid ""
@@ -194,6 +199,10 @@ msgid ""
 "select the resource template for it. Omeka S items can have only one "
 "resource template."
 msgstr ""
+"Seleccionar la plantilla a asignar. Pulsar sobre un tipo de ficha de Omeka 2"
+" como objetivo y, a continuación, seleccionar la plantilla de recursos "
+"correspondiente. Las fichas de Omeka S sólo pueden tener una plantilla de "
+"recursos."
 
 #: view/omeka2-importer/index/past-imports.phtml:6
 msgid "Past Imports"
@@ -209,7 +218,7 @@ msgstr "ID de tarea"
 
 #: view/omeka2-importer/index/past-imports.phtml:36
 msgid "Undo job"
-msgstr ""
+msgstr "Deshacer trabajo"
 
 #: view/omeka2-importer/index/past-imports.phtml:45
 msgid "Added: "
@@ -237,11 +246,11 @@ msgstr "Entrevistado"
 
 #: src/Controller/item_type_maps.php:12
 msgid "Transcription"
-msgstr ""
+msgstr "Transcripción"
 
 #: src/Controller/item_type_maps.php:14
 msgid "Local URL"
-msgstr ""
+msgstr "URL local"
 
 #: src/Controller/item_type_maps.php:16
 msgid "Original Format"
@@ -257,7 +266,7 @@ msgstr "Duración"
 
 #: src/Controller/item_type_maps.php:22
 msgid "Compression"
-msgstr ""
+msgstr "Compresión"
 
 #: src/Controller/item_type_maps.php:24
 msgid "Producer"
@@ -269,19 +278,19 @@ msgstr "Director"
 
 #: src/Controller/item_type_maps.php:28
 msgid "Bit Rate/Frequency"
-msgstr ""
+msgstr "Tasa de bits / frecuencia"
 
 #: src/Controller/item_type_maps.php:30
 msgid "Time Summary"
-msgstr ""
+msgstr "Resumen de la duración"
 
 #: src/Controller/item_type_maps.php:32
 msgid "Email Body"
-msgstr ""
+msgstr "Cuerpo del correo electrónico"
 
 #: src/Controller/item_type_maps.php:34
 msgid "Subject Line"
-msgstr ""
+msgstr "Línea de asunto"
 
 #: src/Controller/item_type_maps.php:36
 msgid "From"
@@ -297,59 +306,59 @@ msgstr "CC"
 
 #: src/Controller/item_type_maps.php:42
 msgid "BCC"
-msgstr ""
+msgstr "CCO"
 
 #: src/Controller/item_type_maps.php:44
 msgid "Number of Attachments"
-msgstr ""
+msgstr "Número de adjuntos"
 
 #: src/Controller/item_type_maps.php:46
 msgid "Standards"
-msgstr ""
+msgstr "Estándares"
 
 #: src/Controller/item_type_maps.php:48
 msgid "Objectives"
-msgstr ""
+msgstr "Objetivos"
 
 #: src/Controller/item_type_maps.php:50
 msgid "Materials"
-msgstr ""
+msgstr "Materiales"
 
 #: src/Controller/item_type_maps.php:52
 msgid "Lesson Plan Text"
-msgstr ""
+msgstr "Texto de plan de estudios"
 
 #: src/Controller/item_type_maps.php:56
 msgid "Event Type"
-msgstr ""
+msgstr "Tipo de evento"
 
 #: src/Controller/item_type_maps.php:58
 msgid "Participants"
-msgstr ""
+msgstr "Participantes"
 
 #: src/Controller/item_type_maps.php:60
 msgid "Birth Date"
-msgstr ""
+msgstr "Fecha de nacimiento"
 
 #: src/Controller/item_type_maps.php:62
 msgid "Birthplace"
-msgstr ""
+msgstr "Lugar de nacimiento"
 
 #: src/Controller/item_type_maps.php:64
 msgid "Death Date"
-msgstr ""
+msgstr "Fecha de defunción"
 
 #: src/Controller/item_type_maps.php:66
 msgid "Occupation"
-msgstr ""
+msgstr "Ocupación"
 
 #: src/Controller/item_type_maps.php:68
 msgid "Biographical Text"
-msgstr ""
+msgstr "Texto biográfico"
 
 #: src/Controller/item_type_maps.php:70
 msgid "Bibliography"
-msgstr ""
+msgstr "Bibliografía"
 
 #: src/Controller/item_type_maps.php:79
 msgid "Oral History"
@@ -357,11 +366,11 @@ msgstr "Historia oral"
 
 #: src/Controller/item_type_maps.php:91
 msgid "Lesson Plan"
-msgstr "Plan de la lección"
+msgstr "Plan de estudios"
 
 #: src/Controller/item_type_maps.php:93
 msgid "Hyperlink"
-msgstr ""
+msgstr "Hipervínculo"
 
 #: src/Controller/IndexController.php:32 src/Controller/IndexController.php:83
 msgid "Importing in Job ID "
@@ -382,7 +391,7 @@ msgstr "El parámetro %s no es un parámetro válido Omeka 2."
 
 #: src/Form/ConfigForm.php:14
 msgid "Enable improved data mapping"
-msgstr ""
+msgstr "Habilitar la asignación de datos mejorada"
 
 #: src/Form/ConfigForm.php:15
 msgid ""
@@ -390,6 +399,9 @@ msgid ""
 "resource templates. They may improve data mapping between Omeka Classic "
 "(Omeka 2) and Omeka S."
 msgstr ""
+"Habilitar esta casilla si se desean importar los vocabularios y plantillas "
+"de recursos de \"Omeka Classic\". Podría mejorar la asignación de datos "
+"entre Omeka Classic (Omeka 2) y Omeka S."
 
 #: src/Form/ImportForm.php:15
 msgid "Omeka 2 Api Endpoint"
@@ -459,8 +471,8 @@ msgstr ""
 
 #: src/Form/MappingForm.php:102
 msgid "Import tag as"
-msgstr ""
+msgstr "Importar etiqueta como"
 
 #: src/Form/MappingForm.php:103
 msgid "Import tag into this property"
-msgstr ""
+msgstr "Importar etiqueta a esta propiedad"
