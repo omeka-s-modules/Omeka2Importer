@@ -299,7 +299,7 @@ class Import extends AbstractJob
     protected function buildResourceJson($importData, $options = [])
     {
         $config = $this->getServiceLocator()->get('Config');
-        $importerClasses = $config['omeka2_importer_classes'];
+        $importerClasses = $config['omeka2_importer_classes'] ?? [];
         $resourceJson = [];
         $resourceJson['remote_id'] = $importData['id'];
         $resourceJson['o:item_set'] = [];
@@ -418,7 +418,7 @@ class Import extends AbstractJob
             }
         }
 
-        if ($this->tagPropertyId && is_array($importData['tags'])) {
+        if ($this->tagPropertyId && isset($importData['tags']) && is_array($importData['tags'])) {
             foreach ($importData['tags'] as $tagData) {
                 $propertyJson[$this->tagPropertyId][] = [
                     '@value' => $tagData['name'],
