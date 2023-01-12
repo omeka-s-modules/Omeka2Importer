@@ -96,7 +96,7 @@ class IndexController extends AbstractActionController
         $testResponse = $this->client->resources->get();
         if ($testResponse->getStatusCode() != 200) {
             //throw new \Exception('no omeka for you!');
-            $this->messenger()->addError(sprintf('The endpoint %s is not a valid Omeka 2 endpoint.', $endpoint)); // @translate
+            $this->messenger()->addError(sprintf('The endpoint %s is not a valid Omeka Classic endpoint.', $endpoint)); // @translate
 
             return $this->redirect()->toRoute(
                 'admin/omeka2importer',

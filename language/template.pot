@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-29 09:07-0400\n"
+"POT-Creation-Date: 2023-01-12 16:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,12 +42,12 @@ msgid "Resource Templates"
 msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:1
-msgid "Map Omeka 2 Elements to Omeka S Properties"
+msgid "Map Omeka Classic Elements to Omeka S Properties"
 msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:8
 #: view/omeka2-importer/index/map-elements.phtml:37
-msgid "Omeka 2 element"
+msgid "Omeka Classic element"
 msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:9
@@ -61,7 +61,7 @@ msgid "Import as HTML media"
 msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:44
-msgid "Map Omeka 2 Item Types to Omeka S Resource Classes"
+msgid "Map Omeka Classic Item Types to Omeka S Resource Classes"
 msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:50
@@ -75,26 +75,14 @@ msgstr ""
 msgid "Item type"
 msgstr ""
 
-#: view/omeka2-importer/index/fetch-mapping-data.phtml:57
-msgid "Resource class"
-msgstr ""
-
-#: view/omeka2-importer/index/index.phtml:9
+#: view/omeka2-importer/index/index.phtml:8
+#: view/omeka2-importer/index/map-elements.phtml:11
 #: view/omeka2-importer/index/past-imports.phtml:6
-msgid "Omeka 2 Import"
+msgid "Omeka Classic Importer"
 msgstr ""
 
-#: view/omeka2-importer/index/index.phtml:9
 #: view/omeka2-importer/index/map-elements.phtml:11
 msgid "Import Settings"
-msgstr ""
-
-#: view/omeka2-importer/index/index.phtml:20
-msgid "Enter the Omeka 2 API endpoint."
-msgstr ""
-
-#: view/omeka2-importer/index/map-elements.phtml:11
-msgid "Omeka 2 Importer"
 msgstr ""
 
 #: view/omeka2-importer/index/map-elements.phtml:15
@@ -139,8 +127,8 @@ msgstr ""
 
 #: view/omeka2-importer/index/map-elements.phtml:79
 msgid ""
-"Select property to map. Click an Omeka 2 element as the target, then select "
-"the properties for it."
+"Select property to map. Click an Omeka Classic element as the target, then "
+"select the properties for it."
 msgstr ""
 
 #: view/omeka2-importer/index/map-elements.phtml:87
@@ -159,8 +147,9 @@ msgstr ""
 
 #: view/omeka2-importer/index/map-elements.phtml:117
 msgid ""
-"Select class to map. Click an Omeka 2 item type as the target, then select "
-"the resource class for it. Omeka S items can have only one resource class."
+"Select class to map. Click an Omeka Classic item type as the target, then "
+"select the resource class for it. Omeka S items can have only one resource "
+"class."
 msgstr ""
 
 #: view/omeka2-importer/index/map-elements.phtml:122
@@ -175,7 +164,7 @@ msgstr ""
 
 #: view/omeka2-importer/index/map-elements.phtml:153
 msgid ""
-"Select template to map. Click an Omeka 2 item type as the target, then "
+"Select template to map. Click an Omeka Classic item type as the target, then "
 "select the resource template for it. Omeka S items can have only one "
 "resource template."
 msgstr ""
@@ -210,6 +199,83 @@ msgstr ""
 
 #: view/omeka2-importer/index/past-imports.phtml:54
 msgid "Undo in progress"
+msgstr ""
+
+#: src/Form/MappingForm.php:18
+msgid "Omeka Classic API key"
+msgstr ""
+
+#: src/Form/MappingForm.php:19
+msgid "Your API key for this site"
+msgstr ""
+
+#: src/Form/MappingForm.php:31
+msgid "A note about the purpose or source of this import"
+msgstr ""
+
+#: src/Form/MappingForm.php:49
+msgid "Import into"
+msgstr ""
+
+#: src/Form/MappingForm.php:50
+msgid ""
+"Optional. Import items into this item set. It is recommended to create an "
+"Item Set for each Omeka Classic site you import."
+msgstr ""
+
+#: src/Form/MappingForm.php:65
+msgid "Per page"
+msgstr ""
+
+#: src/Form/MappingForm.php:66
+msgid "Optional. Only retrieve this many records for each request."
+msgstr ""
+
+#: src/Form/MappingForm.php:77
+msgid "Update a previous import"
+msgstr ""
+
+#: src/Form/MappingForm.php:78
+msgid ""
+"If checked, items will be reimported and all data replaced, including Item "
+"Set membership as set on this page."
+msgstr ""
+
+#: src/Form/MappingForm.php:89
+msgid "Import Collections"
+msgstr ""
+
+#: src/Form/MappingForm.php:90
+msgid ""
+"Import Omeka Classic collections as item sets. Items will be added to the "
+"new item sets."
+msgstr ""
+
+#: src/Form/MappingForm.php:101
+msgid "Import tag as"
+msgstr ""
+
+#: src/Form/MappingForm.php:102
+msgid "Import tag into this property"
+msgstr ""
+
+#: src/Form/ImportForm.php:15
+msgid "Omeka Classic API endpoint"
+msgstr ""
+
+#: src/Form/ImportForm.php:16
+msgid "The URI of the Omeka Classic API endpoint"
+msgstr ""
+
+#: src/Form/ConfigForm.php:14
+msgid "Enable improved data mapping"
+msgstr ""
+
+#: src/Form/ConfigForm.php:15
+msgid ""
+"Check this box if you want to import the \"Omeka Classic\" vocabulary and "
+"resource templates. They may improve data mapping between Omeka Classic "
+"(Omeka 2) and Omeka S."
 msgstr ""
 
 #: src/Controller/item_type_maps.php:6
@@ -362,82 +428,5 @@ msgstr ""
 
 #: src/Controller/IndexController.php:99
 #, php-format
-msgid "The endpoint %s is not a valid Omeka 2 endpoint."
-msgstr ""
-
-#: src/Form/ConfigForm.php:14
-msgid "Enable improved data mapping"
-msgstr ""
-
-#: src/Form/ConfigForm.php:15
-msgid ""
-"Check this box if you want to import the \"Omeka Classic\" vocabulary and "
-"resource templates. They may improve data mapping between Omeka Classic "
-"(Omeka 2) and Omeka S."
-msgstr ""
-
-#: src/Form/ImportForm.php:15
-msgid "Omeka 2 Api Endpoint"
-msgstr ""
-
-#: src/Form/ImportForm.php:16
-msgid "The URI of the Omeka 2 Api Endpoint"
-msgstr ""
-
-#: src/Form/MappingForm.php:19
-msgid "Omeka 2 API key"
-msgstr ""
-
-#: src/Form/MappingForm.php:20
-msgid "Your API key for this site"
-msgstr ""
-
-#: src/Form/MappingForm.php:32
-msgid "A note about the purpose or source of this import"
-msgstr ""
-
-#: src/Form/MappingForm.php:50
-msgid "Import into"
-msgstr ""
-
-#: src/Form/MappingForm.php:51
-msgid ""
-"Optional. Import items into this item set. It is recommended to create an "
-"Item Set for each Omeka 2 site you import."
-msgstr ""
-
-#: src/Form/MappingForm.php:66
-msgid "Per page"
-msgstr ""
-
-#: src/Form/MappingForm.php:67
-msgid "Optional. Only retrieve this many records for each request."
-msgstr ""
-
-#: src/Form/MappingForm.php:78
-msgid "Update a previous import"
-msgstr ""
-
-#: src/Form/MappingForm.php:79
-msgid ""
-"If checked, items will be reimported and all data replaced, including Item "
-"Set membership as set on this page."
-msgstr ""
-
-#: src/Form/MappingForm.php:90
-msgid "Import Collections"
-msgstr ""
-
-#: src/Form/MappingForm.php:91
-msgid ""
-"Import Omeka 2 collections as item sets. Items will be added to the new item "
-"sets."
-msgstr ""
-
-#: src/Form/MappingForm.php:102
-msgid "Import tag as"
-msgstr ""
-
-#: src/Form/MappingForm.php:103
-msgid "Import tag into this property"
+msgid "The endpoint %s is not a valid Omeka Classic endpoint."
 msgstr ""

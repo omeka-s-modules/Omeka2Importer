@@ -12,8 +12,8 @@ class ImportForm extends Form
             'name' => 'endpoint',
             'type' => 'url',
             'options' => [
-                'label' => 'Omeka 2 Api Endpoint', // @translate
-                'info' => 'The URI of the Omeka 2 Api Endpoint', // @translate
+                'label' => 'Omeka Classic API endpoint', // @translate
+                'info' => 'The URI of the Omeka Classic API endpoint', // @translate
             ],
             'attributes' => [
                 'id' => 'endpoint',

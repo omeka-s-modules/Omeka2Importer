@@ -8,7 +8,7 @@ $escape = $this->plugin('escapeHtml');
 $backUrl = $this->url('admin/omeka2importer');
 
 ?>
-<?php echo $this->pageTitle($this->translate('Omeka 2 Importer'), 1, $this->translate('Import Settings')); ?>
+<?php echo $this->pageTitle($this->translate('Import Settings'), 1, $this->translate('Omeka Classic Importer')); ?>
 
 <?php echo $this->form()->openTag($form); ?>
 <fieldset id='page-actions'>
@@ -34,7 +34,7 @@ $backUrl = $this->url('admin/omeka2importer');
     <table>
         <thead>
             <tr>
-                <th><?php echo $escape($this->translate("Omeka 2 element")); ?></th>
+                <th><?php echo $escape($this->translate("Omeka Classic element")); ?></th>
                 <th><?php echo $escape($this->translate("Mapped properties")); ?></th>
                 <th><?php echo $escape($this->translate("Preserve HTML as media")); ?></th>
             </tr>
@@ -76,7 +76,7 @@ $backUrl = $this->url('admin/omeka2importer');
     </table>
 
     <?php
-    echo $this->propertySelector($this->translate('Select property to map. Click an Omeka 2 element as the target, then select the properties for it.'), true);
+    echo $this->propertySelector($this->translate('Select property to map. Click an Omeka Classic element as the target, then select the properties for it.'), true);
     ?>
 </fieldset>
 
@@ -114,7 +114,7 @@ $backUrl = $this->url('admin/omeka2importer');
         </tbody>
     </table>
     <?php
-    echo $this->resourceClassSelector($this->translate('Select class to map. Click an Omeka 2 item type as the target, then select the resource class for it. Omeka S items can have only one resource class.'), true);
+    echo $this->resourceClassSelector($this->translate('Select class to map. Click an Omeka Classic item type as the target, then select the resource class for it. Omeka S items can have only one resource class.'), true);
     ?>
 </fieldset>
 
@@ -150,7 +150,7 @@ $backUrl = $this->url('admin/omeka2importer');
             <?php endforeach; ?>
         </tbody>
     </table>
-    <?php echo $this->resourceTemplateSelector($this->translate('Select template to map. Click an Omeka 2 item type as the target, then select the resource template for it. Omeka S items can have only one resource template.'), true); ?>
+    <?php echo $this->resourceTemplateSelector($this->translate('Select template to map. Click an Omeka Classic item type as the target, then select the resource template for it. Omeka S items can have only one resource template.'), true); ?>
 </fieldset>
 
 <?php echo $this->form()->closeTag($form); ?>

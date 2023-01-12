@@ -15,7 +15,7 @@ class MappingForm extends Form
             'name' => 'key',
             'type' => 'text',
             'options' => [
-                'label' => 'Omeka 2 API key', // @translate
+                'label' => 'Omeka Classic API key', // @translate
                 'info' => 'Your API key for this site', // @translate
             ],
             'attributes' => [
@@ -47,7 +47,7 @@ class MappingForm extends Form
             ],
             'options' => [
                 'label' => 'Import into', // @translate
-                'info' => 'Optional. Import items into this item set. It is recommended to create an Item Set for each Omeka 2 site you import.', // @translate
+                'info' => 'Optional. Import items into this item set. It is recommended to create an Item Set for each Omeka Classic site you import.', // @translate
                 'resource_value_options' => [
                     'resource' => 'item_sets',
                     'query' => ['owner_id' => $this->getOwner()],
@@ -87,7 +87,7 @@ class MappingForm extends Form
             'type' => 'checkbox',
             'options' => [
                 'label' => 'Import Collections', // @translate
-                'info' => 'Import Omeka 2 collections as item sets. Items will be added to the new item sets.', // @translate
+                'info' => 'Import Omeka Classic collections as item sets. Items will be added to the new item sets.', // @translate
             ],
             'attributes' => [
                 'id' => 'import-collections',

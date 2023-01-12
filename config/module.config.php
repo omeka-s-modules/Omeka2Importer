@@ -99,7 +99,7 @@ return [
     'navigation' => [
         'AdminModule' => [
             [
-                'label' => 'Omeka 2 Importer', // @translate
+                'label' => 'Omeka Classic Importer', // @translate
                 'route' => 'admin/omeka2importer',
                 'resource' => 'Omeka2Importer\Controller\Index',
                 'pages' => [
