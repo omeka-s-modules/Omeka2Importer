@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-29 09:07-0400\n"
+"POT-Creation-Date: 2023-01-12 16:46-0500\n"
 "PO-Revision-Date: 2017-09-14 20:16+0000\n"
 "Last-Translator: Alfonso Montejo <almontejor@gmail.com>, 2021\n"
 "Language-Team: Spanish (https://www.transifex.com/omeka/teams/14184/es/)\n"
@@ -52,13 +52,13 @@ msgid "Resource Templates"
 msgstr "Plantillas de recursos"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:1
-msgid "Map Omeka 2 Elements to Omeka S Properties"
-msgstr "Asignar propiedades de Omeka S  a los elementos de Omeka 2"
+msgid "Map Omeka Classic Elements to Omeka S Properties"
+msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:8
 #: view/omeka2-importer/index/map-elements.phtml:37
-msgid "Omeka 2 element"
-msgstr "Elemento Omeka 2"
+msgid "Omeka Classic element"
+msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:9
 #: view/omeka2-importer/index/map-elements.phtml:38
@@ -71,9 +71,8 @@ msgid "Import as HTML media"
 msgstr "Importar como un medio HTML"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:44
-msgid "Map Omeka 2 Item Types to Omeka S Resource Classes"
+msgid "Map Omeka Classic Item Types to Omeka S Resource Classes"
 msgstr ""
-"Asigne tipos de elementos de Omeka 2 a las clases de recursos de Omeka S"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:50
 #: view/omeka2-importer/index/map-elements.phtml:85
@@ -88,27 +87,15 @@ msgstr ""
 msgid "Item type"
 msgstr "Tipo de elemento"
 
-#: view/omeka2-importer/index/fetch-mapping-data.phtml:57
-msgid "Resource class"
-msgstr "Clase de recurso"
-
-#: view/omeka2-importer/index/index.phtml:9
+#: view/omeka2-importer/index/index.phtml:8
+#: view/omeka2-importer/index/map-elements.phtml:11
 #: view/omeka2-importer/index/past-imports.phtml:6
-msgid "Omeka 2 Import"
-msgstr "Importar Omeka 2"
+msgid "Omeka Classic Importer"
+msgstr ""
 
-#: view/omeka2-importer/index/index.phtml:9
 #: view/omeka2-importer/index/map-elements.phtml:11
 msgid "Import Settings"
 msgstr "Importar ajustes"
-
-#: view/omeka2-importer/index/index.phtml:20
-msgid "Enter the Omeka 2 API endpoint."
-msgstr "Ingresar los parámetros API de Omeka 2"
-
-#: view/omeka2-importer/index/map-elements.phtml:11
-msgid "Omeka 2 Importer"
-msgstr "Importador Omeka 2"
 
 #: view/omeka2-importer/index/map-elements.phtml:15
 msgid "Start Over"
@@ -152,11 +139,9 @@ msgstr "Deshacer eliminar mapeados"
 
 #: view/omeka2-importer/index/map-elements.phtml:79
 msgid ""
-"Select property to map. Click an Omeka 2 element as the target, then select "
-"the properties for it."
+"Select property to map. Click an Omeka Classic element as the target, then "
+"select the properties for it."
 msgstr ""
-"Seleccione propiedad a asignar. Haga clic en un elemento de Omeka 2 como "
-"destino, luego seleccione las propiedades para este. "
 
 #: view/omeka2-importer/index/map-elements.phtml:87
 #: view/omeka2-importer/index/map-elements.phtml:123
@@ -174,12 +159,10 @@ msgstr "Recurso de clase"
 
 #: view/omeka2-importer/index/map-elements.phtml:117
 msgid ""
-"Select class to map. Click an Omeka 2 item type as the target, then select "
-"the resource class for it. Omeka S items can have only one resource class."
+"Select class to map. Click an Omeka Classic item type as the target, then "
+"select the resource class for it. Omeka S items can have only one resource "
+"class."
 msgstr ""
-"Seleccione clase a asignar. Haga clic en un tipo de elemento de Omeka 2 como"
-" destino, luego seleccione la clase de recurso para este. Los elementos de "
-"Omeka S solamente pueden tener una  clase de recurso."
 
 #: view/omeka2-importer/index/map-elements.phtml:122
 msgid ""
@@ -195,14 +178,10 @@ msgstr "Plantilla de recursos"
 
 #: view/omeka2-importer/index/map-elements.phtml:153
 msgid ""
-"Select template to map. Click an Omeka 2 item type as the target, then "
-"select the resource template for it. Omeka S items can have only one "
+"Select template to map. Click an Omeka Classic item type as the target, then"
+" select the resource template for it. Omeka S items can have only one "
 "resource template."
 msgstr ""
-"Seleccionar la plantilla a asignar. Pulsar sobre un tipo de ficha de Omeka 2"
-" como objetivo y, a continuación, seleccionar la plantilla de recursos "
-"correspondiente. Las fichas de Omeka S sólo pueden tener una plantilla de "
-"recursos."
 
 #: view/omeka2-importer/index/past-imports.phtml:6
 msgid "Past Imports"
@@ -235,6 +214,89 @@ msgstr "Deshacer"
 #: view/omeka2-importer/index/past-imports.phtml:54
 msgid "Undo in progress"
 msgstr "Deshacer en proceso"
+
+#: src/Form/MappingForm.php:18
+msgid "Omeka Classic API key"
+msgstr ""
+
+#: src/Form/MappingForm.php:19
+msgid "Your API key for this site"
+msgstr "Su clave API para este sitio"
+
+#: src/Form/MappingForm.php:31
+msgid "A note about the purpose or source of this import"
+msgstr "Un memo acerca del propósito o causa de esta importación"
+
+#: src/Form/MappingForm.php:49
+msgid "Import into"
+msgstr "Importar en"
+
+#: src/Form/MappingForm.php:50
+msgid ""
+"Optional. Import items into this item set. It is recommended to create an "
+"Item Set for each Omeka Classic site you import."
+msgstr ""
+
+#: src/Form/MappingForm.php:65
+msgid "Per page"
+msgstr "Por página"
+
+#: src/Form/MappingForm.php:66
+msgid "Optional. Only retrieve this many records for each request."
+msgstr "Opcional. Solo recupere este número de registros para cada solicitud."
+
+#: src/Form/MappingForm.php:77
+msgid "Update a previous import"
+msgstr "Actualizar una importación anterior"
+
+#: src/Form/MappingForm.php:78
+msgid ""
+"If checked, items will be reimported and all data replaced, including Item "
+"Set membership as set on this page."
+msgstr ""
+"Si se marca, los elementos se reimportarán y se reemplazarán todos los "
+"datos, incluida la pertenencia al conjunto de elementos como se establece en"
+" esta página."
+
+#: src/Form/MappingForm.php:89
+msgid "Import Collections"
+msgstr "Importar colecciones"
+
+#: src/Form/MappingForm.php:90
+msgid ""
+"Import Omeka Classic collections as item sets. Items will be added to the "
+"new item sets."
+msgstr ""
+
+#: src/Form/MappingForm.php:101
+msgid "Import tag as"
+msgstr "Importar etiqueta como"
+
+#: src/Form/MappingForm.php:102
+msgid "Import tag into this property"
+msgstr "Importar etiqueta a esta propiedad"
+
+#: src/Form/ImportForm.php:15
+msgid "Omeka Classic API endpoint"
+msgstr ""
+
+#: src/Form/ImportForm.php:16
+msgid "The URI of the Omeka Classic API endpoint"
+msgstr ""
+
+#: src/Form/ConfigForm.php:14
+msgid "Enable improved data mapping"
+msgstr "Habilitar la asignación de datos mejorada"
+
+#: src/Form/ConfigForm.php:15
+msgid ""
+"Check this box if you want to import the \"Omeka Classic\" vocabulary and "
+"resource templates. They may improve data mapping between Omeka Classic "
+"(Omeka 2) and Omeka S."
+msgstr ""
+"Habilitar esta casilla si se desean importar los vocabularios y plantillas "
+"de recursos de \"Omeka Classic\". Podría mejorar la asignación de datos "
+"entre Omeka Classic (Omeka 2) y Omeka S."
 
 #: src/Controller/item_type_maps.php:6
 msgid "Interviewer"
@@ -386,93 +448,5 @@ msgstr ", "
 
 #: src/Controller/IndexController.php:99
 #, php-format
-msgid "The endpoint %s is not a valid Omeka 2 endpoint."
-msgstr "El parámetro %s no es un parámetro válido Omeka 2."
-
-#: src/Form/ConfigForm.php:14
-msgid "Enable improved data mapping"
-msgstr "Habilitar la asignación de datos mejorada"
-
-#: src/Form/ConfigForm.php:15
-msgid ""
-"Check this box if you want to import the \"Omeka Classic\" vocabulary and "
-"resource templates. They may improve data mapping between Omeka Classic "
-"(Omeka 2) and Omeka S."
+msgid "The endpoint %s is not a valid Omeka Classic endpoint."
 msgstr ""
-"Habilitar esta casilla si se desean importar los vocabularios y plantillas "
-"de recursos de \"Omeka Classic\". Podría mejorar la asignación de datos "
-"entre Omeka Classic (Omeka 2) y Omeka S."
-
-#: src/Form/ImportForm.php:15
-msgid "Omeka 2 Api Endpoint"
-msgstr "Parámetro Api Omeka 2"
-
-#: src/Form/ImportForm.php:16
-msgid "The URI of the Omeka 2 Api Endpoint"
-msgstr "El URI del parámetro API Omeka 2"
-
-#: src/Form/MappingForm.php:19
-msgid "Omeka 2 API key"
-msgstr "Clave API Omeka 2"
-
-#: src/Form/MappingForm.php:20
-msgid "Your API key for this site"
-msgstr "Su clave API para este sitio"
-
-#: src/Form/MappingForm.php:32
-msgid "A note about the purpose or source of this import"
-msgstr "Un memo acerca del propósito o causa de esta importación"
-
-#: src/Form/MappingForm.php:50
-msgid "Import into"
-msgstr "Importar en"
-
-#: src/Form/MappingForm.php:51
-msgid ""
-"Optional. Import items into this item set. It is recommended to create an "
-"Item Set for each Omeka 2 site you import."
-msgstr ""
-"Opcional. importar elementos dentro de este conjunto de elementos. Se "
-"recomienda crear un conjunto de elementos, para cada sitio de Omeka 2 que "
-"importe."
-
-#: src/Form/MappingForm.php:66
-msgid "Per page"
-msgstr "Por página"
-
-#: src/Form/MappingForm.php:67
-msgid "Optional. Only retrieve this many records for each request."
-msgstr "Opcional. Solo recupere este número de registros para cada solicitud."
-
-#: src/Form/MappingForm.php:78
-msgid "Update a previous import"
-msgstr "Actualizar una importación anterior"
-
-#: src/Form/MappingForm.php:79
-msgid ""
-"If checked, items will be reimported and all data replaced, including Item "
-"Set membership as set on this page."
-msgstr ""
-"Si se marca, los elementos se reimportarán y se reemplazarán todos los "
-"datos, incluida la pertenencia al conjunto de elementos como se establece en"
-" esta página."
-
-#: src/Form/MappingForm.php:90
-msgid "Import Collections"
-msgstr "Importar colecciones"
-
-#: src/Form/MappingForm.php:91
-msgid ""
-"Import Omeka 2 collections as item sets. Items will be added to the new item"
-" sets."
-msgstr ""
-"Importar colecciones Omeka 2 como conjunto de elementos. Estos serán "
-"agregados a los nuevos conjunto de elementos."
-
-#: src/Form/MappingForm.php:102
-msgid "Import tag as"
-msgstr "Importar etiqueta como"
-
-#: src/Form/MappingForm.php:103
-msgid "Import tag into this property"
-msgstr "Importar etiqueta a esta propiedad"

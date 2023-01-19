@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Kai Metsävainio <kai.metsavainio@gmail.com>, 2021
+# Iametza Interaktiboa, 2022
 # 
 #, fuzzy
 msgid ""
@@ -13,37 +13,38 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-12 16:46-0500\n"
 "PO-Revision-Date: 2017-09-14 20:16+0000\n"
-"Last-Translator: Kai Metsävainio <kai.metsavainio@gmail.com>, 2021\n"
-"Language-Team: Finnish (Finland) (https://www.transifex.com/omeka/teams/14184/fi_FI/)\n"
+"Last-Translator: Iametza Interaktiboa, 2022\n"
+"Language-Team: Basque (https://www.transifex.com/omeka/teams/14184/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fi_FI\n"
+"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: view/omeka2-importer/common/resource-class-selector.phtml:8
 msgid "Click on a resource class to add it to the mapped item types."
-msgstr ""
+msgstr "Klikatu baliabide klasean mapeatutako elementu motetara gehitzeko."
 
 #: view/omeka2-importer/common/resource-class-selector.phtml:10
 msgid "Filter resource classes"
-msgstr ""
+msgstr "Iragazi baliabide klaseak"
 
 #: view/omeka2-importer/common/resource-class-selector.phtml:30
 msgid "More Info"
-msgstr "Lisätietoja"
+msgstr "Informazio gehiago"
 
 #: view/omeka2-importer/common/resource-template-selector.phtml:8
 msgid "Click on a resource template to add it to the mapped item types."
 msgstr ""
+"Klikatu baliabide txantiloian mapeatutako elementu motetara gehitzeko."
 
 #: view/omeka2-importer/common/resource-template-selector.phtml:10
 msgid "Filter resource templates"
-msgstr ""
+msgstr "Iragazi baliabide txantiloiak"
 
 #: view/omeka2-importer/common/resource-template-selector.phtml:13
 msgid "Resource Templates"
-msgstr ""
+msgstr "Baliabide Txantiloiak"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:1
 msgid "Map Omeka Classic Elements to Omeka S Properties"
@@ -57,12 +58,12 @@ msgstr ""
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:9
 #: view/omeka2-importer/index/map-elements.phtml:38
 msgid "Mapped properties"
-msgstr "Mappauksen asetukset"
+msgstr "Mapeatutako propietateak"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:10
 #: view/omeka2-importer/index/map-elements.phtml:70
 msgid "Import as HTML media"
-msgstr ""
+msgstr "Inportatu HTML multimedia moduan"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:44
 msgid "Map Omeka Classic Item Types to Omeka S Resource Classes"
@@ -74,10 +75,12 @@ msgid ""
 "Items can have only one resource class. Clicking more than one resource "
 "class for an item type will replace it."
 msgstr ""
+"Elementuak baliabide klase bakarra eduki dezakete. Elementu multzo batentzat"
+" baliabide klase bat baino gehiago aukeratuta, berau ordezkatuko du. "
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:56
 msgid "Item type"
-msgstr ""
+msgstr "Elementu mota"
 
 #: view/omeka2-importer/index/index.phtml:8
 #: view/omeka2-importer/index/map-elements.phtml:11
@@ -87,47 +90,47 @@ msgstr ""
 
 #: view/omeka2-importer/index/map-elements.phtml:11
 msgid "Import Settings"
-msgstr ""
+msgstr "Inportazio Ezaugarriak"
 
 #: view/omeka2-importer/index/map-elements.phtml:15
 msgid "Start Over"
-msgstr "Aloita alusta"
+msgstr "Berriro Hasi"
 
 #: view/omeka2-importer/index/map-elements.phtml:20
 msgid "Basic Import Settings"
-msgstr ""
+msgstr "Oinarrizko Inportazio Ezaugarriak"
 
 #: view/omeka2-importer/index/map-elements.phtml:21
 msgid "Map to Omeka S Properties"
-msgstr ""
+msgstr "Mapeatu Omeka S Propietateetara"
 
 #: view/omeka2-importer/index/map-elements.phtml:22
 msgid "Map to Omeka S Classes"
-msgstr ""
+msgstr "Mapeatu Omeka S Klaseetara"
 
 #: view/omeka2-importer/index/map-elements.phtml:23
 msgid "Map to Omeka S Templates"
-msgstr ""
+msgstr "Mapeatu Omeka S Txantiloietara"
 
 #: view/omeka2-importer/index/map-elements.phtml:33
 msgid "Clear Defaults"
-msgstr "Tyhjennä oletukset"
+msgstr "Garbitu Defektuzkoak"
 
 #: view/omeka2-importer/index/map-elements.phtml:39
 msgid "Preserve HTML as media"
-msgstr ""
+msgstr "Mantendu HTMLa multimedia moduan"
 
 #: view/omeka2-importer/index/map-elements.phtml:58
 #: view/omeka2-importer/index/map-elements.phtml:106
 #: view/omeka2-importer/index/map-elements.phtml:141
 msgid "Remove mapping"
-msgstr "Poista mappaus"
+msgstr "Ezabatu mapaketa"
 
 #: view/omeka2-importer/index/map-elements.phtml:61
 #: view/omeka2-importer/index/map-elements.phtml:106
 #: view/omeka2-importer/index/map-elements.phtml:142
 msgid "Undo remove mapping"
-msgstr ""
+msgstr "Desegin mapaketa ezabatzea"
 
 #: view/omeka2-importer/index/map-elements.phtml:79
 msgid ""
@@ -138,16 +141,16 @@ msgstr ""
 #: view/omeka2-importer/index/map-elements.phtml:87
 #: view/omeka2-importer/index/map-elements.phtml:123
 msgid "Clear defaults"
-msgstr ""
+msgstr "Garbitu defektuzkoak"
 
 #: view/omeka2-importer/index/map-elements.phtml:91
 #: view/omeka2-importer/index/map-elements.phtml:127
 msgid "Item Type"
-msgstr "Aineiston tyyppi"
+msgstr "Elementu Mota"
 
 #: view/omeka2-importer/index/map-elements.phtml:92
 msgid "Resource Class"
-msgstr ""
+msgstr "Ezabatu Klasea"
 
 #: view/omeka2-importer/index/map-elements.phtml:117
 msgid ""
@@ -161,10 +164,13 @@ msgid ""
 "Items can have only one resource template. Clicking more than one resource "
 "template for an item type will replace it."
 msgstr ""
+"Elementuek baliabide txantiloi bakarra eduki dezakete. Elementu mota "
+"batentzat baliabide txantiloi bat baino gehiago klikatuta berau ordezkatuko "
+"du."
 
 #: view/omeka2-importer/index/map-elements.phtml:128
 msgid "Resource Template"
-msgstr ""
+msgstr "Baliabide Txantiloia"
 
 #: view/omeka2-importer/index/map-elements.phtml:153
 msgid ""
@@ -175,35 +181,35 @@ msgstr ""
 
 #: view/omeka2-importer/index/past-imports.phtml:6
 msgid "Past Imports"
-msgstr ""
+msgstr "Pasatako Inportazioak"
 
 #: view/omeka2-importer/index/past-imports.phtml:19
 msgid "Undo?"
-msgstr "Kumoa?"
+msgstr "Desegin?"
 
 #: view/omeka2-importer/index/past-imports.phtml:20
 msgid "Job ID"
-msgstr ""
+msgstr "Lan ID"
 
 #: view/omeka2-importer/index/past-imports.phtml:36
 msgid "Undo job"
-msgstr ""
+msgstr "Desegin lana"
 
 #: view/omeka2-importer/index/past-imports.phtml:45
 msgid "Added: "
-msgstr "Lisätty:"
+msgstr "Gehitua:"
 
 #: view/omeka2-importer/index/past-imports.phtml:46
 msgid "Updated: "
-msgstr "Päivitetty:"
+msgstr "Aldatua:"
 
 #: view/omeka2-importer/index/past-imports.phtml:52
 msgid "Undone"
-msgstr ""
+msgstr "Deseginda"
 
 #: view/omeka2-importer/index/past-imports.phtml:54
 msgid "Undo in progress"
-msgstr ""
+msgstr "Desegitea martxan"
 
 #: src/Form/MappingForm.php:18
 msgid "Omeka Classic API key"
@@ -211,15 +217,15 @@ msgstr ""
 
 #: src/Form/MappingForm.php:19
 msgid "Your API key for this site"
-msgstr ""
+msgstr "Atari honetako zure API kodea"
 
 #: src/Form/MappingForm.php:31
 msgid "A note about the purpose or source of this import"
-msgstr ""
+msgstr "Inportazio honen helburu edo jatorriaren inguruko oharra"
 
 #: src/Form/MappingForm.php:49
 msgid "Import into"
-msgstr "Tuo kohteeseen"
+msgstr "Hemen inportatu"
 
 #: src/Form/MappingForm.php:50
 msgid ""
@@ -229,25 +235,27 @@ msgstr ""
 
 #: src/Form/MappingForm.php:65
 msgid "Per page"
-msgstr "Per sivu"
+msgstr "Orriko"
 
 #: src/Form/MappingForm.php:66
 msgid "Optional. Only retrieve this many records for each request."
-msgstr ""
+msgstr "Hautazkoa. Eskari bakoitzeko erregistro kopuru hau bakarrik ekarri."
 
 #: src/Form/MappingForm.php:77
 msgid "Update a previous import"
-msgstr ""
+msgstr "Eguneratu aurreko inportazioa"
 
 #: src/Form/MappingForm.php:78
 msgid ""
 "If checked, items will be reimported and all data replaced, including Item "
 "Set membership as set on this page."
 msgstr ""
+"Hautatuta badago, elementuak berriro inportatu eta informazio guztiak "
+"gainidatziko da, orri honetan ezarritako elementuen multzoko kidetza barne."
 
 #: src/Form/MappingForm.php:89
 msgid "Import Collections"
-msgstr "Tuo kokoelmia"
+msgstr "Inportatu Bildumak"
 
 #: src/Form/MappingForm.php:90
 msgid ""
@@ -257,11 +265,11 @@ msgstr ""
 
 #: src/Form/MappingForm.php:101
 msgid "Import tag as"
-msgstr ""
+msgstr "Inportatu etiketa honela"
 
 #: src/Form/MappingForm.php:102
 msgid "Import tag into this property"
-msgstr ""
+msgstr "Inportatu etiketa propietate honetan"
 
 #: src/Form/ImportForm.php:15
 msgid "Omeka Classic API endpoint"
@@ -273,7 +281,7 @@ msgstr ""
 
 #: src/Form/ConfigForm.php:14
 msgid "Enable improved data mapping"
-msgstr ""
+msgstr "Gaitu datuen mapaketa hobetua"
 
 #: src/Form/ConfigForm.php:15
 msgid ""
@@ -281,46 +289,49 @@ msgid ""
 "resource templates. They may improve data mapping between Omeka Classic "
 "(Omeka 2) and Omeka S."
 msgstr ""
+"Aukeratu kutxa hau \"Omeka Classic\" hiztegia eta baliabide txantiloiak "
+"inportatu nahi badituzu. Omeka Classic (Omeka 2) eta Omeka Sren arteko "
+"mapaketa hobetuko luke."
 
 #: src/Controller/item_type_maps.php:6
 msgid "Interviewer"
-msgstr "haastattelija"
+msgstr "Elkarrizketatzailea"
 
 #: src/Controller/item_type_maps.php:8
 msgid "Interviewee"
-msgstr "haastateltava"
+msgstr "Elkarrizketatua"
 
 #: src/Controller/item_type_maps.php:12
 msgid "Transcription"
-msgstr ""
+msgstr "Transkripzioa"
 
 #: src/Controller/item_type_maps.php:14
 msgid "Local URL"
-msgstr ""
+msgstr "Helbide Lokala"
 
 #: src/Controller/item_type_maps.php:16
 msgid "Original Format"
-msgstr ""
+msgstr "Jatorrizko Formatua"
 
 #: src/Controller/item_type_maps.php:18
 msgid "Physical Dimensions"
-msgstr ""
+msgstr "DImentsio Fisikoak"
 
 #: src/Controller/item_type_maps.php:20
 msgid "Duration"
-msgstr "Kesto"
+msgstr "Iraupena"
 
 #: src/Controller/item_type_maps.php:22
 msgid "Compression"
-msgstr ""
+msgstr "Konpresioa"
 
 #: src/Controller/item_type_maps.php:24
 msgid "Producer"
-msgstr "Tuottaja"
+msgstr "Ekoizlea"
 
 #: src/Controller/item_type_maps.php:26
 msgid "Director"
-msgstr "Ohjaaja"
+msgstr "Zuzendaria"
 
 #: src/Controller/item_type_maps.php:28
 msgid "Bit Rate/Frequency"
@@ -328,107 +339,107 @@ msgstr ""
 
 #: src/Controller/item_type_maps.php:30
 msgid "Time Summary"
-msgstr ""
+msgstr "Denbora Laburpena"
 
 #: src/Controller/item_type_maps.php:32
 msgid "Email Body"
-msgstr ""
+msgstr "Mezuaren Gorputza"
 
 #: src/Controller/item_type_maps.php:34
 msgid "Subject Line"
-msgstr ""
+msgstr "Gaiaren Leroa"
 
 #: src/Controller/item_type_maps.php:36
 msgid "From"
-msgstr ""
+msgstr "Nondik"
 
 #: src/Controller/item_type_maps.php:38
 msgid "To"
-msgstr ""
+msgstr "Nora"
 
 #: src/Controller/item_type_maps.php:40
 msgid "CC"
-msgstr ""
+msgstr "CC"
 
 #: src/Controller/item_type_maps.php:42
 msgid "BCC"
-msgstr ""
+msgstr "BCC"
 
 #: src/Controller/item_type_maps.php:44
 msgid "Number of Attachments"
-msgstr ""
+msgstr "Atxiki kopurua"
 
 #: src/Controller/item_type_maps.php:46
 msgid "Standards"
-msgstr ""
+msgstr "Estandarrak"
 
 #: src/Controller/item_type_maps.php:48
 msgid "Objectives"
-msgstr ""
+msgstr "Helburuak"
 
 #: src/Controller/item_type_maps.php:50
 msgid "Materials"
-msgstr ""
+msgstr "Materialak"
 
 #: src/Controller/item_type_maps.php:52
 msgid "Lesson Plan Text"
-msgstr ""
+msgstr "Ikasgai Testu Laua"
 
 #: src/Controller/item_type_maps.php:56
 msgid "Event Type"
-msgstr ""
+msgstr "Gertaera Mota"
 
 #: src/Controller/item_type_maps.php:58
 msgid "Participants"
-msgstr ""
+msgstr "Partahideak"
 
 #: src/Controller/item_type_maps.php:60
 msgid "Birth Date"
-msgstr ""
+msgstr "Jaiotze Data"
 
 #: src/Controller/item_type_maps.php:62
 msgid "Birthplace"
-msgstr ""
+msgstr "Jaioterria"
 
 #: src/Controller/item_type_maps.php:64
 msgid "Death Date"
-msgstr ""
+msgstr "Heriota Data"
 
 #: src/Controller/item_type_maps.php:66
 msgid "Occupation"
-msgstr ""
+msgstr "Okupazioa"
 
 #: src/Controller/item_type_maps.php:68
 msgid "Biographical Text"
-msgstr ""
+msgstr "Biografia Testua"
 
 #: src/Controller/item_type_maps.php:70
 msgid "Bibliography"
-msgstr ""
+msgstr "Bibliografia"
 
 #: src/Controller/item_type_maps.php:79
 msgid "Oral History"
-msgstr "Suullinen perinne"
+msgstr "Ahozko Historia"
 
 #: src/Controller/item_type_maps.php:91
 msgid "Lesson Plan"
-msgstr ""
+msgstr "Ikasgai plana"
 
 #: src/Controller/item_type_maps.php:93
 msgid "Hyperlink"
-msgstr ""
+msgstr "Hiperesteka"
 
 #: src/Controller/IndexController.php:32 src/Controller/IndexController.php:83
 msgid "Importing in Job ID "
-msgstr ""
+msgstr "ID Lanean inportatzen"
 
 #: src/Controller/IndexController.php:35 src/Controller/IndexController.php:87
 msgid "There was an error during validation"
-msgstr ""
+msgstr "Errorea egon da balidazio garaian"
 
 #: src/Controller/IndexController.php:53
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: src/Controller/IndexController.php:99
 #, php-format

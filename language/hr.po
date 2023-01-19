@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-29 09:07-0400\n"
+"POT-Creation-Date: 2023-01-12 16:46-0500\n"
 "PO-Revision-Date: 2017-09-14 20:16+0000\n"
 "Last-Translator: Josip Ilic <josip.ilic@ericsson.com>, 2021\n"
 "Language-Team: Croatian (https://www.transifex.com/omeka/teams/14184/hr/)\n"
@@ -49,13 +49,13 @@ msgid "Resource Templates"
 msgstr "Predlošci Resursa"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:1
-msgid "Map Omeka 2 Elements to Omeka S Properties"
-msgstr "Mapirajte Omeka 2 Elemente u Omeka S Svojstva"
+msgid "Map Omeka Classic Elements to Omeka S Properties"
+msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:8
 #: view/omeka2-importer/index/map-elements.phtml:37
-msgid "Omeka 2 element"
-msgstr "Omeka 2 element"
+msgid "Omeka Classic element"
+msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:9
 #: view/omeka2-importer/index/map-elements.phtml:38
@@ -68,8 +68,8 @@ msgid "Import as HTML media"
 msgstr "Uvedi kao HTML medij"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:44
-msgid "Map Omeka 2 Item Types to Omeka S Resource Classes"
-msgstr "Mapirajte Omeka 2 Vrste Predmeta u Omeka S Klase Resursa"
+msgid "Map Omeka Classic Item Types to Omeka S Resource Classes"
+msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:50
 #: view/omeka2-importer/index/map-elements.phtml:85
@@ -84,27 +84,15 @@ msgstr ""
 msgid "Item type"
 msgstr "Vrsta predmeta"
 
-#: view/omeka2-importer/index/fetch-mapping-data.phtml:57
-msgid "Resource class"
-msgstr "Klasa resursa"
-
-#: view/omeka2-importer/index/index.phtml:9
+#: view/omeka2-importer/index/index.phtml:8
+#: view/omeka2-importer/index/map-elements.phtml:11
 #: view/omeka2-importer/index/past-imports.phtml:6
-msgid "Omeka 2 Import"
-msgstr "Omeka 2 Uvoz"
+msgid "Omeka Classic Importer"
+msgstr ""
 
-#: view/omeka2-importer/index/index.phtml:9
 #: view/omeka2-importer/index/map-elements.phtml:11
 msgid "Import Settings"
 msgstr "Postavke Uvoza"
-
-#: view/omeka2-importer/index/index.phtml:20
-msgid "Enter the Omeka 2 API endpoint."
-msgstr "Unesite krajnju točku Omeka 2 API-ja"
-
-#: view/omeka2-importer/index/map-elements.phtml:11
-msgid "Omeka 2 Importer"
-msgstr "Omeka 2 Uvoznik"
 
 #: view/omeka2-importer/index/map-elements.phtml:15
 msgid "Start Over"
@@ -148,11 +136,9 @@ msgstr "Poništite uklanjanje mapiranja"
 
 #: view/omeka2-importer/index/map-elements.phtml:79
 msgid ""
-"Select property to map. Click an Omeka 2 element as the target, then select "
-"the properties for it."
+"Select property to map. Click an Omeka Classic element as the target, then "
+"select the properties for it."
 msgstr ""
-"Odaberite svojstvo za mapiranje. Kliknite na Omeka 2 element kao metu, i "
-"onda odaberite svojstva za njega."
 
 #: view/omeka2-importer/index/map-elements.phtml:87
 #: view/omeka2-importer/index/map-elements.phtml:123
@@ -170,12 +156,10 @@ msgstr "Klasa Resursa"
 
 #: view/omeka2-importer/index/map-elements.phtml:117
 msgid ""
-"Select class to map. Click an Omeka 2 item type as the target, then select "
-"the resource class for it. Omeka S items can have only one resource class."
+"Select class to map. Click an Omeka Classic item type as the target, then "
+"select the resource class for it. Omeka S items can have only one resource "
+"class."
 msgstr ""
-"Odaberite klasu za mapiranje. Kliknite na Omeka 2 vrstu predmeta kao metu, i"
-" onda odaberite klasu resursa za nju. Omeka S predmeti mogu imati samo jednu"
-" klasu resursa. "
 
 #: view/omeka2-importer/index/map-elements.phtml:122
 msgid ""
@@ -191,13 +175,10 @@ msgstr "Predložak Resursa"
 
 #: view/omeka2-importer/index/map-elements.phtml:153
 msgid ""
-"Select template to map. Click an Omeka 2 item type as the target, then "
-"select the resource template for it. Omeka S items can have only one "
+"Select template to map. Click an Omeka Classic item type as the target, then"
+" select the resource template for it. Omeka S items can have only one "
 "resource template."
 msgstr ""
-"Odaberite predložak za mapiranje. Kliknite na Omeka 2 vrstu predmeta kao "
-"metu, i onda odaberite predložak resursa za nju. Omeka S predmeti mogu imati"
-" samo jedan predložak resursa."
 
 #: view/omeka2-importer/index/past-imports.phtml:6
 msgid "Past Imports"
@@ -230,6 +211,88 @@ msgstr "Poništeno"
 #: view/omeka2-importer/index/past-imports.phtml:54
 msgid "Undo in progress"
 msgstr "Poništavanje u tijeku"
+
+#: src/Form/MappingForm.php:18
+msgid "Omeka Classic API key"
+msgstr ""
+
+#: src/Form/MappingForm.php:19
+msgid "Your API key for this site"
+msgstr "Vaš API ključ za ovo web-mjesto"
+
+#: src/Form/MappingForm.php:31
+msgid "A note about the purpose or source of this import"
+msgstr "Bilješka o svrsi ili izvoru ovog uvoza"
+
+#: src/Form/MappingForm.php:49
+msgid "Import into"
+msgstr "Uvedi u"
+
+#: src/Form/MappingForm.php:50
+msgid ""
+"Optional. Import items into this item set. It is recommended to create an "
+"Item Set for each Omeka Classic site you import."
+msgstr ""
+
+#: src/Form/MappingForm.php:65
+msgid "Per page"
+msgstr "Po stranici"
+
+#: src/Form/MappingForm.php:66
+msgid "Optional. Only retrieve this many records for each request."
+msgstr "Neobavezno. Dohvati samo ovoliko zapisa za svaki zahtjev."
+
+#: src/Form/MappingForm.php:77
+msgid "Update a previous import"
+msgstr "Ažuriraj prethodni uvoz"
+
+#: src/Form/MappingForm.php:78
+msgid ""
+"If checked, items will be reimported and all data replaced, including Item "
+"Set membership as set on this page."
+msgstr ""
+"Ako je označeno, predmeti će biti ponovno uvezeni i svi podaci zamijenjeni, "
+"uključujući i članstvo Seta Predmeta koji je postavljen na ovoj stranici."
+
+#: src/Form/MappingForm.php:89
+msgid "Import Collections"
+msgstr "Uvedi Kolekcije"
+
+#: src/Form/MappingForm.php:90
+msgid ""
+"Import Omeka Classic collections as item sets. Items will be added to the "
+"new item sets."
+msgstr ""
+
+#: src/Form/MappingForm.php:101
+msgid "Import tag as"
+msgstr "Uvedite oznaku kao"
+
+#: src/Form/MappingForm.php:102
+msgid "Import tag into this property"
+msgstr "Uvedite oznaku u ovo svojstvo"
+
+#: src/Form/ImportForm.php:15
+msgid "Omeka Classic API endpoint"
+msgstr ""
+
+#: src/Form/ImportForm.php:16
+msgid "The URI of the Omeka Classic API endpoint"
+msgstr ""
+
+#: src/Form/ConfigForm.php:14
+msgid "Enable improved data mapping"
+msgstr "Omogućite poboljšano mapiranje podataka"
+
+#: src/Form/ConfigForm.php:15
+msgid ""
+"Check this box if you want to import the \"Omeka Classic\" vocabulary and "
+"resource templates. They may improve data mapping between Omeka Classic "
+"(Omeka 2) and Omeka S."
+msgstr ""
+"Označite ovu kutiju ako želite uvesti \"Omeka Classic\" vokabular i "
+"predloške resursa. Oni bi mogli poboljšati mapiranje podataka između Omeka "
+"Classic (Omeka 2) i Omeka S."
 
 #: src/Controller/item_type_maps.php:6
 msgid "Interviewer"
@@ -405,91 +468,5 @@ msgstr ", "
 
 #: src/Controller/IndexController.php:99
 #, php-format
-msgid "The endpoint %s is not a valid Omeka 2 endpoint."
-msgstr "Krajnja točka %s nije ispravna Omeka 2 krajnja točka."
-
-#: src/Form/ConfigForm.php:14
-msgid "Enable improved data mapping"
-msgstr "Omogućite poboljšano mapiranje podataka"
-
-#: src/Form/ConfigForm.php:15
-msgid ""
-"Check this box if you want to import the \"Omeka Classic\" vocabulary and "
-"resource templates. They may improve data mapping between Omeka Classic "
-"(Omeka 2) and Omeka S."
+msgid "The endpoint %s is not a valid Omeka Classic endpoint."
 msgstr ""
-"Označite ovu kutiju ako želite uvesti \"Omeka Classic\" vokabular i "
-"predloške resursa. Oni bi mogli poboljšati mapiranje podataka između Omeka "
-"Classic (Omeka 2) i Omeka S."
-
-#: src/Form/ImportForm.php:15
-msgid "Omeka 2 Api Endpoint"
-msgstr "Krajnja Točka Omeka 2 API-a"
-
-#: src/Form/ImportForm.php:16
-msgid "The URI of the Omeka 2 Api Endpoint"
-msgstr "URI krajnje točke Omeka 2 API-a"
-
-#: src/Form/MappingForm.php:19
-msgid "Omeka 2 API key"
-msgstr "Ključ Omeka 2 API-a"
-
-#: src/Form/MappingForm.php:20
-msgid "Your API key for this site"
-msgstr "Vaš API ključ za ovo web-mjesto"
-
-#: src/Form/MappingForm.php:32
-msgid "A note about the purpose or source of this import"
-msgstr "Bilješka o svrsi ili izvoru ovog uvoza"
-
-#: src/Form/MappingForm.php:50
-msgid "Import into"
-msgstr "Uvedi u"
-
-#: src/Form/MappingForm.php:51
-msgid ""
-"Optional. Import items into this item set. It is recommended to create an "
-"Item Set for each Omeka 2 site you import."
-msgstr ""
-"Neobavezno. Uvezi predmete u ovaj set predmeta. Preporučeno je stvoriti Set "
-"Predmeta za svako Omeka 2 web-mjesto koju uvedete."
-
-#: src/Form/MappingForm.php:66
-msgid "Per page"
-msgstr "Po stranici"
-
-#: src/Form/MappingForm.php:67
-msgid "Optional. Only retrieve this many records for each request."
-msgstr "Neobavezno. Dohvati samo ovoliko zapisa za svaki zahtjev."
-
-#: src/Form/MappingForm.php:78
-msgid "Update a previous import"
-msgstr "Ažuriraj prethodni uvoz"
-
-#: src/Form/MappingForm.php:79
-msgid ""
-"If checked, items will be reimported and all data replaced, including Item "
-"Set membership as set on this page."
-msgstr ""
-"Ako je označeno, predmeti će biti ponovno uvezeni i svi podaci zamijenjeni, "
-"uključujući i članstvo Seta Predmeta koji je postavljen na ovoj stranici."
-
-#: src/Form/MappingForm.php:90
-msgid "Import Collections"
-msgstr "Uvedi Kolekcije"
-
-#: src/Form/MappingForm.php:91
-msgid ""
-"Import Omeka 2 collections as item sets. Items will be added to the new item"
-" sets."
-msgstr ""
-"Uvedi Omeka 2 kolekcije kao skupove predmeta. Predmeti će biti dodani u novi"
-" skup predmeta."
-
-#: src/Form/MappingForm.php:102
-msgid "Import tag as"
-msgstr "Uvedite oznaku kao"
-
-#: src/Form/MappingForm.php:103
-msgid "Import tag into this property"
-msgstr "Uvedite oznaku u ovo svojstvo"

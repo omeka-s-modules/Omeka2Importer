@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-29 09:07-0400\n"
+"POT-Creation-Date: 2023-01-12 16:46-0500\n"
 "PO-Revision-Date: 2017-09-14 20:16+0000\n"
 "Last-Translator: Hong Zhang <zhangh@unlv.nevada.edu>, 2021\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/omeka/teams/14184/zh_CN/)\n"
@@ -46,13 +46,13 @@ msgid "Resource Templates"
 msgstr "资源模板"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:1
-msgid "Map Omeka 2 Elements to Omeka S Properties"
-msgstr "把Omeka 2元素匹配至Omeka S属性"
+msgid "Map Omeka Classic Elements to Omeka S Properties"
+msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:8
 #: view/omeka2-importer/index/map-elements.phtml:37
-msgid "Omeka 2 element"
-msgstr "Omeka 2 元素"
+msgid "Omeka Classic element"
+msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:9
 #: view/omeka2-importer/index/map-elements.phtml:38
@@ -65,8 +65,8 @@ msgid "Import as HTML media"
 msgstr "按HTML媒介导入"
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:44
-msgid "Map Omeka 2 Item Types to Omeka S Resource Classes"
-msgstr "匹配Omeka 2条目类型至Omeka S资源类"
+msgid "Map Omeka Classic Item Types to Omeka S Resource Classes"
+msgstr ""
 
 #: view/omeka2-importer/index/fetch-mapping-data.phtml:50
 #: view/omeka2-importer/index/map-elements.phtml:85
@@ -79,27 +79,15 @@ msgstr "条目只能有一个资源类。给一个条目类型点击多个资源
 msgid "Item type"
 msgstr "条目类型"
 
-#: view/omeka2-importer/index/fetch-mapping-data.phtml:57
-msgid "Resource class"
-msgstr "资源类"
-
-#: view/omeka2-importer/index/index.phtml:9
+#: view/omeka2-importer/index/index.phtml:8
+#: view/omeka2-importer/index/map-elements.phtml:11
 #: view/omeka2-importer/index/past-imports.phtml:6
-msgid "Omeka 2 Import"
-msgstr "Omeka 2 导入"
+msgid "Omeka Classic Importer"
+msgstr ""
 
-#: view/omeka2-importer/index/index.phtml:9
 #: view/omeka2-importer/index/map-elements.phtml:11
 msgid "Import Settings"
 msgstr "导入设置"
-
-#: view/omeka2-importer/index/index.phtml:20
-msgid "Enter the Omeka 2 API endpoint."
-msgstr "输入Omeka 2 API 端点。"
-
-#: view/omeka2-importer/index/map-elements.phtml:11
-msgid "Omeka 2 Importer"
-msgstr "Omeka 2导入器"
 
 #: view/omeka2-importer/index/map-elements.phtml:15
 msgid "Start Over"
@@ -143,9 +131,9 @@ msgstr ""
 
 #: view/omeka2-importer/index/map-elements.phtml:79
 msgid ""
-"Select property to map. Click an Omeka 2 element as the target, then select "
-"the properties for it."
-msgstr "选择属性来匹配。点选一个Omeka 2元素作为目标，然后选择给它的属性。"
+"Select property to map. Click an Omeka Classic element as the target, then "
+"select the properties for it."
+msgstr ""
 
 #: view/omeka2-importer/index/map-elements.phtml:87
 #: view/omeka2-importer/index/map-elements.phtml:123
@@ -163,9 +151,10 @@ msgstr "资源类"
 
 #: view/omeka2-importer/index/map-elements.phtml:117
 msgid ""
-"Select class to map. Click an Omeka 2 item type as the target, then select "
-"the resource class for it. Omeka S items can have only one resource class."
-msgstr "选择类来匹配。点选一个Omeka 2条目类型作为目标，然后选择给它的资源类。Omeka S条目只能有一个资源类。"
+"Select class to map. Click an Omeka Classic item type as the target, then "
+"select the resource class for it. Omeka S items can have only one resource "
+"class."
+msgstr ""
 
 #: view/omeka2-importer/index/map-elements.phtml:122
 msgid ""
@@ -179,10 +168,10 @@ msgstr "资源模板"
 
 #: view/omeka2-importer/index/map-elements.phtml:153
 msgid ""
-"Select template to map. Click an Omeka 2 item type as the target, then "
-"select the resource template for it. Omeka S items can have only one "
+"Select template to map. Click an Omeka Classic item type as the target, then"
+" select the resource template for it. Omeka S items can have only one "
 "resource template."
-msgstr "选择模板来匹配。点选一个Omeka 2条目类型作为目标，然后选择给它的资源模板。Omeka S条目只能有一个资源模板。"
+msgstr ""
 
 #: view/omeka2-importer/index/past-imports.phtml:6
 msgid "Past Imports"
@@ -214,6 +203,83 @@ msgstr ""
 
 #: view/omeka2-importer/index/past-imports.phtml:54
 msgid "Undo in progress"
+msgstr ""
+
+#: src/Form/MappingForm.php:18
+msgid "Omeka Classic API key"
+msgstr ""
+
+#: src/Form/MappingForm.php:19
+msgid "Your API key for this site"
+msgstr "您在该网站的API 密钥"
+
+#: src/Form/MappingForm.php:31
+msgid "A note about the purpose or source of this import"
+msgstr "关于该导入的目的或来源的注释"
+
+#: src/Form/MappingForm.php:49
+msgid "Import into"
+msgstr "导入至"
+
+#: src/Form/MappingForm.php:50
+msgid ""
+"Optional. Import items into this item set. It is recommended to create an "
+"Item Set for each Omeka Classic site you import."
+msgstr ""
+
+#: src/Form/MappingForm.php:65
+msgid "Per page"
+msgstr "每页"
+
+#: src/Form/MappingForm.php:66
+msgid "Optional. Only retrieve this many records for each request."
+msgstr "可选项。每次请求只提取这么多记录。"
+
+#: src/Form/MappingForm.php:77
+msgid "Update a previous import"
+msgstr "更新以前的导入"
+
+#: src/Form/MappingForm.php:78
+msgid ""
+"If checked, items will be reimported and all data replaced, including Item "
+"Set membership as set on this page."
+msgstr "如果点选的话，条目将全部重新导入，所有数据都被替换，包括在本页设定的条目集成员资格。"
+
+#: src/Form/MappingForm.php:89
+msgid "Import Collections"
+msgstr "导入馆藏"
+
+#: src/Form/MappingForm.php:90
+msgid ""
+"Import Omeka Classic collections as item sets. Items will be added to the "
+"new item sets."
+msgstr ""
+
+#: src/Form/MappingForm.php:101
+msgid "Import tag as"
+msgstr "导入标签为"
+
+#: src/Form/MappingForm.php:102
+msgid "Import tag into this property"
+msgstr "导入标签至该属性中"
+
+#: src/Form/ImportForm.php:15
+msgid "Omeka Classic API endpoint"
+msgstr ""
+
+#: src/Form/ImportForm.php:16
+msgid "The URI of the Omeka Classic API endpoint"
+msgstr ""
+
+#: src/Form/ConfigForm.php:14
+msgid "Enable improved data mapping"
+msgstr "启用改进的数据匹配"
+
+#: src/Form/ConfigForm.php:15
+msgid ""
+"Check this box if you want to import the \"Omeka Classic\" vocabulary and "
+"resource templates. They may improve data mapping between Omeka Classic "
+"(Omeka 2) and Omeka S."
 msgstr ""
 
 #: src/Controller/item_type_maps.php:6
@@ -366,82 +432,5 @@ msgstr "，"
 
 #: src/Controller/IndexController.php:99
 #, php-format
-msgid "The endpoint %s is not a valid Omeka 2 endpoint."
-msgstr "端点%s不是有效的Omeka 2端点。"
-
-#: src/Form/ConfigForm.php:14
-msgid "Enable improved data mapping"
-msgstr "启用改进的数据匹配"
-
-#: src/Form/ConfigForm.php:15
-msgid ""
-"Check this box if you want to import the \"Omeka Classic\" vocabulary and "
-"resource templates. They may improve data mapping between Omeka Classic "
-"(Omeka 2) and Omeka S."
+msgid "The endpoint %s is not a valid Omeka Classic endpoint."
 msgstr ""
-
-#: src/Form/ImportForm.php:15
-msgid "Omeka 2 Api Endpoint"
-msgstr "Omeka 2 API 端点"
-
-#: src/Form/ImportForm.php:16
-msgid "The URI of the Omeka 2 Api Endpoint"
-msgstr "Omeka 2 API 端点的URI"
-
-#: src/Form/MappingForm.php:19
-msgid "Omeka 2 API key"
-msgstr "Omeka 2 API 密钥"
-
-#: src/Form/MappingForm.php:20
-msgid "Your API key for this site"
-msgstr "您在该网站的API 密钥"
-
-#: src/Form/MappingForm.php:32
-msgid "A note about the purpose or source of this import"
-msgstr "关于该导入的目的或来源的注释"
-
-#: src/Form/MappingForm.php:50
-msgid "Import into"
-msgstr "导入至"
-
-#: src/Form/MappingForm.php:51
-msgid ""
-"Optional. Import items into this item set. It is recommended to create an "
-"Item Set for each Omeka 2 site you import."
-msgstr "可选项。导入条目至该条目集。推荐给每个您导入的Omeka 2网站创建一个条目集。"
-
-#: src/Form/MappingForm.php:66
-msgid "Per page"
-msgstr "每页"
-
-#: src/Form/MappingForm.php:67
-msgid "Optional. Only retrieve this many records for each request."
-msgstr "可选项。每次请求只提取这么多记录。"
-
-#: src/Form/MappingForm.php:78
-msgid "Update a previous import"
-msgstr "更新以前的导入"
-
-#: src/Form/MappingForm.php:79
-msgid ""
-"If checked, items will be reimported and all data replaced, including Item "
-"Set membership as set on this page."
-msgstr "如果点选的话，条目将全部重新导入，所有数据都被替换，包括在本页设定的条目集成员资格。"
-
-#: src/Form/MappingForm.php:90
-msgid "Import Collections"
-msgstr "导入馆藏"
-
-#: src/Form/MappingForm.php:91
-msgid ""
-"Import Omeka 2 collections as item sets. Items will be added to the new item"
-" sets."
-msgstr "将Omeka 2 馆藏导入为条目集。条目将被添加入新的条目集。"
-
-#: src/Form/MappingForm.php:102
-msgid "Import tag as"
-msgstr "导入标签为"
-
-#: src/Form/MappingForm.php:103
-msgid "Import tag into this property"
-msgstr "导入标签至该属性中"
